@@ -15,6 +15,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_buttonOpenImage_clicked();
+
+    void on_buttonOpenVideo_clicked();
+
+    void on_buttonOpenCamera_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
