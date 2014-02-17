@@ -29,7 +29,7 @@
     <property name="title">
      <string>Data Source</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -63,13 +63,13 @@
      </layout>
     </widget>
    </widget>
-   <widget class="QLabel" name="labelImageOutput">
+   <widget class="QLabel" name="labelImage">
     <property name="geometry">
      <rect>
       <x>390</x>
       <y>30</y>
-      <width>640</width>
-      <height>480</height>
+      <width>691</width>
+      <height>501</height>
      </rect>
     </property>
     <property name="text">

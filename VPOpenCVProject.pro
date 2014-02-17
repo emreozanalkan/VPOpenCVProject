@@ -15,12 +15,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    utilities.cpp
+        mainwindow.cpp
 
 HEADERS  += mainwindow.h \
-    pch.h \
-    utilities.h
+    pch.h
 
 FORMS    += mainwindow.ui
 

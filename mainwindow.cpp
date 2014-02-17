@@ -2,78 +2,217 @@
 #include "ui_mainwindow.h"
 
 #include <QFileDialog>
-
-#include "pch.h"
+#include <QMessageBox>
+#include <QStandardPaths>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->labelImage->setScaledContents(true);
+
+    timer.setInterval(25);
+
+    connect(&timer, SIGNAL(timeout()), this, SLOT(updateImageFromVideoCapture()));
+
+    isCameraCapture = false;
 }
 
 MainWindow::~MainWindow()
 {
+    this->stopDataSources();
+
     delete ui;
 }
 
 void MainWindow::on_buttonOpenImage_clicked()
 {
-    cv::Mat image;
-    QString fileName = QFileDialog::getOpenFileName(this, "Open Image", ".", "Image Files (*.png *.jpg *.jpeg *.bmp)");
-    image = cv::imread(fileName.toStdString());
-    cv::namedWindow("Original Image", cv::WINDOW_NORMAL);
-    cv::imshow("Original Image", image);
+    this->stopDataSources();
+
+    QString filePath = this->pickImageDialog();
+
+    if(filePath != 0)
+    {
+        image = cv::imread(filePath.toStdString());
+
+        if(!image.data)
+        {
+            QMessageBox msgBox;
+            msgBox.setText("Image you selected didn't loaded.");
+            msgBox.exec();
+            return;
+        }
+
+        isCameraCapture = false;
+
+        this->displayImage();
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("You didn't select image.");
+        msgBox.exec();
+    }
 }
 
 void MainWindow::on_buttonOpenVideo_clicked()
 {
-    cv::Mat image;
-    //QString fileName = QFileDialog::getOpenFileName(this, "Open Image", ".", "Image Files (*.avi *.mov *.jpeg *.bmp)");
-    //image = cv::imread(fileName.toStdString());
-    //cv::namedWindow("Original Image", cv::WINDOW_NORMAL);
-    //cv::imshow("Original Image", image);
+    this->stopDataSources();
 
-    QFileDialog dialog;
+    QString filePath = this->pickVideoDialog();
 
-    //QString fileName = dialog.getOpenFileName(this, "Open Image", ".", "Image Files (*.avi *.mov *.jpeg *.bmp)");
-    //QString fileName = "/Users/emreozanalkan/Dropbox/Camera Uploads/2012-06-26 03.01.56.mov";
-    QString fileName = "/Users/emreozanalkan/Desktop/3241_Code/3241OS_images/images/bike.avi";
-
-
-    cv::VideoCapture capture(fileName.toStdString());
-
-    if(!capture.isOpened())
-        return;
-
-    cv::waitKey(2000);
-
-    //cv::namedWindow("video", cv::WINDOW_NORMAL);
-
-    while(capture.grab())
+    if(filePath != 0)
     {
-        capture>>image;
-        cv::imshow("video", image);
+        this->videoCapture.open(filePath.toStdString());
 
-        cv::waitKey(30);
+        if(!videoCapture.isOpened())
+        {
+            QMessageBox msgBox;
+            msgBox.setText("Your video can't be opened.");
+            msgBox.exec();
+            return;
+        }
+        else
+        {
+            isCameraCapture = false;
+
+            if(timer.isActive())
+                timer.stop();
+            timer.start();
+        }
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("You didn't select video.");
+        msgBox.exec();
     }
 }
 
 void MainWindow::on_buttonOpenCamera_clicked()
 {
-    cv::VideoCapture capture(CV_CAP_ANY);
+    this->stopDataSources();
 
-    if(!capture.isOpened())
-        return;
+    if(videoCapture.isOpened())
+        videoCapture.release();
 
-    cv::Mat image;
-
-    while(capture.grab())
+    if(videoCapture.open(CV_CAP_ANY))
     {
-        capture>>image;
-        cv::imshow("video", image);
+        isCameraCapture = true;
 
-        cv::waitKey(30);
+        timer.start();
     }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("No camera found or can't open camera.");
+        msgBox.exec();
+    }
+}
 
+QImage MainWindow::matToQImage(const cv::Mat& mat)
+{
+    // 8-bits unsigned, NO. OF CHANNELS=1
+    if(mat.type() == CV_8UC1)
+    {
+        // Set the color table (used to translate colour indexes to qRgb values)
+        QVector<QRgb> colorTable;
+        for (int i = 0; i < 256; i++)
+            colorTable.push_back(qRgb(i,i,i));
+        // Copy input Mat
+        const uchar *qImageBuffer = (const uchar*)mat.data;
+        // Create QImage with same dimensions as input Mat
+        QImage img(qImageBuffer, mat.cols, mat.rows, mat.step, QImage::Format_Indexed8);
+        img.setColorTable(colorTable);
+        return img;
+    }
+    // 8-bits unsigned, NO. OF CHANNELS=3
+    if(mat.type() == CV_8UC3)
+    {
+        // Copy input Mat
+        const uchar *qImageBuffer = (const uchar*)mat.data;
+        // Create QImage with same dimensions as input Mat
+        QImage img(qImageBuffer, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
+        return img;
+    }
+    else
+        return QImage();
+}
+
+QString MainWindow::pickImageDialog()
+{
+    QFileDialog dialog(this);
+    dialog.setDirectory(QDir::home());
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setWindowTitle("Open Image");
+    dialog.setNameFilter("Image Files (*.png *.jpg *.jpeg *.bmp)");
+    dialog.setViewMode(QFileDialog::Detail);
+
+    if(dialog.exec())
+    {
+        if(dialog.selectedFiles().empty())
+            return 0;
+
+        return dialog.selectedFiles().first();
+    }
+    else
+        return 0;
+}
+
+QString MainWindow::pickVideoDialog()
+{
+    QFileDialog dialog(this);
+    dialog.setDirectory(QDir::home());
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setWindowTitle("Open Video");
+    dialog.setNameFilter("Video Files (*.mov *.mp4 *.m4v)");
+    dialog.setViewMode(QFileDialog::Detail);
+
+    if(dialog.exec())
+    {
+        if(dialog.selectedFiles().empty())
+            return 0;
+
+        return dialog.selectedFiles().first();
+    }
+    else
+        return 0;
+}
+
+void MainWindow::updateImageFromVideoCapture()
+{
+    mutex1.lock();
+    if(videoCapture.isOpened())
+        if(videoCapture.grab())
+        {
+            videoCapture>>image;
+            this->displayImage();
+        }
+    mutex1.unlock();
+}
+
+void MainWindow::displayImage()
+{
+    cv::Mat tempImage;
+
+    cv::cvtColor(image, tempImage, CV_BGR2RGB);
+
+    if(isCameraCapture)
+        cv::flip(tempImage, tempImage, 1);
+
+    QImage qImage = this->matToQImage(tempImage);
+
+    ui->labelImage->setPixmap(QPixmap::fromImage(qImage));
+}
+
+void MainWindow::stopDataSources()
+{
+    mutex2.lock();
+    if(timer.isActive())
+        timer.stop();
+    if(videoCapture.isOpened())
+        videoCapture.release();
+    mutex2.unlock();
 }
