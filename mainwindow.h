@@ -19,36 +19,42 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_buttonOpenImage_clicked();
 
-    void on_buttonOpenVideo_clicked();
+    void on_buttonLoadImage_clicked();
 
-    void on_buttonOpenCamera_clicked();
+    void on_buttonAddSaltAndPepper_clicked();
 
-    void updateImageFromVideoCapture();
+    void on_buttonResetOutput_clicked();
+
+    void on_buttonClearAndCloseAll_clicked();
+
+    void on_buttonLoadLogo_clicked();
+
+    void on_buttonAddLogo_clicked();
 
 private:
     Ui::MainWindow *ui;
 
-    bool isCameraCapture;
+    cv::Mat imageInput;
+    cv::Mat imageOutput;
 
-    QMutex mutex1;
-    QMutex mutex2;
+    cv::Mat imageROI;
 
-    QTimer timer;
-
-    cv::VideoCapture videoCapture;
-
-    cv::Mat image;
+    cv::Mat imageLogo;
 
     // Reference: https://github.com/jayrambhia/qt-opencv-app/blob/master/MatToQImage.cpp
-    QImage matToQImage(const cv::Mat& mat);
+    QImage matToQImage(const cv::Mat&);
+
+    void addSaltNoise(cv::Mat&, int);
+    void addPepperNoise(cv::Mat&, int);
+
+    void displayInputImage();
+    void displayOutputImage();
+    void displayLogoImage();
 
     QString pickImageDialog();
-    QString pickVideoDialog();
 
-    void displayImage();
-    void stopDataSources();
+    void setEnabledToolboxes(bool);
 
 
 };

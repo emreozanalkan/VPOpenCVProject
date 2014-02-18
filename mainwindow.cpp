@@ -11,105 +11,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->labelImage->setScaledContents(true);
-
-    timer.setInterval(25);
-
-    connect(&timer, SIGNAL(timeout()), this, SLOT(updateImageFromVideoCapture()));
-
-    isCameraCapture = false;
+    this->setEnabledToolboxes(false);
 }
 
 MainWindow::~MainWindow()
 {
-    this->stopDataSources();
-
     delete ui;
-}
-
-void MainWindow::on_buttonOpenImage_clicked()
-{
-    this->stopDataSources();
-
-    QString filePath = this->pickImageDialog();
-
-    if(filePath != 0)
-    {
-        image = cv::imread(filePath.toStdString());
-
-        if(!image.data)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("Image you selected didn't loaded.");
-            msgBox.exec();
-            return;
-        }
-
-        isCameraCapture = false;
-
-        this->displayImage();
-    }
-    else
-    {
-        QMessageBox msgBox;
-        msgBox.setText("You didn't select image.");
-        msgBox.exec();
-    }
-}
-
-void MainWindow::on_buttonOpenVideo_clicked()
-{
-    this->stopDataSources();
-
-    QString filePath = this->pickVideoDialog();
-
-    if(filePath != 0)
-    {
-        this->videoCapture.open(filePath.toStdString());
-
-        if(!videoCapture.isOpened())
-        {
-            QMessageBox msgBox;
-            msgBox.setText("Your video can't be opened.");
-            msgBox.exec();
-            return;
-        }
-        else
-        {
-            isCameraCapture = false;
-
-            if(timer.isActive())
-                timer.stop();
-            timer.start();
-        }
-    }
-    else
-    {
-        QMessageBox msgBox;
-        msgBox.setText("You didn't select video.");
-        msgBox.exec();
-    }
-}
-
-void MainWindow::on_buttonOpenCamera_clicked()
-{
-    this->stopDataSources();
-
-    if(videoCapture.isOpened())
-        videoCapture.release();
-
-    if(videoCapture.open(CV_CAP_ANY))
-    {
-        isCameraCapture = true;
-
-        timer.start();
-    }
-    else
-    {
-        QMessageBox msgBox;
-        msgBox.setText("No camera found or can't open camera.");
-        msgBox.exec();
-    }
 }
 
 QImage MainWindow::matToQImage(const cv::Mat& mat)
@@ -161,58 +68,181 @@ QString MainWindow::pickImageDialog()
         return 0;
 }
 
-QString MainWindow::pickVideoDialog()
+void MainWindow::displayInputImage()
 {
-    QFileDialog dialog(this);
-    dialog.setDirectory(QDir::home());
-    dialog.setFileMode(QFileDialog::ExistingFile);
-    dialog.setWindowTitle("Open Video");
-    dialog.setNameFilter("Video Files (*.mov *.mp4 *.m4v)");
-    dialog.setViewMode(QFileDialog::Detail);
-
-    if(dialog.exec())
-    {
-        if(dialog.selectedFiles().empty())
-            return 0;
-
-        return dialog.selectedFiles().first();
-    }
-    else
-        return 0;
+    cv::namedWindow("Input", cv::WINDOW_NORMAL);
+    imshow("Input", this->imageInput);
 }
 
-void MainWindow::updateImageFromVideoCapture()
+void MainWindow::displayOutputImage()
 {
-    mutex1.lock();
-    if(videoCapture.isOpened())
-        if(videoCapture.grab())
-        {
-            videoCapture>>image;
-            this->displayImage();
+    cv::namedWindow("Output", cv::WINDOW_NORMAL);
+    cv::imshow("Output", this->imageOutput);
+}
+
+void  MainWindow::displayLogoImage()
+{
+    cv::namedWindow("Logo", cv::WINDOW_NORMAL);
+    cv::imshow("Logo", this->imageLogo);
+}
+
+void MainWindow::addSaltNoise(cv::Mat &image, int n)
+{
+    for (int k = 0; k < n; k++) {
+        int i = rand() % image.cols;
+        int j = rand() % image.rows;
+
+        if (image.channels() == 1) { // gray-level image
+            image.at<uchar>(j, i)= 255;
         }
-    mutex1.unlock();
+        else if (image.channels() == 3) { // color image
+            image.at<cv::Vec3b>(j, i)[0]= 255;
+            image.at<cv::Vec3b>(j, i)[1]= 255;
+            image.at<cv::Vec3b>(j, i)[2]= 255;
+        }
+    }
 }
 
-void MainWindow::displayImage()
+void MainWindow::addPepperNoise(cv::Mat &image, int n)
 {
-    cv::Mat tempImage;
+    for (int k = 0; k < n; k++) {
+        int i = rand() % image.cols;
+        int j = rand() % image.rows;
 
-    cv::cvtColor(image, tempImage, CV_BGR2RGB);
-
-    if(isCameraCapture)
-        cv::flip(tempImage, tempImage, 1);
-
-    QImage qImage = this->matToQImage(tempImage);
-
-    ui->labelImage->setPixmap(QPixmap::fromImage(qImage));
+        if (image.channels() == 1) { // gray-level image
+            image.at<uchar>(j, i)= 0;
+        }
+        else if (image.channels() == 3) { // color image
+            image.at<cv::Vec3b>(j, i)[0]= 0;
+            image.at<cv::Vec3b>(j, i)[1]= 0;
+            image.at<cv::Vec3b>(j, i)[2]= 0;
+        }
+    }
 }
 
-void MainWindow::stopDataSources()
+void MainWindow::on_buttonLoadImage_clicked()
 {
-    mutex2.lock();
-    if(timer.isActive())
-        timer.stop();
-    if(videoCapture.isOpened())
-        videoCapture.release();
-    mutex2.unlock();
+    QString filePath = this->pickImageDialog();
+
+        if(filePath != 0)
+        {
+            imageInput = cv::imread(filePath.toStdString());
+
+            if(!imageInput.data)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Image you selected didn't loaded.");
+                msgBox.exec();
+                return;
+            }
+
+            this->imageInput.copyTo(this->imageOutput);
+
+            this->setEnabledToolboxes(true);
+
+            this->ui->buttonClearAndCloseAll->setEnabled(true);
+            this->ui->buttonResetOutput->setEnabled(true);
+
+            this->displayInputImage();
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setText("You didn't select image.");
+            msgBox.exec();
+        }
+}
+
+void MainWindow::on_buttonAddSaltAndPepper_clicked()
+{
+    if(ui->checkBoxSalt->isChecked())
+        this->addSaltNoise(this->imageOutput, ui->spinBoxSaltAndPepperRate->value());
+    if(ui->checkBoxPepper->isChecked())
+        this->addPepperNoise(this->imageOutput, ui->spinBoxSaltAndPepperRate->value());
+
+    this->displayOutputImage();
+}
+
+void MainWindow::setEnabledToolboxes(bool enabled)
+{
+    ui->groupBoxSaltAndPepper->setEnabled(enabled);
+    ui->groupBoxShowLogo->setEnabled(enabled);
+}
+
+void MainWindow::on_buttonResetOutput_clicked()
+{
+    this->imageInput.copyTo(this->imageOutput);
+    this->displayOutputImage();
+}
+
+void MainWindow::on_buttonClearAndCloseAll_clicked()
+{
+    cv::destroyAllWindows();
+
+    this->setEnabledToolboxes(false);
+
+    this->ui->buttonClearAndCloseAll->setEnabled(false);
+    this->ui->buttonResetOutput->setEnabled(false);
+}
+
+void MainWindow::on_buttonLoadLogo_clicked()
+{
+    QString filePath = this->pickImageDialog();
+
+        if(filePath != 0)
+        {
+            imageLogo = cv::imread(filePath.toStdString());
+
+            if(!imageLogo.data)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Logo you selected didn't loaded.");
+                msgBox.exec();
+                return;
+            }
+
+            if(this->imageLogo.rows > this->imageInput.rows || this->imageLogo.cols > this->imageInput.cols)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Logo you selected is bigger than input image. Please select new logo.");
+                msgBox.exec();
+                return;
+            }
+
+            ui->buttonAddLogo->setEnabled(true);
+
+            ui->spinBoxShowLogoX->setMaximum(this->imageOutput.cols - this->imageLogo.cols);
+            ui->spinBoxShowLogoY->setMaximum(this->imageOutput.rows - this->imageLogo.rows);
+
+            this->displayLogoImage();
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setText("You didn't select logo.");
+            msgBox.exec();
+        }
+}
+
+void MainWindow::on_buttonAddLogo_clicked()
+{
+    if(this->imageLogo.rows > this->imageInput.rows || this->imageLogo.cols > this->imageInput.cols)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Logo you selected is bigger than input image. Please select new logo.");
+        msgBox.exec();
+        return;
+    }
+
+    cv::Mat imageROI;
+    imageROI = this->imageOutput(cv::Rect(ui->spinBoxShowLogoX->value(),ui->spinBoxShowLogoY->value(), this->imageLogo.cols, this->imageLogo.rows));
+
+    cv::addWeighted(imageROI,
+                    ui->doubleSpinBoxShowLogoAlpha->value(),
+                    this->imageLogo,
+                    ui->doubleSpinBoxShowLogoBeta->value(),
+                    ui->doubleSpinBoxShowLogoGamma->value(),
+                    imageROI);
+
+    this->displayOutputImage();
 }
