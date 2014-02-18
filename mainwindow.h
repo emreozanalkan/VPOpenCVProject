@@ -32,6 +32,8 @@ private slots:
 
     void on_buttonAddLogo_clicked();
 
+    void on_buttonConvertColorSpaceConvertTo_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -55,6 +57,8 @@ private:
     QString pickImageDialog();
 
     void setEnabledToolboxes(bool);
+
+    void setCurrentColorSpace(QString);
 
 
 };

@@ -18,7 +18,9 @@ SOURCES += main.cpp\
         mainwindow.cpp
 
 HEADERS  += mainwindow.h \
-    pch.h
+    pch.h \
+    colorhistogram.h \
+    histogram.h
 
 FORMS    += mainwindow.ui
 

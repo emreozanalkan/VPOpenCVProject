@@ -140,6 +140,8 @@ void MainWindow::on_buttonLoadImage_clicked()
 
             this->setEnabledToolboxes(true);
 
+            this->setCurrentColorSpace("BGR");
+
             this->ui->buttonClearAndCloseAll->setEnabled(true);
             this->ui->buttonResetOutput->setEnabled(true);
 
@@ -167,6 +169,7 @@ void MainWindow::setEnabledToolboxes(bool enabled)
 {
     ui->groupBoxSaltAndPepper->setEnabled(enabled);
     ui->groupBoxShowLogo->setEnabled(enabled);
+    ui->groupBoxConvertColorSpace->setEnabled(enabled);
 }
 
 void MainWindow::on_buttonResetOutput_clicked()
@@ -237,6 +240,10 @@ void MainWindow::on_buttonAddLogo_clicked()
     cv::Mat imageROI;
     imageROI = this->imageOutput(cv::Rect(ui->spinBoxShowLogoX->value(),ui->spinBoxShowLogoY->value(), this->imageLogo.cols, this->imageLogo.rows));
 
+    if(imageROI.channels() == 1)
+        if(this->imageLogo.channels() != 1)
+            cv::cvtColor(this->imageLogo, this->imageLogo, CV_BGR2GRAY);
+
     cv::addWeighted(imageROI,
                     ui->doubleSpinBoxShowLogoAlpha->value(),
                     this->imageLogo,
@@ -245,4 +252,226 @@ void MainWindow::on_buttonAddLogo_clicked()
                     imageROI);
 
     this->displayOutputImage();
+}
+
+void MainWindow::on_buttonConvertColorSpaceConvertTo_clicked()
+{
+    // CV_BGR2RGB
+    // CV_BGR2GRAY
+    // CV_BGR2HSV
+    // CV_BGR2HLS
+    if(ui->comboBoxCurrentColorSpace->currentText() == "BGR")
+    {
+        if(ui->comboBoxConvertTo->currentText() == "RGB")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_BGR2RGB);
+            this->setCurrentColorSpace("RGB");
+        }
+        else if(ui->comboBoxConvertTo->currentText() == "GRAY")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_BGR2GRAY);
+            this->setCurrentColorSpace("GRAY");
+        }
+        else if(ui->comboBoxConvertTo->currentText() == "HSV")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_BGR2HSV);
+            this->setCurrentColorSpace("HSV");
+        }
+        else if(ui->comboBoxConvertTo->currentText() == "HLS")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_BGR2HLS);
+            this->setCurrentColorSpace("HLS");
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setText("Can't convert color space.");
+            msgBox.exec();
+            return;
+        }
+    }
+    else if(ui->comboBoxCurrentColorSpace->currentText() == "RGB")
+    {
+        //CV_RGB2BGR
+        //CV_RGB2GRAY
+        //CV_RGB2HSV
+        //CV_RGB2HLS
+        if(ui->comboBoxConvertTo->currentText() == "BGR")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_RGB2BGR);
+            this->setCurrentColorSpace("BGR");
+        }
+        else if(ui->comboBoxConvertTo->currentText() == "GRAY")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_RGB2GRAY);
+            this->setCurrentColorSpace("GRAY");
+        }
+        else if(ui->comboBoxConvertTo->currentText() == "HSV")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_RGB2HSV);
+            this->setCurrentColorSpace("HSV");
+        }
+        else if(ui->comboBoxConvertTo->currentText() == "HLS")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_RGB2HLS);
+            this->setCurrentColorSpace("HLS");
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setText("Can't convert color space.");
+            msgBox.exec();
+            return;
+        }
+    }
+    else if(ui->comboBoxCurrentColorSpace->currentText() == "GRAY")
+    {
+        //CV_GRAY2BGR
+        //CV_GRAY2RGB
+        if(ui->comboBoxConvertTo->currentText() == "BGR")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_GRAY2BGR);
+            this->setCurrentColorSpace("BGR");
+        }
+        else if(ui->comboBoxConvertTo->currentText() == "RGB")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_GRAY2RGB);
+            this->setCurrentColorSpace("RGB");
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setText("Can't convert color space.");
+            msgBox.exec();
+            return;
+        }
+    }
+    else if(ui->comboBoxCurrentColorSpace->currentText() == "HSV")
+    {
+        //CV_HSV2BGR
+        //CV_HSV2RGB
+        if(ui->comboBoxConvertTo->currentText() == "BGR")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_HSV2BGR);
+            this->setCurrentColorSpace("BGR");
+        }
+        else if(ui->comboBoxConvertTo->currentText() == "RGB")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_HSV2RGB);
+            this->setCurrentColorSpace("RGB");
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setText("Can't convert color space.");
+            msgBox.exec();
+            return;
+        }
+    }
+    else if(ui->comboBoxCurrentColorSpace->currentText() == "HLS")
+    {
+        //CV_HLS2BGR
+        //CV_HLS2RGB
+        if(ui->comboBoxConvertTo->currentText() == "BGR")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_HLS2BGR);
+            this->setCurrentColorSpace("BGR");
+        }
+        else if(ui->comboBoxConvertTo->currentText() == "RGB")
+        {
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_HLS2RGB);
+            this->setCurrentColorSpace("RGB");
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setText("Can't convert color space.");
+            msgBox.exec();
+            return;
+        }
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Can't convert color space.");
+        msgBox.exec();
+        return;
+    }
+
+    this->displayOutputImage();
+}
+
+void MainWindow::setCurrentColorSpace(QString colorSpace)
+{
+    ui->comboBoxCurrentColorSpace->setCurrentText(colorSpace);
+
+    QStringList avaliableColorSpace;
+    // Fill combo boxes
+    //threadPriorities<<"Idle"<<"Lowest"<<"Low"<<"Normal"<<"High"<<"Highest"<<"Time Critical"<<"Inherit";
+    //capturePrioComboBox->addItems(threadPriorities);
+
+    if(colorSpace == "BGR")
+    {
+        // CV_BGR2RGB
+        // CV_BGR2GRAY
+        // CV_BGR2HSV
+        // CV_BGR2HLS
+        avaliableColorSpace<< "RGB" <<
+                              "GRAY" <<
+                              "HSV" <<
+                              "HLS";
+
+        ui->comboBoxConvertTo->clear();
+        ui->comboBoxConvertTo->addItems(avaliableColorSpace);
+    }
+    else if(ui->comboBoxCurrentColorSpace->currentText() == "RGB")
+    {
+        //CV_RGB2BGR
+        //CV_RGB2GRAY
+        //CV_RGB2HSV
+        //CV_RGB2HLS
+
+        avaliableColorSpace<< "BGR" <<
+                              "GRAY" <<
+                              "HSV" <<
+                              "HLS";
+
+        ui->comboBoxConvertTo->clear();
+        ui->comboBoxConvertTo->addItems(avaliableColorSpace);
+    }
+    else if(ui->comboBoxCurrentColorSpace->currentText() == "GRAY")
+    {
+        //CV_GRAY2BGR
+        //CV_GRAY2RGB
+
+        avaliableColorSpace<< "BGR" <<
+                              "RGB";
+
+        ui->comboBoxConvertTo->clear();
+        ui->comboBoxConvertTo->addItems(avaliableColorSpace);
+    }
+    else if(ui->comboBoxCurrentColorSpace->currentText() == "HSV")
+    {
+        //CV_HSV2BGR
+        //CV_HSV2RGB
+
+        avaliableColorSpace<< "BGR" <<
+                              "RGB";
+
+        ui->comboBoxConvertTo->clear();
+        ui->comboBoxConvertTo->addItems(avaliableColorSpace);
+    }
+    else if(ui->comboBoxCurrentColorSpace->currentText() == "HLS")
+    {
+        //CV_HLS2BGR
+        //CV_HLS2RGB
+
+        avaliableColorSpace<< "BGR" <<
+                              "RGB";
+
+        ui->comboBoxConvertTo->clear();
+        ui->comboBoxConvertTo->addItems(avaliableColorSpace);
+    }
+    else
+        return;
 }
