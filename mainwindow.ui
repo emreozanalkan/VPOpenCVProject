@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>806</width>
-    <height>603</height>
+    <width>923</width>
+    <height>758</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -398,18 +398,87 @@
      </item>
     </layout>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QGroupBox" name="groupBoxHistogramOperations">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>400</y>
-      <width>361</width>
-      <height>80</height>
+      <x>10</x>
+      <y>380</y>
+      <width>211</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="title">
-     <string>Calculate Histogram</string>
+     <string>Histogram Operations</string>
     </property>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>195</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelHistogramOperationsChannel">
+          <property name="text">
+           <string>Channel: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboBoxHistogramOperationsChannel">
+          <item>
+           <property name="text">
+            <string>Channel 1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Channel 2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Channel 3</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonCalculateHistogram">
+        <property name="text">
+         <string>Calculate Histogram</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonEqualizeHistogram">
+        <property name="text">
+         <string>Equalize Histogram</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <zorder>groupBox_2</zorder>
+    <zorder>groupBox_3</zorder>
+    <zorder>labelHistogramOperationsChannel</zorder>
+    <zorder>comboBoxHistogramOperationsChannel</zorder>
+    <zorder>labelHistogramOperationsImage</zorder>
+    <zorder>comboBoxHistogramOperationsImage</zorder>
+    <zorder>labelHistogramOperationsImage</zorder>
+    <zorder>groupBox_2</zorder>
+    <zorder>groupBox_3</zorder>
+    <zorder></zorder>
+    <zorder></zorder>
+    <zorder>pushButtonCalculateHistogram</zorder>
+    <zorder>pushButtonEqualizeHistogram</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -417,7 +486,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>806</width>
+     <width>923</width>
      <height>22</height>
     </rect>
    </property>

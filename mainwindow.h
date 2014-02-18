@@ -34,6 +34,10 @@ private slots:
 
     void on_buttonConvertColorSpaceConvertTo_clicked();
 
+    void on_pushButtonCalculateHistogram_clicked();
+
+    void on_pushButtonEqualizeHistogram_clicked();
+
 private:
     Ui::MainWindow *ui;
 

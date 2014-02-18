@@ -5,6 +5,10 @@
 #include <QMessageBox>
 #include <QStandardPaths>
 
+#include <vector>
+
+#include "histogram.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -170,6 +174,7 @@ void MainWindow::setEnabledToolboxes(bool enabled)
     ui->groupBoxSaltAndPepper->setEnabled(enabled);
     ui->groupBoxShowLogo->setEnabled(enabled);
     ui->groupBoxConvertColorSpace->setEnabled(enabled);
+    ui->groupBoxHistogramOperations->setEnabled(enabled);
 }
 
 void MainWindow::on_buttonResetOutput_clicked()
@@ -474,4 +479,66 @@ void MainWindow::setCurrentColorSpace(QString colorSpace)
     }
     else
         return;
+}
+
+void MainWindow::on_pushButtonCalculateHistogram_clicked()
+{
+    Histogram1D h;
+
+    if(ui->comboBoxHistogramOperationsChannel->currentIndex() > this->imageOutput.channels() - 1)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Output image has lower number of channel.");
+        msgBox.exec();
+        return;
+    }
+
+    if(this->imageOutput.channels() == 1)
+    {
+        cv::namedWindow("Histogram - Channel 1", cv::WINDOW_NORMAL);
+        cv::imshow("Histogram - Channel 1", h.getHistogramImage(this->imageOutput));
+    }
+    else
+    {
+        int channel = ui->comboBoxHistogramOperationsChannel->currentIndex();
+        h.setChannel(channel);
+
+        QString title = QString ("Histogram - Channel %1").arg(channel + 1);
+
+        cv::namedWindow(title.toStdString(), cv::WINDOW_NORMAL);
+
+        cv::imshow(title.toStdString(), h.getHistogramImage(this->imageOutput));
+    }
+}
+
+void MainWindow::on_pushButtonEqualizeHistogram_clicked()
+{
+    Histogram1D h;
+
+    if(this->imageOutput.channels() == 1)
+    {
+        this->imageOutput = h.equalize(this->imageOutput);
+        this->displayOutputImage();
+        return;
+    }
+    else
+    {
+        cv::Mat image_eq;
+        image_eq.create(this->imageOutput.size(), CV_8UC3);
+        std::vector<cv::Mat> channels, channels_eq;
+        cv::split(this->imageOutput, channels);
+
+        for(unsigned long i = 0; i < channels.size(); i++)
+        {
+            cv::Mat eq;
+            cv::equalizeHist(channels[i], eq);
+            channels_eq.push_back(eq);
+        }
+
+        merge(channels_eq, image_eq);
+
+        this->imageOutput = image_eq;
+
+        this->displayOutputImage();
+    }
 }
