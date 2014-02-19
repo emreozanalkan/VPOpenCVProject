@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>812</width>
+    <width>865</width>
     <height>504</height>
    </rect>
   </property>
@@ -61,12 +61,12 @@
      <rect>
       <x>10</x>
       <y>50</y>
-      <width>785</width>
+      <width>841</width>
       <height>391</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>11</number>
+     <number>12</number>
     </property>
     <widget class="QWidget" name="tabHistory">
      <attribute name="title">
@@ -1779,146 +1779,378 @@
      <attribute name="title">
       <string>Contour</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupBoxContour">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>491</width>
-        <height>119</height>
+        <width>721</width>
+        <height>151</height>
        </rect>
       </property>
       <property name="title">
        <string>Contours of Connected Objects</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_36">
-       <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_35">
-         <item row="0" column="0">
-          <layout class="QGridLayout" name="gridLayout_33">
-           <item row="0" column="0">
-            <widget class="QLabel" name="labelContourMode">
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>701</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_36">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_33">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelContourMode">
+            <property name="text">
+             <string>Mode:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxContourMode">
+            <item>
              <property name="text">
-              <string>Mode:</string>
+              <string>CV_RETR_EXTERNAL</string>
              </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="comboBoxContourMode">
-             <item>
-              <property name="text">
-               <string>CV_RETR_EXTERNAL</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>CV_RETR_LIST</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>CV_RETR_CCOMP</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>CV_RETR_TREE</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QLabel" name="labelContourMethod">
+            </item>
+            <item>
              <property name="text">
-              <string>Method:</string>
+              <string>CV_RETR_LIST</string>
              </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QComboBox" name="comboBoxContourMethod">
-             <item>
-              <property name="text">
-               <string>CV_CHAIN_APPROX_NONE</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>CV_CHAIN_APPROX_SIMPLE</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>CV_CHAIN_APPROX_TC89_L1</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>CV_CHAIN_APPROX_TC89_KCOS</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="0" column="4">
-            <widget class="QPushButton" name="buttonContourFind">
+            </item>
+            <item>
              <property name="text">
-              <string>Find</string>
+              <string>CV_RETR_CCOMP</string>
              </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="1" column="0">
-          <layout class="QGridLayout" name="gridLayout_34">
-           <item row="0" column="0">
-            <widget class="QLabel" name="labelContourOffsetX">
+            </item>
+            <item>
              <property name="text">
-              <string>Offset X:</string>
+              <string>CV_RETR_TREE</string>
              </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QSpinBox" name="spinBoxlContourOffsetX">
-             <property name="maximum">
-              <number>500</number>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QLabel" name="labelContourOffsetY">
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelContourMethod">
+            <property name="text">
+             <string>Method:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QComboBox" name="comboBoxContourMethod">
+            <item>
              <property name="text">
-              <string>Offset Y:</string>
+              <string>CV_CHAIN_APPROX_NONE</string>
              </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QSpinBox" name="spinBoxlContourOffsetY">
-             <property name="maximum">
-              <number>500</number>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="4">
-            <widget class="QLabel" name="labelContourBinaryThreshold">
+            </item>
+            <item>
              <property name="text">
-              <string>Binary Threshold:</string>
+              <string>CV_CHAIN_APPROX_SIMPLE</string>
              </property>
-            </widget>
-           </item>
-           <item row="0" column="5">
-            <widget class="QSpinBox" name="spinBoxlContourBinaryThreshold">
-             <property name="maximum">
-              <number>255</number>
+            </item>
+            <item>
+             <property name="text">
+              <string>CV_CHAIN_APPROX_TC89_L1</string>
              </property>
-             <property name="value">
-              <number>128</number>
+            </item>
+            <item>
+             <property name="text">
+              <string>CV_CHAIN_APPROX_TC89_KCOS</string>
              </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </item>
-      </layout>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QPushButton" name="buttonContourFind">
+            <property name="text">
+             <string>Find</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_34">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelContourOffsetX">
+            <property name="text">
+             <string>Offset X:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxlContourOffsetX">
+            <property name="maximum">
+             <number>500</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelContourOffsetY">
+            <property name="text">
+             <string>Offset Y:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="spinBoxlContourOffsetY">
+            <property name="maximum">
+             <number>500</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="labelContourBinaryThreshold">
+            <property name="text">
+             <string>Binary Threshold:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QSpinBox" name="spinBoxlContourBinaryThreshold">
+            <property name="maximum">
+             <number>255</number>
+            </property>
+            <property name="value">
+             <number>128</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <layout class="QGridLayout" name="gridLayout_35">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelContourMinContourSize">
+            <property name="text">
+             <string>Min Contour Size:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxContourMinContourSize">
+            <property name="maximum">
+             <number>1000</number>
+            </property>
+            <property name="value">
+             <number>100</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelContourMaxContourSize">
+            <property name="text">
+             <string>Max Contour Size:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="spinBoxContourMaxContourSize">
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+            <property name="value">
+             <number>1000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QCheckBox" name="checkBoxContourBoundingBox">
+            <property name="text">
+             <string>Bounding Box</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QCheckBox" name="checkBoxContourBoundingMinCircle">
+            <property name="text">
+             <string>Bounding Min Circle</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabHarris">
+     <attribute name="title">
+      <string>Harris</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>531</width>
+        <height>191</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Harris Corner Extraction</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>510</width>
+         <height>146</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_41">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_37">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelHarrisDerivativeSizeNeighborhood">
+            <property name="text">
+             <string>Derivative Size of Neighborhood:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxHarrisDerivativeSizeNeighborhood">
+            <property name="minimum">
+             <number>3</number>
+            </property>
+            <property name="maximum">
+             <number>21</number>
+            </property>
+            <property name="singleStep">
+             <number>2</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelHarrisHarrisParameter">
+            <property name="text">
+             <string>Harris Parameter:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxHarrisHarrisParameter">
+            <property name="decimals">
+             <number>3</number>
+            </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_38">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelHarrisNonMaxSizeNeighborhood">
+            <property name="text">
+             <string>Non-max Size of Neighborhood:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxHarrisNonMaxSizeNeighborhood">
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>3</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelHarrisAperture">
+            <property name="text">
+             <string>Aperture:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="spinBoxHarrisAperture">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>3</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <layout class="QGridLayout" name="gridLayout_39">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelHarrisPaddingMethod">
+            <property name="text">
+             <string>Image Padding Method: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxHarrisPaddingMethod">
+            <item>
+             <property name="text">
+              <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="3" column="0">
+         <layout class="QGridLayout" name="gridLayout_40">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_HarrisThresholdStrength">
+            <property name="text">
+             <string>Threshold Maximum Strength:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxHarrisThresholdStrength"/>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="buttonHarrisPerform">
+            <property name="text">
+             <string>Perform</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
    </widget>
@@ -1928,7 +2160,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>812</width>
+     <width>865</width>
      <height>22</height>
     </rect>
    </property>

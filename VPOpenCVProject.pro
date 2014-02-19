@@ -21,7 +21,8 @@ HEADERS  += mainwindow.h \
     pch.h \
     colorhistogram.h \
     histogram.h \
-    linefinder.h
+    linefinder.h \
+    harrisDetector.h
 
 FORMS    += mainwindow.ui
 

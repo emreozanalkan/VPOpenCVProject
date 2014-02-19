@@ -7,6 +7,7 @@
 
 #include "histogram.h"
 #include "linefinder.h"
+#include "harrisDetector.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -187,6 +188,7 @@ void MainWindow::setEnabledToolboxes(bool enabled)
     ui->groupBoxSharpening->setEnabled(enabled);
     ui->groupBoxCannyEdgeDetect->setEnabled(enabled);
     ui->groupBoxHoughTransform->setEnabled(enabled);
+    ui->groupBoxContour->setEnabled(enabled);
 }
 
 void MainWindow::on_buttonResetOutput_clicked()
@@ -588,13 +590,13 @@ void MainWindow::on_buttonMorphologicalOperationsPerform_clicked()
     cv::Point anchorPoint(kernelAnchorX, kernelAnchorY);
 
     int imagePaddingMethod = cv::BORDER_REPLICATE;
-    if(imagePaddingMethodString == "Border Replicate")
+    if(imagePaddingMethodString == "Border Replicate - aaaaaa|abcdefgh|hhhhhhh") // Border Replicate - aaaaaa|abcdefgh|hhhhhhh
         imagePaddingMethod = cv::BORDER_REPLICATE;
-    else if(imagePaddingMethodString == "Border Reflect")
+    else if(imagePaddingMethodString == "Border Reflect - fedcba|abcdefgh|hgfedcb") // Border Reflect - fedcba|abcdefgh|hgfedcb
         imagePaddingMethod = cv::BORDER_REFLECT;
-    else if(imagePaddingMethodString == "Border Reflect 101")
+    else if(imagePaddingMethodString == "Border Reflect 101 - gfedcb|abcdefgh|gfedcba") // Border Reflect 101 - gfedcb|abcdefgh|gfedcba
         imagePaddingMethod = cv::BORDER_REFLECT_101;
-    else if(imagePaddingMethodString == "Border Wrap")
+    else if(imagePaddingMethodString == "Border Wrap - cdefgh|abcdefgh|abcdefg") // Border Wrap - cdefgh|abcdefgh|abcdefg
         imagePaddingMethod = cv::BORDER_WRAP;
     else
         imagePaddingMethod = cv::BORDER_REPLICATE;
@@ -648,13 +650,13 @@ void MainWindow::on_buttonBlurringPerform_clicked()
     cv::Point anchorPoint(kernelAnchorX, kernelAnchorY);
 
     int imagePaddingMethod = cv::BORDER_REPLICATE;
-    if(imagePaddingMethodString == "Border Replicate")
+    if(imagePaddingMethodString == "Border Replicate - aaaaaa|abcdefgh|hhhhhhh")
         imagePaddingMethod = cv::BORDER_REPLICATE;
-    else if(imagePaddingMethodString == "Border Reflect")
+    else if(imagePaddingMethodString == "Border Reflect - fedcba|abcdefgh|hgfedcb")
         imagePaddingMethod = cv::BORDER_REFLECT;
-    else if(imagePaddingMethodString == "Border Reflect 101")
+    else if(imagePaddingMethodString == "Border Reflect 101 - gfedcb|abcdefgh|gfedcba")
         imagePaddingMethod = cv::BORDER_REFLECT_101;
-    else if(imagePaddingMethodString == "Border Wrap")
+    else if(imagePaddingMethodString == "Border Wrap - cdefgh|abcdefgh|abcdefg")
         imagePaddingMethod = cv::BORDER_WRAP;
     else
         imagePaddingMethod = cv::BORDER_REPLICATE;
@@ -770,13 +772,13 @@ void MainWindow::on_buttonSobelLaplacianPerform_clicked()
     QString outputDepthString = ui->comboBoxSobelLaplacianOutputDepth->currentText();
 
     int imagePaddingMethod = cv::BORDER_REPLICATE;
-    if(imagePaddingMethodString == "Border Replicate")
+    if(imagePaddingMethodString == "Border Replicate - aaaaaa|abcdefgh|hhhhhhh")
         imagePaddingMethod = cv::BORDER_REPLICATE;
-    else if(imagePaddingMethodString == "Border Reflect")
+    else if(imagePaddingMethodString == "Border Reflect - fedcba|abcdefgh|hgfedcb")
         imagePaddingMethod = cv::BORDER_REFLECT;
-    else if(imagePaddingMethodString == "Border Reflect 101")
+    else if(imagePaddingMethodString == "Border Reflect 101 - gfedcb|abcdefgh|gfedcba")
         imagePaddingMethod = cv::BORDER_REFLECT_101;
-    else if(imagePaddingMethodString == "Border Wrap")
+    else if(imagePaddingMethodString == "Border Wrap - cdefgh|abcdefgh|abcdefg")
         imagePaddingMethod = cv::BORDER_WRAP;
     else
         imagePaddingMethod = cv::BORDER_REPLICATE;
@@ -833,13 +835,13 @@ void MainWindow::on_buttonSharpeningPerform_clicked()
     double gaussianSigma = ui->doubleSpinBoxSharpeningGaussianSigma->value();
 
     int imagePaddingMethod = cv::BORDER_REPLICATE;
-    if(imagePaddingMethodString == "Border Replicate")
+    if(imagePaddingMethodString == "Border Replicate - aaaaaa|abcdefgh|hhhhhhh")
         imagePaddingMethod = cv::BORDER_REPLICATE;
-    else if(imagePaddingMethodString == "Border Reflect")
+    else if(imagePaddingMethodString == "Border Reflect - fedcba|abcdefgh|hgfedcb")
         imagePaddingMethod = cv::BORDER_REFLECT;
-    else if(imagePaddingMethodString == "Border Reflect 101")
+    else if(imagePaddingMethodString == "Border Reflect 101 - gfedcb|abcdefgh|gfedcba")
         imagePaddingMethod = cv::BORDER_REFLECT_101;
-    else if(imagePaddingMethodString == "Border Wrap")
+    else if(imagePaddingMethodString == "Border Wrap - cdefgh|abcdefgh|abcdefg")
         imagePaddingMethod = cv::BORDER_WRAP;
     else
         imagePaddingMethod = cv::BORDER_REPLICATE;
@@ -983,6 +985,11 @@ void MainWindow::on_buttonContourFind_clicked()
 
     int threshold = ui->spinBoxlContourBinaryThreshold->value();
 
+    int minContourSize = ui->spinBoxContourMinContourSize->value();
+    int maxContourSize = ui->spinBoxContourMaxContourSize->value();
+    bool boundingBox = ui->checkBoxContourBoundingBox->isChecked();
+    bool boundingMinCircle = ui->checkBoxContourBoundingMinCircle->isChecked();
+
     if(this->imageOutput.channels() == 3)
         cv::cvtColor(this->imageOutput, this->imageOutput, CV_BGR2GRAY);
 
@@ -991,42 +998,107 @@ void MainWindow::on_buttonContourFind_clicked()
     // Get the contours of the connected components
     std::vector<std::vector<cv::Point> > contours;
     cv::findContours(this->imageOutput,
-        contours, // a vector of contours
-        CV_RETR_EXTERNAL, // retrieve the external contours
-        CV_CHAIN_APPROX_NONE); // retrieve all pixels of each contours
+                     contours, // a vector of contours
+                     contourFindMode, // retrieve the external contours
+                     contourFindMethod,
+                     cv::Size(offsetX, offsetY)); // retrieve all pixels of each contours
 
     // draw black contours on white image
-    cv::Mat result(this->imageOutput.size(),CV_8UC3,cv::Scalar(255));
-//    cv::drawContours(result,contours,
-//        -1, // draw all contours
-//        cv::Scalar(0), // in black
-//        2); // with a thickness of 2
+    cv::Mat result(this->imageOutput.size(), CV_8UC3, cv::Scalar(255));
+    //    cv::drawContours(result,contours,
+    //        -1, // draw all contours
+    //        cv::Scalar(0), // in black
+    //        2); // with a thickness of 2
 
 
-//    // Eliminate too short or too long contours
-//    int cmin= 50;  // minimum contour length
-//    int cmax= 1000; // maximum contour length
-//    std::vector<std::vector<cv::Point> >::const_iterator itc= contours.begin();
-//    while (itc!=contours.end()) {
+    // Eliminate too short or too long contours
+    std::vector<std::vector<cv::Point> >::const_iterator itc= contours.begin();
+    while (itc!=contours.end()) {
 
-//        if (itc->size() < cmin || itc->size() > cmax)
-//            itc= contours.erase(itc);
-//        else
-//            ++itc;
-//    }
+        if (itc->size() < minContourSize || itc->size() > maxContourSize)
+            itc= contours.erase(itc);
+        else
+            ++itc;
+    }
 
     /// Draw contours
     cv::RNG rng(12345);
+    float radius;
+    cv::Point2f center;
     //cv::Mat drawing = cv::Mat::zeros( canny_output.size(), CV_8UC3 );
+    cv::Scalar color;
     for( int i = 0; i< contours.size(); i++ )
-       {
-         cv::Scalar color = cv::Scalar(rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
-         drawContours( result, contours, i, color, 2);
-       }
+    {
+        color = cv::Scalar(rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255));
+        drawContours(result, contours, i, color, 1);
+
+        if(boundingBox)
+        {
+            cv::Rect rect= cv::boundingRect(cv::Mat(contours[i]));
+            cv::rectangle(result, rect, cv::Scalar(0), 1);
+        }
+        if(boundingMinCircle)
+        {
+            cv::minEnclosingCircle(cv::Mat(contours[i]), center, radius);
+            cv::circle(result, center, static_cast<int>(radius), cv::Scalar(0), 1);
+        }
+    }
 
     this->imageOutput = result;
 
     this->addHistory(QString("Found contours of connected objects"));
+
+    this->displayOutputImage();
+}
+
+void MainWindow::on_buttonHarrisPerform_clicked()
+{
+    QString imagePaddingMethodString = ui->comboBoxHarrisPaddingMethod->currentText();
+
+    int imagePaddingMethod = cv::BORDER_REPLICATE;
+    if(imagePaddingMethodString == "Border Replicate - aaaaaa|abcdefgh|hhhhhhh")
+        imagePaddingMethod = cv::BORDER_REPLICATE;
+    else if(imagePaddingMethodString == "Border Reflect - fedcba|abcdefgh|hgfedcb")
+        imagePaddingMethod = cv::BORDER_REFLECT;
+    else if(imagePaddingMethodString == "Border Reflect 101 - gfedcb|abcdefgh|gfedcba")
+        imagePaddingMethod = cv::BORDER_REFLECT_101;
+    else if(imagePaddingMethodString == "Border Wrap - cdefgh|abcdefgh|abcdefg")
+        imagePaddingMethod = cv::BORDER_WRAP;
+    else
+        imagePaddingMethod = cv::BORDER_REPLICATE;
+
+
+//    // size of neighbourhood for derivatives smoothing
+    int neighbourhood = ui->spinBoxHarrisDerivativeSizeNeighborhood->value();
+//    // aperture for gradient computation
+    int aperture = ui->spinBoxHarrisAperture->value();
+//    // Harris parameter
+    double k = ui->doubleSpinBoxHarrisHarrisParameter->value();
+//    // maximum strength for threshold computation
+    double maxStrength = ui->doubleSpinBoxHarrisThresholdStrength->value();
+//    // calculated threshold (internal)
+//    double threshold;
+//    // size of neighbourhood for non-max suppression
+    int nonMaxSize = ui->spinBoxHarrisNonMaxSizeNeighborhood->value();
+
+
+    if(this->imageOutput.channels() == 3)
+        cv::cvtColor(this->imageOutput, this->imageOutput, CV_BGR2GRAY);
+
+    // Create Harris detector instance
+    HarrisDetector harris;
+
+    harris.setParams(neighbourhood, aperture, k, maxStrength, nonMaxSize, imagePaddingMethod);
+
+    // Compute Harris values
+    harris.detect(this->imageOutput);
+    // Detect Harris corners
+    std::vector<cv::Point> pts;
+    harris.getCorners(pts, 0.01);
+    // Draw Harris corners
+    harris.drawOnImage(this->imageOutput, pts);
+
+    this->addHistory(QString("Extract corners using Harris and apply non-maximal suppression."));
 
     this->displayOutputImage();
 }

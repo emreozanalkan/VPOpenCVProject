@@ -62,6 +62,8 @@ private slots:
 
     void on_buttonContourFind_clicked();
 
+    void on_buttonHarrisPerform_clicked();
+
 private:
     Ui::MainWindow *ui;
 
