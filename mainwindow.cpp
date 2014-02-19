@@ -6,6 +6,7 @@
 #include <QStandardPaths>
 
 #include "histogram.h"
+#include "linefinder.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -185,6 +186,7 @@ void MainWindow::setEnabledToolboxes(bool enabled)
     ui->groupBoxSobelAndLaplacianOperations->setEnabled(enabled);
     ui->groupBoxSharpening->setEnabled(enabled);
     ui->groupBoxCannyEdgeDetect->setEnabled(enabled);
+    ui->groupBoxHoughTransform->setEnabled(enabled);
 }
 
 void MainWindow::on_buttonResetOutput_clicked()
@@ -201,6 +203,9 @@ void MainWindow::on_buttonClearAndCloseAll_clicked()
 
     this->ui->buttonClearAndCloseAll->setEnabled(false);
     this->ui->buttonResetOutput->setEnabled(false);
+
+    this->imageHistory.clear();
+    ui->listWidgetHistory->clear();
 }
 
 void MainWindow::on_buttonLoadLogo_clicked()
@@ -723,8 +728,9 @@ void MainWindow::viewHistory(int index)
 {
     if(index >= this->imageHistory.size())
         return;
-    cv::namedWindow("Selected History Item", cv::WINDOW_NORMAL);
-    cv::imshow("Selected History Item", this->imageHistory.at(index));
+    QListWidgetItem* item = ui->listWidgetHistory->currentItem();
+    cv::namedWindow(item->text().toStdString(), cv::WINDOW_NORMAL);
+    cv::imshow(item->text().toStdString(), this->imageHistory.at(index));
 }
 
 void MainWindow::on_buttonRevert_clicked()
@@ -863,6 +869,102 @@ void MainWindow::on_buttonCannyEdgeDetectPerform_clicked()
     this->imageOutput = temp;
 
     this->addHistory(QString("Canny edge detector - t1:%1, t2:%2, ksize:%3").arg(threshold1).arg(threshold2).arg(apertureSize));
+
+    this->displayOutputImage();
+
+    //cv::HoughLines()
+    //C++: void HoughLines(InputArray image, OutputArray lines, double rho, double theta, int threshold, double srn=0, double stn=0 )
+
+    // rho // double positive
+    // theta // double postive
+    // threshold // int positive
+    // srn // double positive
+    // stn // double positive
+
+
+    //cv::HoughCircles()
+    // C++: void HoughCircles(InputArray image, OutputArray circles, int method, double dp, double minDist, double param1=100, double param2=100, int minRadius=0, int maxRadius=0 )
+    // method // void this, currently only one // CV_HOUGH_GRADIENT
+    // dp // double
+    // minDist // double
+    // param1 // double
+    // param2 // double
+    // minRadius // int
+    // maxRadius // int
+
+
+}
+
+void MainWindow::on_comboBoxHoughTransformFind_currentTextChanged(const QString &arg1)
+{
+    bool findLines = (arg1 == "Lines") ? true : false;
+
+    ui->groupBoxFindLinesParameters->setEnabled(findLines);
+    ui->groupBoxFindCirclesParameters->setEnabled(!findLines);
+}
+
+void MainWindow::on_buttonHoughTransformFind_clicked()
+{
+    QString houghFindOperation = ui->comboBoxHoughTransformFind->currentText();
+
+    if(houghFindOperation == "Lines")
+    {
+        double rho = ui->doubleSpinBoxHoughTransformRho->value();
+        double theta = ui->doubleSpinBoxHoughTransformTheta->value();
+        int threshold = ui->spinBoxHoughTransformThreshold->value();
+        double srn = ui->doubleSpinBoxHoughTransformSRN->value();
+        double stn = ui->doubleSpinBoxHoughTransformSTN->value();
+
+        // Create LineFinder instance
+        LineFinder ld;
+        ld.setLineLengthAndGap(srn, stn);
+        ld.setMinVote(threshold);
+        ld.setAccResolution(rho, theta);
+
+        cv::Mat contours;
+        cv::Canny(this->imageOutput, contours, 125, 350);
+
+        // Detect lines
+        std::vector<cv::Vec4i> li= ld.findLines(contours);
+        ld.drawDetectedLines(this->imageOutput);
+
+    }
+    else
+    {
+        int method = CV_HOUGH_GRADIENT;
+        double dp = ui->doubleSpinBoxHoughTransformDP->value();
+        double minDist = ui->doubleSpinBoxHoughTransformMinDist->value();
+        double param1 = ui->doubleSpinBoxHoughTransformParam1->value();
+        double param2 = ui->doubleSpinBoxHoughTransformParam2->value();
+        int minRadius = ui->spinBoxHoughTransformMinRadius->value();
+        int maxRadius = ui->spinBoxHoughTransformMaxRadius->value();
+
+        cv::GaussianBlur(this->imageOutput, this->imageOutput, cv::Size(5,5),1.5);
+
+        std::vector<cv::Vec3f> circles;
+
+        if(this->imageOutput.channels() == 3)
+            cv::cvtColor(this->imageOutput, this->imageOutput, CV_BGR2GRAY);
+
+        cv::HoughCircles(this->imageOutput, circles, method, dp, minDist, param1, param2, minRadius, maxRadius);
+
+        cv::Mat circleImage = this->imageInput.clone();
+
+        std::vector<cv::Vec3f>::const_iterator itc = circles.begin();
+
+        while (itc != circles.end()) {
+
+          cv::circle(circleImage,
+              cv::Point((*itc)[0], (*itc)[1]), // circle centre
+              (*itc)[2], // circle radius
+              cv::Scalar(255), // color
+              2); // thickness
+
+          ++itc;
+        }
+
+        this->imageOutput = circleImage;
+    }
 
     this->displayOutputImage();
 }

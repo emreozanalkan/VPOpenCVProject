@@ -56,6 +56,10 @@ private slots:
 
     void on_buttonCannyEdgeDetectPerform_clicked();
 
+    void on_comboBoxHoughTransformFind_currentTextChanged(const QString &arg1);
+
+    void on_buttonHoughTransformFind_clicked();
+
 private:
     Ui::MainWindow *ui;
 

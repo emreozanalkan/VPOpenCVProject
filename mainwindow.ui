@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1136</width>
-    <height>868</height>
+    <width>1372</width>
+    <height>972</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1161,7 +1161,7 @@
      <rect>
       <x>660</x>
       <y>300</y>
-      <width>361</width>
+      <width>531</width>
       <height>151</height>
      </rect>
     </property>
@@ -1173,7 +1173,7 @@
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>341</width>
+       <width>510</width>
        <height>110</height>
       </rect>
      </property>
@@ -1309,7 +1309,7 @@
     <property name="title">
      <string>Canny Edge Detect</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -1401,13 +1401,330 @@
      </layout>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="groupBoxHoughTransform">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>600</y>
+      <width>381</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Hough Transform</string>
+    </property>
+    <widget class="QGroupBox" name="groupBoxFindLinesParameters">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>361</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Find Lines Parameters</string>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>341</width>
+        <height>64</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_25">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_24">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelHoughTransformThreshold">
+           <property name="text">
+            <string>Threshold:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="spinBoxHoughTransformThreshold">
+           <property name="maximum">
+            <number>1000</number>
+           </property>
+           <property name="value">
+            <number>60</number>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="labelHoughTransformTheta">
+           <property name="text">
+            <string>Theta: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformTheta">
+           <property name="decimals">
+            <number>5</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>0.000100000000000</double>
+           </property>
+           <property name="value">
+            <double>0.017450000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <layout class="QGridLayout" name="gridLayout_23">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelHoughTransformRho">
+           <property name="text">
+            <string>Rho:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformRho">
+           <property name="minimum">
+            <double>1.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>1.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="labelHoughTransformSRN">
+           <property name="text">
+            <string>SRN:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformSRN">
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>100.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="QLabel" name="labelHoughTransformSTN">
+           <property name="text">
+            <string>STN:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformSTN">
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>20.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBoxFindCirclesParameters">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>361</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Find Circles Parameters</string>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>3</x>
+        <y>30</y>
+        <width>351</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_29">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_26">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelHoughTransformDP">
+           <property name="text">
+            <string>DP:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformDP">
+           <property name="maximum">
+            <double>100.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>0.010000000000000</double>
+           </property>
+           <property name="value">
+            <double>2.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="labelHoughTransformMinDist">
+           <property name="text">
+            <string>Min Dist:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformMinDist">
+           <property name="minimum">
+            <double>1.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>0.010000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <layout class="QGridLayout" name="gridLayout_27">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelHoughTransformParam1">
+           <property name="text">
+            <string>Param1:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformParam1">
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>0.010000000000000</double>
+           </property>
+           <property name="value">
+            <double>200.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="labelHoughTransformParam2">
+           <property name="text">
+            <string>Param2:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformParam2">
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>0.010000000000000</double>
+           </property>
+           <property name="value">
+            <double>100.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0">
+        <layout class="QGridLayout" name="gridLayout_28">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelHoughTransformMinRadius">
+           <property name="text">
+            <string>Min Radius:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="spinBoxHoughTransformMinRadius"/>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="labelHoughTransformMaxRadius">
+           <property name="text">
+            <string>Max Radius:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QSpinBox" name="spinBoxHoughTransformMaxRadius"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>361</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_30">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelHoughTransformFind">
+        <property name="text">
+         <string>Find:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBoxHoughTransformFind">
+        <item>
+         <property name="text">
+          <string>Lines</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Circles</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="buttonHoughTransformFind">
+        <property name="text">
+         <string>Find</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1136</width>
+     <width>1372</width>
      <height>22</height>
     </rect>
    </property>

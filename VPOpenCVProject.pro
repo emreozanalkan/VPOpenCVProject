@@ -20,7 +20,8 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     pch.h \
     colorhistogram.h \
-    histogram.h
+    histogram.h \
+    linefinder.h
 
 FORMS    += mainwindow.ui
 
