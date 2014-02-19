@@ -60,6 +60,8 @@ private slots:
 
     void on_buttonHoughTransformFind_clicked();
 
+    void on_buttonContourFind_clicked();
+
 private:
     Ui::MainWindow *ui;
 

@@ -871,28 +871,6 @@ void MainWindow::on_buttonCannyEdgeDetectPerform_clicked()
     this->addHistory(QString("Canny edge detector - t1:%1, t2:%2, ksize:%3").arg(threshold1).arg(threshold2).arg(apertureSize));
 
     this->displayOutputImage();
-
-    //cv::HoughLines()
-    //C++: void HoughLines(InputArray image, OutputArray lines, double rho, double theta, int threshold, double srn=0, double stn=0 )
-
-    // rho // double positive
-    // theta // double postive
-    // threshold // int positive
-    // srn // double positive
-    // stn // double positive
-
-
-    //cv::HoughCircles()
-    // C++: void HoughCircles(InputArray image, OutputArray circles, int method, double dp, double minDist, double param1=100, double param2=100, int minRadius=0, int maxRadius=0 )
-    // method // void this, currently only one // CV_HOUGH_GRADIENT
-    // dp // double
-    // minDist // double
-    // param1 // double
-    // param2 // double
-    // minRadius // int
-    // maxRadius // int
-
-
 }
 
 void MainWindow::on_comboBoxHoughTransformFind_currentTextChanged(const QString &arg1)
@@ -964,7 +942,91 @@ void MainWindow::on_buttonHoughTransformFind_clicked()
         }
 
         this->imageOutput = circleImage;
+
+        this->addHistory(QString("Hough Transform: %1 method").arg(houghFindOperation));
     }
+
+    this->displayOutputImage();
+}
+
+void MainWindow::on_buttonContourFind_clicked()
+{
+    QString contourFindModeString = ui->comboBoxContourMode->currentText();
+    QString contourFindMethodString = ui->comboBoxContourMethod->currentText();
+
+    int contourFindMode = CV_RETR_EXTERNAL;
+    if(contourFindModeString == "CV_RETR_EXTERNAL")
+        contourFindMode = CV_RETR_EXTERNAL;
+    else if(contourFindModeString == "CV_RETR_LIST")
+        contourFindMode = CV_RETR_LIST;
+    else if(contourFindModeString == "CV_RETR_CCOMP")
+        contourFindMode = CV_RETR_CCOMP;
+    else if(contourFindModeString == "CV_RETR_TREE")
+        contourFindMode = CV_RETR_TREE;
+    else
+        contourFindMode = CV_RETR_EXTERNAL;
+
+    int contourFindMethod = CV_CHAIN_APPROX_NONE;
+    if(contourFindMethodString == "CV_CHAIN_APPROX_NONE")
+        contourFindMethod = CV_CHAIN_APPROX_NONE;
+    else if(contourFindMethodString == "CV_CHAIN_APPROX_SIMPLE")
+        contourFindMethod = CV_CHAIN_APPROX_SIMPLE;
+    else if(contourFindMethodString == "CV_CHAIN_APPROX_TC89_L1")
+        contourFindMethod = CV_CHAIN_APPROX_TC89_L1;
+    else if(contourFindMethodString == "CV_CHAIN_APPROX_TC89_KCOS")
+        contourFindMethod = CV_CHAIN_APPROX_TC89_KCOS;
+    else
+        contourFindMethod = CV_RETR_EXTERNAL;
+
+    int offsetX = ui->spinBoxlContourOffsetX->value();
+    int offsetY = ui->spinBoxlContourOffsetY->value();
+
+    int threshold = ui->spinBoxlContourBinaryThreshold->value();
+
+    if(this->imageOutput.channels() == 3)
+        cv::cvtColor(this->imageOutput, this->imageOutput, CV_BGR2GRAY);
+
+    cv::threshold(this->imageOutput, this->imageOutput, threshold, 255, cv::THRESH_BINARY );
+
+    // Get the contours of the connected components
+    std::vector<std::vector<cv::Point> > contours;
+    cv::findContours(this->imageOutput,
+        contours, // a vector of contours
+        CV_RETR_EXTERNAL, // retrieve the external contours
+        CV_CHAIN_APPROX_NONE); // retrieve all pixels of each contours
+
+    // draw black contours on white image
+    cv::Mat result(this->imageOutput.size(),CV_8UC3,cv::Scalar(255));
+//    cv::drawContours(result,contours,
+//        -1, // draw all contours
+//        cv::Scalar(0), // in black
+//        2); // with a thickness of 2
+
+
+//    // Eliminate too short or too long contours
+//    int cmin= 50;  // minimum contour length
+//    int cmax= 1000; // maximum contour length
+//    std::vector<std::vector<cv::Point> >::const_iterator itc= contours.begin();
+//    while (itc!=contours.end()) {
+
+//        if (itc->size() < cmin || itc->size() > cmax)
+//            itc= contours.erase(itc);
+//        else
+//            ++itc;
+//    }
+
+    /// Draw contours
+    cv::RNG rng(12345);
+    //cv::Mat drawing = cv::Mat::zeros( canny_output.size(), CV_8UC3 );
+    for( int i = 0; i< contours.size(); i++ )
+       {
+         cv::Scalar color = cv::Scalar(rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
+         drawContours( result, contours, i, color, 2);
+       }
+
+    this->imageOutput = result;
+
+    this->addHistory(QString("Found contours of connected objects"));
 
     this->displayOutputImage();
 }

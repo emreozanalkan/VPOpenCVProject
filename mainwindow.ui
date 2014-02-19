@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>755</width>
-    <height>468</height>
+    <width>812</width>
+    <height>504</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>421</width>
+      <width>481</width>
       <height>32</height>
      </rect>
     </property>
@@ -61,63 +61,53 @@
      <rect>
       <x>10</x>
       <y>50</y>
-      <width>721</width>
-      <height>361</height>
+      <width>785</width>
+      <height>391</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>11</number>
     </property>
     <widget class="QWidget" name="tabHistory">
      <attribute name="title">
       <string>History</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBoxHistory">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>281</width>
-        <height>201</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>History</string>
-      </property>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>258</width>
-         <height>161</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_15">
-        <item row="0" column="0">
-         <widget class="QListWidget" name="listWidgetHistory"/>
-        </item>
-        <item row="1" column="0">
-         <layout class="QGridLayout" name="gridLayout_14">
-          <item row="0" column="0">
-           <widget class="QPushButton" name="buttonView">
-            <property name="text">
-             <string>View</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QPushButton" name="buttonRevert">
-            <property name="text">
-             <string>Revert</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+     <layout class="QGridLayout" name="gridLayout_32">
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="groupBoxHistory">
+        <property name="title">
+         <string>History</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_31">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_15">
+           <item row="1" column="0">
+            <layout class="QGridLayout" name="gridLayout_14">
+             <item row="0" column="0">
+              <widget class="QPushButton" name="buttonView">
+               <property name="text">
+                <string>View</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QPushButton" name="buttonRevert">
+               <property name="text">
+                <string>Revert</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="0">
+            <widget class="QListWidget" name="listWidgetHistory"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
     </widget>
     <widget class="QWidget" name="tabNoise">
      <attribute name="title">
@@ -1470,10 +1460,10 @@
      <widget class="QGroupBox" name="groupBoxHoughTransform">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
+        <x>20</x>
+        <y>0</y>
         <width>421</width>
-        <height>311</height>
+        <height>343</height>
        </rect>
       </property>
       <property name="title">
@@ -1483,9 +1473,9 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>50</y>
+         <y>59</y>
          <width>401</width>
-         <height>111</height>
+         <height>113</height>
         </rect>
        </property>
        <property name="title">
@@ -1610,9 +1600,9 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>160</y>
-         <width>361</width>
-         <height>141</height>
+         <y>179</y>
+         <width>401</width>
+         <height>142</height>
         </rect>
        </property>
        <property name="title">
@@ -1748,7 +1738,7 @@
         <rect>
          <x>10</x>
          <y>20</y>
-         <width>361</width>
+         <width>251</width>
          <height>32</height>
         </rect>
        </property>
@@ -1785,6 +1775,152 @@
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="tabContour">
+     <attribute name="title">
+      <string>Contour</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>491</width>
+        <height>119</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Contours of Connected Objects</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_36">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_35">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_33">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelContourMode">
+             <property name="text">
+              <string>Mode:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="comboBoxContourMode">
+             <item>
+              <property name="text">
+               <string>CV_RETR_EXTERNAL</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CV_RETR_LIST</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CV_RETR_CCOMP</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CV_RETR_TREE</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelContourMethod">
+             <property name="text">
+              <string>Method:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QComboBox" name="comboBoxContourMethod">
+             <item>
+              <property name="text">
+               <string>CV_CHAIN_APPROX_NONE</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CV_CHAIN_APPROX_SIMPLE</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CV_CHAIN_APPROX_TC89_L1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CV_CHAIN_APPROX_TC89_KCOS</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QPushButton" name="buttonContourFind">
+             <property name="text">
+              <string>Find</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0">
+          <layout class="QGridLayout" name="gridLayout_34">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelContourOffsetX">
+             <property name="text">
+              <string>Offset X:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="spinBoxlContourOffsetX">
+             <property name="maximum">
+              <number>500</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelContourOffsetY">
+             <property name="text">
+              <string>Offset Y:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QSpinBox" name="spinBoxlContourOffsetY">
+             <property name="maximum">
+              <number>500</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="labelContourBinaryThreshold">
+             <property name="text">
+              <string>Binary Threshold:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="5">
+            <widget class="QSpinBox" name="spinBoxlContourBinaryThreshold">
+             <property name="maximum">
+              <number>255</number>
+             </property>
+             <property name="value">
+              <number>128</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -1792,7 +1928,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>755</width>
+     <width>812</width>
      <height>22</height>
     </rect>
    </property>
