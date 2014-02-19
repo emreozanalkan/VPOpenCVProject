@@ -48,6 +48,12 @@ private slots:
 
     void on_buttonView_clicked();
 
+    void on_buttonSobelLaplacianPerform_clicked();
+
+    void on_comboBoxSobelLaplacianOperation_currentTextChanged(const QString &arg1);
+
+    void on_buttonSharpeningPerform_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -77,8 +83,6 @@ private:
     void addHistory(QString detail);
     void revertHistory(int);
     void viewHistory(int);
-
-
 };
 
 #endif // MAINWINDOW_H

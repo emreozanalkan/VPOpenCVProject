@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>923</width>
-    <height>842</height>
+    <width>1136</width>
+    <height>868</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -97,9 +97,9 @@
    <widget class="QGroupBox" name="groupBoxShowLogo">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>40</y>
-      <width>431</width>
+      <x>10</x>
+      <y>120</y>
+      <width>421</width>
       <height>121</height>
      </rect>
     </property>
@@ -267,10 +267,10 @@
    <widget class="QGroupBox" name="groupBoxConvertColorSpace">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>130</y>
+      <x>730</x>
+      <y>10</y>
       <width>361</width>
-      <height>111</height>
+      <height>121</height>
      </rect>
     </property>
     <property name="title">
@@ -280,7 +280,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>30</y>
+       <y>40</y>
        <width>338</width>
        <height>70</height>
       </rect>
@@ -401,8 +401,8 @@
    <widget class="QGroupBox" name="groupBoxHistogramOperations">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>180</y>
+      <x>730</x>
+      <y>140</y>
       <width>211</width>
       <height>151</height>
      </rect>
@@ -470,8 +470,8 @@
    <widget class="QGroupBox" name="groupBoxMorphologicalOperations">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>250</y>
+      <x>10</x>
+      <y>410</y>
       <width>631</width>
       <height>191</height>
      </rect>
@@ -655,6 +655,13 @@
       </item>
       <item row="3" column="0">
        <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="2">
+         <widget class="QPushButton" name="buttonMorphologicalOperationsPerform">
+          <property name="text">
+           <string>Perform</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="labelMorphologicalPaddingMethod">
           <property name="text">
@@ -686,13 +693,6 @@
           </item>
          </widget>
         </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="buttonMorphologicalOperationsPerform">
-          <property name="text">
-           <string>Perform</string>
-          </property>
-         </widget>
-        </item>
        </layout>
       </item>
      </layout>
@@ -702,8 +702,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>450</y>
-      <width>461</width>
+      <y>250</y>
+      <width>631</width>
       <height>151</height>
      </rect>
     </property>
@@ -715,7 +715,7 @@
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>441</width>
+       <width>607</width>
        <height>108</height>
       </rect>
      </property>
@@ -878,8 +878,8 @@
    <widget class="QGroupBox" name="groupBoxHistory">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>460</y>
+      <x>440</x>
+      <y>40</y>
       <width>281</width>
       <height>201</height>
      </rect>
@@ -887,7 +887,7 @@
     <property name="title">
      <string>History</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -921,13 +921,386 @@
      </layout>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="groupBoxSobelAndLaplacianOperations">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>600</y>
+      <width>531</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Sobel and Laplacian Operations</string>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>510</width>
+       <height>187</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_17">
+      <item row="0" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_11">
+        <item>
+         <widget class="QLabel" name="labelSobelLaplacianOperation">
+          <property name="text">
+           <string>Operation: </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBoxSobelLaplacianOperation">
+          <item>
+           <property name="text">
+            <string>Sobel</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Laplacian</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelSobelLaplacianOutputDepth">
+          <property name="text">
+           <string>Output Depth: </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBoxSobelLaplacianOutputDepth">
+          <item>
+           <property name="text">
+            <string>CV_8U</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>CV_16U/CV_16S</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>CV_32F</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>CV_64F</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_12">
+        <item>
+         <widget class="QLabel" name="labelSobelLaplacianPaddingMethod">
+          <property name="text">
+           <string>Image Padding Method: </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBoxSobelLaplacianPaddingMethod">
+          <item>
+           <property name="text">
+            <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_13">
+        <item>
+         <widget class="QLabel" name="labelSobelLaplacianSobelKernelSize">
+          <property name="text">
+           <string>Sobel Kernel Size: </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spinBoxSobelLaplacianSobelKernelSize">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>7</number>
+          </property>
+          <property name="singleStep">
+           <number>2</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxSobelLaplacianSobelXOrder">
+          <property name="text">
+           <string>Sobel X Order</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxSobelLaplacianSobelYOrder">
+          <property name="text">
+           <string>Sobel Y Order</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="3" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_14">
+        <item>
+         <widget class="QLabel" name="labelSobelLaplacianScaleFactor">
+          <property name="text">
+           <string>Scale Factor: </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="doubleSpinBoxSobelLaplacianScaleFactor">
+          <property name="minimum">
+           <double>0.100000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>100.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.010000000000000</double>
+          </property>
+          <property name="value">
+           <double>1.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelSobelLaplacianDeltaOffset">
+          <property name="text">
+           <string>Delta Offset: </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="doubleSpinBoxSobelLaplacianDeltaOffset">
+          <property name="maximum">
+           <double>256.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.010000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="4" column="0">
+       <layout class="QGridLayout" name="gridLayout_16">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelSobelLaplacianLaplacianApertureSize">
+          <property name="text">
+           <string>Laplacian Aperture Size:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="spinBoxSobelLaplacianLaplacianApertureSize">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>11</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="buttonSobelLaplacianPerform">
+          <property name="text">
+           <string>Perform</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBoxSharpening">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>300</y>
+      <width>361</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Sharpening</string>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>341</width>
+       <height>110</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_18">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelSharpeningKernelSize">
+          <property name="text">
+           <string>Kernel Size: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="spinBoxSharpeningKernelSize">
+          <property name="suffix">
+           <string/>
+          </property>
+          <property name="minimum">
+           <number>3</number>
+          </property>
+          <property name="maximum">
+           <number>21</number>
+          </property>
+          <property name="singleStep">
+           <number>2</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="labelSharpeningGaussianSigma">
+          <property name="text">
+           <string>Gaussian Sigma:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QDoubleSpinBox" name="doubleSpinBoxSharpeningGaussianSigma">
+          <property name="maximum">
+           <double>100.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.010000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_19">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelSharpeningPaddingMethod">
+          <property name="text">
+           <string>Image Padding Method: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboBoxSharpeningPaddingMethod">
+          <item>
+           <property name="text">
+            <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_20">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelSharpeningFilterWeight">
+          <property name="text">
+           <string>Filter Weight:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="doubleSpinBoxSharpeningFilterWeight">
+          <property name="minimum">
+           <double>-100.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>100.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.001000000000000</double>
+          </property>
+          <property name="value">
+           <double>-0.500000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="buttonSharpeningPerform">
+          <property name="text">
+           <string>Perform</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>923</width>
+     <width>1136</width>
      <height>22</height>
     </rect>
    </property>

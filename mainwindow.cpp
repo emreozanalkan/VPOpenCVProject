@@ -147,7 +147,8 @@ void MainWindow::on_buttonLoadImage_clicked()
             this->ui->buttonClearAndCloseAll->setEnabled(true);
             this->ui->buttonResetOutput->setEnabled(true);
 
-            this->addHistory("New Image Loaded");
+            QFileInfo fileInfo(filePath);
+            this->addHistory(QString("New Image Loaded: %1").arg(fileInfo.fileName()));
 
             this->displayInputImage();
         }
@@ -161,12 +162,13 @@ void MainWindow::on_buttonLoadImage_clicked()
 
 void MainWindow::on_buttonAddSaltAndPepper_clicked()
 {
+    int saltPepperRate = ui->spinBoxSaltAndPepperRate->value();
     if(ui->checkBoxSalt->isChecked())
-        this->addSaltNoise(this->imageOutput, ui->spinBoxSaltAndPepperRate->value());
+        this->addSaltNoise(this->imageOutput, saltPepperRate);
     if(ui->checkBoxPepper->isChecked())
-        this->addPepperNoise(this->imageOutput, ui->spinBoxSaltAndPepperRate->value());
+        this->addPepperNoise(this->imageOutput, saltPepperRate);
 
-    this->addHistory("Added Salt And Pepper");
+    this->addHistory(QString("Added Salt And Pepper with Rate: %1").arg(saltPepperRate));
 
     this->displayOutputImage();
 }
@@ -178,6 +180,10 @@ void MainWindow::setEnabledToolboxes(bool enabled)
     ui->groupBoxConvertColorSpace->setEnabled(enabled);
     ui->groupBoxHistogramOperations->setEnabled(enabled);
     ui->groupBoxMorphologicalOperations->setEnabled(enabled);
+    ui->groupBoxBlurring->setEnabled(enabled);
+    ui->groupBoxHistory->setEnabled(enabled);
+    ui->groupBoxSobelAndLaplacianOperations->setEnabled(enabled);
+    ui->groupBoxSharpening->setEnabled(enabled);
 }
 
 void MainWindow::on_buttonResetOutput_clicked()
@@ -246,7 +252,7 @@ void MainWindow::on_buttonAddLogo_clicked()
     }
 
     cv::Mat imageROI;
-    imageROI = this->imageOutput(cv::Rect(ui->spinBoxShowLogoX->value(),ui->spinBoxShowLogoY->value(), this->imageLogo.cols, this->imageLogo.rows));
+    imageROI = this->imageOutput(cv::Rect(ui->spinBoxShowLogoX->value(), ui->spinBoxShowLogoY->value(), this->imageLogo.cols, this->imageLogo.rows));
 
     if(imageROI.channels() == 1)
         if(this->imageLogo.channels() != 1)
@@ -258,6 +264,8 @@ void MainWindow::on_buttonAddLogo_clicked()
                     ui->doubleSpinBoxShowLogoBeta->value(),
                     ui->doubleSpinBoxShowLogoGamma->value(),
                     imageROI);
+
+    this->addHistory(QString("Logo Added - x:%1 y:%2, alpha: %3").arg(ui->spinBoxShowLogoX->value()).arg(ui->spinBoxShowLogoY->value()).arg(ui->doubleSpinBoxShowLogoAlpha->value()));
 
     this->displayOutputImage();
 }
@@ -405,6 +413,8 @@ void MainWindow::on_buttonConvertColorSpaceConvertTo_clicked()
         msgBox.exec();
         return;
     }
+
+    this->addHistory(QString("Color Space - from: %2 to %1").arg(ui->comboBoxCurrentColorSpace->currentText()).arg(ui->comboBoxConvertTo->currentText()));
 
     this->displayOutputImage();
 }
@@ -615,6 +625,8 @@ void MainWindow::on_buttonMorphologicalOperationsPerform_clicked()
         cv::morphologyEx(this->imageOutput, this->imageOutput, morphOperationCode, structureElement, anchorPoint, iterationCount, imagePaddingMethod);
     }
 
+    this->addHistory(QString("Morph Operation Applied: %1").arg(morphologicalOperation));
+
     this->displayOutputImage();
 }
 
@@ -666,6 +678,8 @@ void MainWindow::on_buttonBlurringPerform_clicked()
         msgBox.exec();
         return;
     }
+
+    this->addHistory(QString("Blurred with: %1").arg(blurringOperation));
 
     this->displayOutputImage();
 }
@@ -738,4 +752,97 @@ void MainWindow::on_buttonView_clicked()
         msgBox.exec();
         return;
     }
+}
+
+void MainWindow::on_buttonSobelLaplacianPerform_clicked()
+{
+    QString sobelLaplacianOperation = ui->comboBoxBlurringMethod->currentText();
+    QString imagePaddingMethodString = ui->comboBoxMorphologicalPaddingMethod->currentText();
+    QString outputDepthString = ui->comboBoxSobelLaplacianOutputDepth->currentText();
+
+    int imagePaddingMethod = cv::BORDER_REPLICATE;
+    if(imagePaddingMethodString == "Border Replicate")
+        imagePaddingMethod = cv::BORDER_REPLICATE;
+    else if(imagePaddingMethodString == "Border Reflect")
+        imagePaddingMethod = cv::BORDER_REFLECT;
+    else if(imagePaddingMethodString == "Border Reflect 101")
+        imagePaddingMethod = cv::BORDER_REFLECT_101;
+    else if(imagePaddingMethodString == "Border Wrap")
+        imagePaddingMethod = cv::BORDER_WRAP;
+    else
+        imagePaddingMethod = cv::BORDER_REPLICATE;
+
+    int outputDepth = CV_8U;
+    if(outputDepthString == "CV_8U")
+        outputDepth =  CV_8U;
+    else if(outputDepthString == "CV_16U/CV_16S")
+        outputDepth = CV_16U;
+    else if(outputDepthString == "CV_32F")
+        outputDepth = CV_32F;
+    else if(outputDepthString == "CV_64F")
+        outputDepth = CV_64F;
+    else
+        outputDepth = CV_8U;
+
+    double scaleFactor = ui->doubleSpinBoxSobelLaplacianScaleFactor->value();
+    double deltaOffset =  ui->doubleSpinBoxSobelLaplacianDeltaOffset->value();
+
+    if(sobelLaplacianOperation == "Sobel")
+    {
+        int sobelKernelSize = ui->spinBoxSobelLaplacianSobelKernelSize->value();
+        int sobelX = ui->checkBoxSobelLaplacianSobelXOrder->isChecked() ? 1 : 0;
+        int sobelY = ui->checkBoxSobelLaplacianSobelYOrder->isChecked() ? 1 : 0;
+        cv::Sobel(this->imageOutput, this->imageOutput, outputDepth, sobelX, sobelY, sobelKernelSize, scaleFactor, deltaOffset, imagePaddingMethod);
+    }
+    else
+    {
+        int laplacianApertureSize = ui->spinBoxSobelLaplacianLaplacianApertureSize->value();
+
+        cv::Laplacian(this->imageOutput, this->imageOutput, outputDepth, laplacianApertureSize, scaleFactor, deltaOffset, imagePaddingMethod);
+    }
+
+    this->addHistory(QString("Derivative filter with: %1").arg(sobelLaplacianOperation));
+
+    this->displayOutputImage();
+}
+
+void MainWindow::on_comboBoxSobelLaplacianOperation_currentTextChanged(const QString &arg1)
+{
+    bool isSobel = (arg1 == "Sobel") ? true : false;
+
+    ui->spinBoxSobelLaplacianSobelKernelSize->setEnabled(isSobel);
+    ui->checkBoxSobelLaplacianSobelXOrder->setEnabled(isSobel);
+    ui->checkBoxSobelLaplacianSobelYOrder->setEnabled(isSobel);
+
+    ui->spinBoxSobelLaplacianLaplacianApertureSize->setEnabled(!isSobel);
+}
+
+void MainWindow::on_buttonSharpeningPerform_clicked()
+{
+    QString imagePaddingMethodString = ui->comboBoxSharpeningPaddingMethod->currentText();
+    int kernelSize = ui->spinBoxSharpeningKernelSize->value();
+    double gaussianSigma = ui->doubleSpinBoxSharpeningGaussianSigma->value();
+
+    int imagePaddingMethod = cv::BORDER_REPLICATE;
+    if(imagePaddingMethodString == "Border Replicate")
+        imagePaddingMethod = cv::BORDER_REPLICATE;
+    else if(imagePaddingMethodString == "Border Reflect")
+        imagePaddingMethod = cv::BORDER_REFLECT;
+    else if(imagePaddingMethodString == "Border Reflect 101")
+        imagePaddingMethod = cv::BORDER_REFLECT_101;
+    else if(imagePaddingMethodString == "Border Wrap")
+        imagePaddingMethod = cv::BORDER_WRAP;
+    else
+        imagePaddingMethod = cv::BORDER_REPLICATE;
+
+    double filterWeight = ui->doubleSpinBoxSharpeningFilterWeight->value();
+
+    cv::Mat temp;
+
+    cv::GaussianBlur(this->imageOutput, temp, cv::Size(kernelSize, kernelSize), gaussianSigma, 0, imagePaddingMethod);
+    cv::addWeighted(this->imageOutput, 1.5, temp, filterWeight, 0, this->imageOutput);
+
+    this->addHistory(QString("Sharpened - ksize: %1, sigma: %2, weight: %3").arg(kernelSize).arg(gaussianSigma).arg(filterWeight));
+
+    this->displayOutputImage();
 }

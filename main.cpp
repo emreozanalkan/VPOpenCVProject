@@ -9,6 +9,8 @@ int main(int argc, char *argv[])
 
     w.setFixedSize(w.width(), w.height());
 
+    w.move(0, 0);
+
     w.show();
 
     return a.exec();
