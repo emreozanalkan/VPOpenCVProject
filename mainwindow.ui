@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>865</width>
-    <height>504</height>
+    <width>950</width>
+    <height>490</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -61,12 +61,18 @@
      <rect>
       <x>10</x>
       <y>50</y>
-      <width>841</width>
-      <height>391</height>
+      <width>921</width>
+      <height>381</height>
      </rect>
     </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::North</enum>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
+    </property>
     <property name="currentIndex">
-     <number>12</number>
+     <number>13</number>
     </property>
     <widget class="QWidget" name="tabHistory">
      <attribute name="title">
@@ -1983,7 +1989,7 @@
      <attribute name="title">
       <string>Harris</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupBoxHarris">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -2153,6 +2159,234 @@
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="tabFeatures">
+     <attribute name="title">
+      <string>Features</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxFAST">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>411</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>FAST</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>31</y>
+         <width>383</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_45">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_42">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelFASTThreshold">
+            <property name="text">
+             <string>Threshold:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxFASTThreshold">
+            <property name="maximum">
+             <number>255</number>
+            </property>
+            <property name="value">
+             <number>50</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QCheckBox" name="checkBoxFASTNonMaxSupression">
+            <property name="text">
+             <string>NonMax Supression</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_43">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelFASTKeypointDrawingFlag">
+            <property name="text">
+             <string>Keypoint Drawing Flag:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxFASTKeypointDrawingFlag">
+            <item>
+             <property name="text">
+              <string>DEFAULT</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>DRAW_OVER_OUTIMG</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>NOT_DRAW_SINGLE_POINTS</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>DRAW_RICH_KEYPOINTS</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <layout class="QGridLayout" name="gridLayout_44">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="checkBoxFASTKeypointColors">
+            <property name="text">
+             <string>Keypoint Colors</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="buttonFASTPerform">
+            <property name="text">
+             <string>Perform</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxSURF">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>411</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>SURF</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>393</width>
+         <height>110</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_48">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_46">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSURFMinHessian">
+            <property name="text">
+             <string>Min Hessian:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxSURFMinHessian">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>5000</number>
+            </property>
+            <property name="value">
+             <number>400</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QCheckBox" name="checkBoxSURFKeypointColors">
+            <property name="text">
+             <string>Keypoint Colors</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_47">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSURFKeypointDrawingFlag">
+            <property name="text">
+             <string>Keypoint Drawing Flag:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxSURFKeypointDrawingFlag">
+            <item>
+             <property name="text">
+              <string>DEFAULT</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>DRAW_OVER_OUTIMG</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>NOT_DRAW_SINGLE_POINTS</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>DRAW_RICH_KEYPOINTS</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="buttonSURFPerform">
+          <property name="text">
+           <string>Perform</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxSIFT">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>10</y>
+        <width>381</width>
+        <height>211</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>SIFT</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -2160,7 +2394,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>865</width>
+     <width>950</width>
      <height>22</height>
     </rect>
    </property>

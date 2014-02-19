@@ -189,6 +189,10 @@ void MainWindow::setEnabledToolboxes(bool enabled)
     ui->groupBoxCannyEdgeDetect->setEnabled(enabled);
     ui->groupBoxHoughTransform->setEnabled(enabled);
     ui->groupBoxContour->setEnabled(enabled);
+    ui->groupBoxHarris->setEnabled(enabled);
+    ui->groupBoxFAST->setEnabled(enabled);
+    ui->groupBoxSURF->setEnabled(enabled);
+    ui->groupBoxSIFT->setEnabled(enabled);
 }
 
 void MainWindow::on_buttonResetOutput_clicked()
@@ -1101,4 +1105,96 @@ void MainWindow::on_buttonHarrisPerform_clicked()
     this->addHistory(QString("Extract corners using Harris and apply non-maximal suppression."));
 
     this->displayOutputImage();
+}
+
+void MainWindow::on_buttonFASTPerform_clicked()
+{
+    int threshold = ui->spinBoxFASTThreshold->value();
+    bool nonMaxSupression = ui->checkBoxFASTNonMaxSupression->isChecked();
+    bool keypointColors = ui->checkBoxFASTKeypointColors->isChecked();
+
+    QString keyPointDrawingFlagString = ui->comboBoxFASTKeypointDrawingFlag->currentText();
+
+    int keyPointDrawingFlag = cv::DrawMatchesFlags::DEFAULT;
+    if(keyPointDrawingFlagString == "DEFAULT;")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DEFAULT;
+    else if(keyPointDrawingFlagString == "DRAW_OVER_OUTIMG")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DRAW_OVER_OUTIMG;
+    else if(keyPointDrawingFlagString == "NOT_DRAW_SINGLE_POINTS")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS;
+    else if(keyPointDrawingFlagString == "DRAW_RICH_KEYPOINTS")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS;
+    else
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DEFAULT;
+
+    // vector of keypoints
+    std::vector<cv::KeyPoint> keypoints;
+
+    cv::FastFeatureDetector fast(threshold, nonMaxSupression);
+
+    fast.detect(this->imageOutput, keypoints);
+
+    if(keypointColors)
+        cv::drawKeypoints(this->imageOutput, keypoints, this->imageOutput, cv::Scalar::all(-1), keyPointDrawingFlag);
+    else
+        cv::drawKeypoints(this->imageOutput, keypoints, this->imageOutput, cv::Scalar(255,255,255), keyPointDrawingFlag);
+
+    this->addHistory(QString("FAST - threshold: %1, nonMaxSupression: %2").arg(threshold).arg(nonMaxSupression));
+
+    this->displayOutputImage();
+}
+
+void MainWindow::on_buttonSURFPerform_clicked()
+{
+    int minHessian = ui->spinBoxSURFMinHessian->value();
+    bool keypointColors = ui->checkBoxSURFKeypointColors->isChecked();
+
+    QString keyPointDrawingFlagString = ui->comboBoxFASTKeypointDrawingFlag->currentText();
+
+    int keyPointDrawingFlag = cv::DrawMatchesFlags::DEFAULT;
+    if(keyPointDrawingFlagString == "DEFAULT;")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DEFAULT;
+    else if(keyPointDrawingFlagString == "DRAW_OVER_OUTIMG")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DRAW_OVER_OUTIMG;
+    else if(keyPointDrawingFlagString == "NOT_DRAW_SINGLE_POINTS")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS;
+    else if(keyPointDrawingFlagString == "DRAW_RICH_KEYPOINTS")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS;
+    else
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DEFAULT;
+
+    // vector of keypoints
+    std::vector<cv::KeyPoint> keypoints;
+
+    // Construct the SURF feature detector object
+    cv::SurfFeatureDetector surf(minHessian);
+    // Detect the SURF features
+    surf.detect(this->imageOutput, keypoints);
+
+    cv::Mat featureImage;
+
+    if(keypointColors)
+        cv::drawKeypoints(this->imageOutput, keypoints, this->imageOutput, cv::Scalar::all(-1), keyPointDrawingFlag);
+    else
+        cv::drawKeypoints(this->imageOutput, keypoints, this->imageOutput, cv::Scalar(255,255,255), keyPointDrawingFlag);
+
+    this->addHistory(QString("SURF - minHessian: %1").arg(minHessian));
+
+    this->displayOutputImage();
+
+
+//    // Construct the SURF feature detector object
+//	cv::SiftFeatureDetector sift(
+//		0.03,  // feature threshold
+//		10.);  // threshold to reduce
+//	           // sensitivity to lines
+
+//	// Detect the SURF features
+//	sift.detect(image,keypoints);
+
+//	cv::drawKeypoints(image,keypoints,featureImage,cv::Scalar(255,255,255),cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+
+//    // Display the corners
+//	cv::namedWindow("SIFT Features");
+//	cv::imshow("SIFT Features",featureImage);
 }

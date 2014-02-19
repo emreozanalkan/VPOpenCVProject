@@ -64,6 +64,10 @@ private slots:
 
     void on_buttonHarrisPerform_clicked();
 
+    void on_buttonFASTPerform_clicked();
+
+    void on_buttonSURFPerform_clicked();
+
 private:
     Ui::MainWindow *ui;
 
