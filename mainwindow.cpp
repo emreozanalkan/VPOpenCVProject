@@ -5,8 +5,6 @@
 #include <QMessageBox>
 #include <QStandardPaths>
 
-#include <vector>
-
 #include "histogram.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -149,6 +147,8 @@ void MainWindow::on_buttonLoadImage_clicked()
             this->ui->buttonClearAndCloseAll->setEnabled(true);
             this->ui->buttonResetOutput->setEnabled(true);
 
+            this->addHistory("New Image Loaded");
+
             this->displayInputImage();
         }
         else
@@ -165,6 +165,8 @@ void MainWindow::on_buttonAddSaltAndPepper_clicked()
         this->addSaltNoise(this->imageOutput, ui->spinBoxSaltAndPepperRate->value());
     if(ui->checkBoxPepper->isChecked())
         this->addPepperNoise(this->imageOutput, ui->spinBoxSaltAndPepperRate->value());
+
+    this->addHistory("Added Salt And Pepper");
 
     this->displayOutputImage();
 }
@@ -666,4 +668,74 @@ void MainWindow::on_buttonBlurringPerform_clicked()
     }
 
     this->displayOutputImage();
+}
+
+void MainWindow::addHistory(QString detail)
+{
+    this->imageHistory.push_back(this->imageOutput.clone());
+    ui->listWidgetHistory->addItem(detail);
+}
+
+void MainWindow::revertHistory(int index)
+{
+    if(index <= this->imageHistory.size())
+    {
+        int historyIndex = index - 1;
+        if(historyIndex < 0) historyIndex = 0;
+        if(historyIndex >= this->imageHistory.size())
+            return;
+        this->imageOutput = this->imageHistory.at(historyIndex);
+        this->imageHistory.erase(this->imageHistory.begin() + historyIndex, this->imageHistory.end());
+
+        for(int i = ui->listWidgetHistory->count(); i >= index; i--)
+        {
+            QListWidgetItem* item = ui->listWidgetHistory->takeItem(i);
+            ui->listWidgetHistory->removeItemWidget(item);
+        }
+
+        this->displayOutputImage();
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Can't revert to history.");
+        msgBox.exec();
+        return;
+    }
+}
+
+void MainWindow::viewHistory(int index)
+{
+    cv::namedWindow("Selected History Item", cv::WINDOW_NORMAL);
+    cv::imshow("Selected History Item", this->imageHistory.at(index));
+}
+
+void MainWindow::on_buttonRevert_clicked()
+{
+    if(!ui->listWidgetHistory->selectedItems().empty())
+    {
+        this->revertHistory(ui->listWidgetHistory->currentIndex().row());
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("No history item selected.");
+        msgBox.exec();
+        return;
+    }
+}
+
+void MainWindow::on_buttonView_clicked()
+{
+    if(!ui->listWidgetHistory->selectedItems().empty())
+    {
+        this->viewHistory(ui->listWidgetHistory->currentIndex().row());
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("No history item selected.");
+        msgBox.exec();
+        return;
+    }
 }

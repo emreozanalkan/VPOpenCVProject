@@ -710,7 +710,7 @@
     <property name="title">
      <string>Blurring</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -867,6 +867,52 @@
          <widget class="QPushButton" name="buttonBlurringPerform">
           <property name="text">
            <string>Perform</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBoxHistory">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>460</y>
+      <width>281</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>History</string>
+    </property>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>258</width>
+       <height>161</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_15">
+      <item row="0" column="0">
+       <widget class="QListWidget" name="listWidgetHistory"/>
+      </item>
+      <item row="1" column="0">
+       <layout class="QGridLayout" name="gridLayout_14">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="buttonView">
+          <property name="text">
+           <string>View</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="buttonRevert">
+          <property name="text">
+           <string>Revert</string>
           </property>
          </widget>
         </item>

@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QTimer>
 
+#include <vector>
+
 #include "pch.h"
 
 namespace Ui {
@@ -42,15 +44,19 @@ private slots:
 
     void on_buttonBlurringPerform_clicked();
 
+    void on_buttonRevert_clicked();
+
+    void on_buttonView_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     cv::Mat imageInput;
     cv::Mat imageOutput;
 
-    cv::Mat imageROI;
-
     cv::Mat imageLogo;
+
+    std::vector<cv::Mat> imageHistory;
 
     // Reference: https://github.com/jayrambhia/qt-opencv-app/blob/master/MatToQImage.cpp
     QImage matToQImage(const cv::Mat&);
@@ -67,6 +73,10 @@ private:
     void setEnabledToolboxes(bool);
 
     void setCurrentColorSpace(QString);
+
+    void addHistory(QString detail);
+    void revertHistory(int);
+    void viewHistory(int);
 
 
 };
