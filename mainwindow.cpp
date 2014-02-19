@@ -184,6 +184,7 @@ void MainWindow::setEnabledToolboxes(bool enabled)
     ui->groupBoxHistory->setEnabled(enabled);
     ui->groupBoxSobelAndLaplacianOperations->setEnabled(enabled);
     ui->groupBoxSharpening->setEnabled(enabled);
+    ui->groupBoxCannyEdgeDetect->setEnabled(enabled);
 }
 
 void MainWindow::on_buttonResetOutput_clicked()
@@ -720,6 +721,8 @@ void MainWindow::revertHistory(int index)
 
 void MainWindow::viewHistory(int index)
 {
+    if(index >= this->imageHistory.size())
+        return;
     cv::namedWindow("Selected History Item", cv::WINDOW_NORMAL);
     cv::imshow("Selected History Item", this->imageHistory.at(index));
 }
@@ -843,6 +846,23 @@ void MainWindow::on_buttonSharpeningPerform_clicked()
     cv::addWeighted(this->imageOutput, 1.5, temp, filterWeight, 0, this->imageOutput);
 
     this->addHistory(QString("Sharpened - ksize: %1, sigma: %2, weight: %3").arg(kernelSize).arg(gaussianSigma).arg(filterWeight));
+
+    this->displayOutputImage();
+}
+
+void MainWindow::on_buttonCannyEdgeDetectPerform_clicked()
+{
+    double threshold1 = ui->doubleSpinBoxCannyEdgeDetectThreshold1->value();
+    double threshold2 = ui->doubleSpinBoxCannyEdgeDetectThreshold2->value();
+    int apertureSize = ui->spinBoxCannyEdgeDetectApertureSize->value();
+    bool L2gradient = ui->checkBoxCannyEdgeDetectL2gradient->isChecked();
+
+    cv::Mat temp;
+    cv::Canny(this->imageOutput, temp, threshold1, threshold2, apertureSize, L2gradient);
+
+    this->imageOutput = temp;
+
+    this->addHistory(QString("Canny edge detector - t1:%1, t2:%2, ksize:%3").arg(threshold1).arg(threshold2).arg(apertureSize));
 
     this->displayOutputImage();
 }

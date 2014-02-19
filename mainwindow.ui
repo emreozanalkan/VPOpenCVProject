@@ -1268,6 +1268,9 @@
         </item>
         <item row="0" column="1">
          <widget class="QDoubleSpinBox" name="doubleSpinBoxSharpeningFilterWeight">
+          <property name="decimals">
+           <number>3</number>
+          </property>
           <property name="minimum">
            <double>-100.000000000000000</double>
           </property>
@@ -1290,6 +1293,110 @@
          </widget>
         </item>
        </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBoxCannyEdgeDetect">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>450</y>
+      <width>381</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Canny Edge Detect</string>
+    </property>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>364</width>
+       <height>110</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_21">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelCannyEdgeDetectThreshold1">
+          <property name="text">
+           <string>Threshold1:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="doubleSpinBoxCannyEdgeDetectThreshold1">
+          <property name="maximum">
+           <double>1000.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.010000000000000</double>
+          </property>
+          <property name="value">
+           <double>40.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="labelCannyEdgeDetectThreshold2">
+          <property name="text">
+           <string>Threshold2:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QDoubleSpinBox" name="doubleSpinBoxCannyEdgeDetectThreshold2">
+          <property name="maximum">
+           <double>1000.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>120.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_22">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelCannyEdgeDetectApertureSize">
+          <property name="text">
+           <string>Aperture Size: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="spinBoxCannyEdgeDetectApertureSize">
+          <property name="minimum">
+           <number>3</number>
+          </property>
+          <property name="maximum">
+           <number>7</number>
+          </property>
+          <property name="singleStep">
+           <number>2</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QCheckBox" name="checkBoxCannyEdgeDetectL2gradient">
+          <property name="text">
+           <string>L2gradient</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="buttonCannyEdgeDetectPerform">
+        <property name="text">
+         <string>Perform</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
