@@ -2376,15 +2376,133 @@
      <widget class="QGroupBox" name="groupBoxSIFT">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>10</y>
-        <width>381</width>
-        <height>211</height>
+        <x>440</x>
+        <y>0</y>
+        <width>441</width>
+        <height>151</height>
        </rect>
       </property>
       <property name="title">
        <string>SIFT</string>
       </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>424</width>
+         <height>106</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_52">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_49">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSIFTFeatureThreshold">
+            <property name="text">
+             <string>Feature Threshold:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxSIFTFeatureThreshold">
+            <property name="decimals">
+             <number>3</number>
+            </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.001000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.030000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelSIFTEdgeTreshold">
+            <property name="text">
+             <string>Edge Threshold:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxSIFTEdgeThreshold">
+            <property name="decimals">
+             <number>3</number>
+            </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+            <property name="value">
+             <double>10.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_50">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSIFTKeypointDrawingFlag">
+            <property name="text">
+             <string>Keypoint Drawing Flag:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxSIFTKeypointDrawingFlag">
+            <item>
+             <property name="text">
+              <string>DEFAULT</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>DRAW_OVER_OUTIMG</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>NOT_DRAW_SINGLE_POINTS</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>DRAW_RICH_KEYPOINTS</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <layout class="QGridLayout" name="gridLayout_51">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="checkBoxSIFTKeypointColors">
+            <property name="text">
+             <string>Keypoint Colors</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="buttonSIFTPerform">
+            <property name="text">
+             <string>Perform</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
    </widget>

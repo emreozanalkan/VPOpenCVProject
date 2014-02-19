@@ -68,6 +68,8 @@ private slots:
 
     void on_buttonSURFPerform_clicked();
 
+    void on_buttonSIFTPerform_clicked();
+
 private:
     Ui::MainWindow *ui;
 
