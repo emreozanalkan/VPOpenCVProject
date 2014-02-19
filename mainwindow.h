@@ -40,6 +40,8 @@ private slots:
 
     void on_buttonMorphologicalOperationsPerform_clicked();
 
+    void on_buttonBlurringPerform_clicked();
+
 private:
     Ui::MainWindow *ui;
 

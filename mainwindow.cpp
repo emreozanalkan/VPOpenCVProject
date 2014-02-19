@@ -545,27 +545,6 @@ void MainWindow::on_pushButtonEqualizeHistogram_clicked()
 
 }
 
-/*
- * // kernel 3x3 - 5x5 - 7x7 - 9x9 - 11x11 13x13 - // MORPH_RECT - MORPH_CROSS - MORPH_ELLIPSE
-// anchor point
-// iteration
-// border type
- Various border types, image boundaries are denoted with '|'
-
- * BORDER_REPLICATE:     aaaaaa|abcdefgh|hhhhhhh
- * BORDER_REFLECT:       fedcba|abcdefgh|hgfedcb
- * BORDER_REFLECT_101:   gfedcb|abcdefgh|gfedcba
- * BORDER_WRAP:          cdefgh|abcdefgh|abcdefg
- * BORDER_CONSTANT:      iiiiii|abcdefgh|iiiiiii  with some specified 'i'
-
-
-// C++: void morphologyEx(InputArray src, OutputArray dst, int op, MORPH_OPEN - MORPH_CLOSE - MORPH_GRADIENT - MORPH_TOPHAT - MORPH_BLACKHAT
-//                        InputArray kernel, Point anchor=Point(-1,-1),
-//                        int iterations=1, int borderType=BORDER_CONSTANT,
-//                        const Scalar& borderValue=morphologyDefaultBorderValue() )
-
-// C++: void erode//dilate(InputArray src, OutputArray dst, InputArray kernel, Point anchor=Point(-1,-1), int iterations=1, int borderType=BORDER_CONSTANT, const Scalar& borderValue=morphologyDefaultBorderValue() )
-*/
 void MainWindow::on_buttonMorphologicalOperationsPerform_clicked()
 {
     QString morphologicalOperation = ui->comboBoxMorphologicalOperation->currentText();
@@ -632,6 +611,58 @@ void MainWindow::on_buttonMorphologicalOperationsPerform_clicked()
             morphOperationCode = cv::MORPH_OPEN;
 
         cv::morphologyEx(this->imageOutput, this->imageOutput, morphOperationCode, structureElement, anchorPoint, iterationCount, imagePaddingMethod);
+    }
+
+    this->displayOutputImage();
+}
+
+void MainWindow::on_buttonBlurringPerform_clicked()
+{
+    QString blurringOperation = ui->comboBoxBlurringMethod->currentText();
+    QString imagePaddingMethodString = ui->comboBoxMorphologicalPaddingMethod->currentText();
+
+    int kernelSize = ui->spinBoxBlurringKernelSize->value();
+
+    int kernelAnchorX = ui->spinBoxBlurringKernelAnchorX->value();
+    int kernelAnchorY = ui->spinBoxBlurringKernelAnchorY->value();
+    cv::Point anchorPoint(kernelAnchorX, kernelAnchorY);
+
+    int imagePaddingMethod = cv::BORDER_REPLICATE;
+    if(imagePaddingMethodString == "Border Replicate")
+        imagePaddingMethod = cv::BORDER_REPLICATE;
+    else if(imagePaddingMethodString == "Border Reflect")
+        imagePaddingMethod = cv::BORDER_REFLECT;
+    else if(imagePaddingMethodString == "Border Reflect 101")
+        imagePaddingMethod = cv::BORDER_REFLECT_101;
+    else if(imagePaddingMethodString == "Border Wrap")
+        imagePaddingMethod = cv::BORDER_WRAP;
+    else
+        imagePaddingMethod = cv::BORDER_REPLICATE;
+
+    if(blurringOperation == "Homogeneous Smoothing")
+    {
+        cv::blur(this->imageOutput, this->imageOutput, cv::Size(kernelSize, kernelSize), anchorPoint, imagePaddingMethod);
+    }
+    else if(blurringOperation == "Gaussian Smoothing")
+    {
+        cv::GaussianBlur(this->imageOutput, this->imageOutput, cv::Size(kernelSize, kernelSize), 0, 0, imagePaddingMethod);
+    }
+    else if(blurringOperation == "Median Smoothing")
+    {
+        cv::medianBlur(this->imageOutput, this->imageOutput, kernelSize);
+    }
+    else if(blurringOperation == "Bilateral Smoothing")
+    {
+        cv::Mat bilateralTemp;
+        cv::bilateralFilter(this->imageOutput, bilateralTemp, 5, 100, 100, imagePaddingMethod);
+        this->imageOutput = bilateralTemp;
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Can't complete blurrung.");
+        msgBox.exec();
+        return;
     }
 
     this->displayOutputImage();

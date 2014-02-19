@@ -97,9 +97,9 @@
    <widget class="QGroupBox" name="groupBoxShowLogo">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>130</y>
-      <width>421</width>
+      <x>440</x>
+      <y>40</y>
+      <width>431</width>
       <height>121</height>
      </rect>
     </property>
@@ -268,7 +268,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>260</y>
+      <y>130</y>
       <width>361</width>
       <height>111</height>
      </rect>
@@ -401,8 +401,8 @@
    <widget class="QGroupBox" name="groupBoxHistogramOperations">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>380</y>
+      <x>650</x>
+      <y>180</y>
       <width>211</width>
       <height>151</height>
      </rect>
@@ -470,21 +470,21 @@
    <widget class="QGroupBox" name="groupBoxMorphologicalOperations">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>540</y>
-      <width>471</width>
+      <x>0</x>
+      <y>250</y>
+      <width>631</width>
       <height>191</height>
      </rect>
     </property>
     <property name="title">
      <string>Morphological Operations</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>458</width>
+       <width>607</width>
        <height>150</height>
       </rect>
      </property>
@@ -698,18 +698,182 @@
      </layout>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QGroupBox" name="groupBoxBlurring">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>260</y>
-      <width>351</width>
-      <height>221</height>
+      <x>10</x>
+      <y>450</y>
+      <width>461</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="title">
      <string>Blurring</string>
     </property>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>441</width>
+       <height>108</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_13">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_12">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelBlurringMethod">
+            <property name="text">
+             <string>Blurring Method: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxBlurringMethod">
+            <item>
+             <property name="text">
+              <string>Homogeneous Smoothing</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Gaussian Smoothing</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Median Smoothing</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Bilateral Smoothing</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="1">
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxBlurringKernelSize">
+            <property name="suffix">
+             <string/>
+            </property>
+            <property name="minimum">
+             <number>3</number>
+            </property>
+            <property name="maximum">
+             <number>21</number>
+            </property>
+            <property name="singleStep">
+             <number>2</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelBlurringKernelSize">
+            <property name="text">
+             <string>Kernel Size: </string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelBlurringKernelAnchorX">
+          <property name="text">
+           <string>Kernel Anchor X: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="spinBoxBlurringKernelAnchorX">
+          <property name="minimum">
+           <number>-1</number>
+          </property>
+          <property name="maximum">
+           <number>21</number>
+          </property>
+          <property name="value">
+           <number>-1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="labelBlurringKernelAnchorY">
+          <property name="text">
+           <string>Kernel Anchor Y: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QSpinBox" name="spinBoxBlurringKernelAnchorY">
+          <property name="minimum">
+           <number>-1</number>
+          </property>
+          <property name="maximum">
+           <number>21</number>
+          </property>
+          <property name="value">
+           <number>-1</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_11">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelBlurringPaddingMethod">
+          <property name="text">
+           <string>Image Padding Method: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboBoxBlurringPaddingMethod">
+          <item>
+           <property name="text">
+            <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="buttonBlurringPerform">
+          <property name="text">
+           <string>Perform</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
