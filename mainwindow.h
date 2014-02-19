@@ -38,6 +38,8 @@ private slots:
 
     void on_pushButtonEqualizeHistogram_clicked();
 
+    void on_buttonMorphologicalOperationsPerform_clicked();
+
 private:
     Ui::MainWindow *ui;
 

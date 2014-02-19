@@ -175,6 +175,7 @@ void MainWindow::setEnabledToolboxes(bool enabled)
     ui->groupBoxShowLogo->setEnabled(enabled);
     ui->groupBoxConvertColorSpace->setEnabled(enabled);
     ui->groupBoxHistogramOperations->setEnabled(enabled);
+    ui->groupBoxMorphologicalOperations->setEnabled(enabled);
 }
 
 void MainWindow::on_buttonResetOutput_clicked()
@@ -541,4 +542,97 @@ void MainWindow::on_pushButtonEqualizeHistogram_clicked()
 
         this->displayOutputImage();
     }
+
+}
+
+/*
+ * // kernel 3x3 - 5x5 - 7x7 - 9x9 - 11x11 13x13 - // MORPH_RECT - MORPH_CROSS - MORPH_ELLIPSE
+// anchor point
+// iteration
+// border type
+ Various border types, image boundaries are denoted with '|'
+
+ * BORDER_REPLICATE:     aaaaaa|abcdefgh|hhhhhhh
+ * BORDER_REFLECT:       fedcba|abcdefgh|hgfedcb
+ * BORDER_REFLECT_101:   gfedcb|abcdefgh|gfedcba
+ * BORDER_WRAP:          cdefgh|abcdefgh|abcdefg
+ * BORDER_CONSTANT:      iiiiii|abcdefgh|iiiiiii  with some specified 'i'
+
+
+// C++: void morphologyEx(InputArray src, OutputArray dst, int op, MORPH_OPEN - MORPH_CLOSE - MORPH_GRADIENT - MORPH_TOPHAT - MORPH_BLACKHAT
+//                        InputArray kernel, Point anchor=Point(-1,-1),
+//                        int iterations=1, int borderType=BORDER_CONSTANT,
+//                        const Scalar& borderValue=morphologyDefaultBorderValue() )
+
+// C++: void erode//dilate(InputArray src, OutputArray dst, InputArray kernel, Point anchor=Point(-1,-1), int iterations=1, int borderType=BORDER_CONSTANT, const Scalar& borderValue=morphologyDefaultBorderValue() )
+*/
+void MainWindow::on_buttonMorphologicalOperationsPerform_clicked()
+{
+    QString morphologicalOperation = ui->comboBoxMorphologicalOperation->currentText();
+    QString kernelTypeString = ui->comboBoxMorphologicalKernelType->currentText();
+    QString imagePaddingMethodString = ui->comboBoxMorphologicalPaddingMethod->currentText();
+
+    int iterationCount = ui->spinBoxMorphologicalIterationCount->value();
+
+    int kernelSize = ui->spinBoxMorphologicalKernelSize->value();
+
+    int kernelShape = cv::MORPH_RECT;
+    if(kernelTypeString == "Rectangle")
+        kernelShape = cv::MORPH_RECT;
+    else if(kernelTypeString == "Cross")
+        kernelShape = cv::MORPH_CROSS;
+    else if(kernelTypeString == "Ellipse")
+        kernelShape = cv::MORPH_ELLIPSE;
+    else
+        kernelShape = cv::MORPH_RECT;
+
+    int kernelAnchorX = ui->spinBoxMorphologicalKernelAnchorX->value();
+    int kernelAnchorY = ui->spinBoxMorphologicalKernelAnchorY->value();
+    cv::Point anchorPoint(kernelAnchorX, kernelAnchorY);
+
+    int imagePaddingMethod = cv::BORDER_REPLICATE;
+    if(imagePaddingMethodString == "Border Replicate")
+        imagePaddingMethod = cv::BORDER_REPLICATE;
+    else if(imagePaddingMethodString == "Border Reflect")
+        imagePaddingMethod = cv::BORDER_REFLECT;
+    else if(imagePaddingMethodString == "Border Reflect 101")
+        imagePaddingMethod = cv::BORDER_REFLECT_101;
+    else if(imagePaddingMethodString == "Border Wrap")
+        imagePaddingMethod = cv::BORDER_WRAP;
+    else
+        imagePaddingMethod = cv::BORDER_REPLICATE;
+
+    cv::Mat element(7, 7, CV_8U, cv::Scalar(1));
+    cv::Mat element5(kernelSize, kernelSize, CV_8U, cv::Scalar(1));
+
+    cv::Mat structureElement = cv::getStructuringElement(kernelShape, cv::Size(kernelSize, kernelSize), anchorPoint);
+
+
+    if(morphologicalOperation == "Dilation" || morphologicalOperation == "Erosion")
+    {
+        if(morphologicalOperation == "Dilation")
+            cv::dilate(this->imageOutput, this->imageOutput, structureElement, anchorPoint, iterationCount, imagePaddingMethod);
+        else
+            cv::erode(this->imageOutput, this->imageOutput, structureElement, anchorPoint, iterationCount, imagePaddingMethod);
+    }
+    else
+    {
+        int morphOperationCode = cv::MORPH_OPEN;
+        if(morphologicalOperation == "Opening")
+            morphOperationCode = cv::MORPH_OPEN;
+        else if(morphologicalOperation == "Closing")
+            morphOperationCode = cv::MORPH_CLOSE;
+        else if(morphologicalOperation == "Morphological Gradient")
+            morphOperationCode = cv::MORPH_GRADIENT;
+        else if(morphologicalOperation == "Top Hat")
+            morphOperationCode = cv::MORPH_TOPHAT;
+        else if(morphologicalOperation == "Black Hat")
+            morphOperationCode = cv::MORPH_BLACKHAT;
+        else
+            morphOperationCode = cv::MORPH_OPEN;
+
+        cv::morphologyEx(this->imageOutput, this->imageOutput, morphOperationCode, structureElement, anchorPoint, iterationCount, imagePaddingMethod);
+    }
+
+    this->displayOutputImage();
 }
