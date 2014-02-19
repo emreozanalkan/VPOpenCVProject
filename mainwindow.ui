@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1372</width>
-    <height>972</height>
+    <width>755</width>
+    <height>468</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,348 +17,6 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QGroupBox" name="groupBoxSaltAndPepper">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>421</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Salt And Pepper</string>
-    </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>401</width>
-       <height>38</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QCheckBox" name="checkBoxSalt">
-          <property name="text">
-           <string>Salt</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBoxPepper">
-          <property name="text">
-           <string>Pepper</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLabel" name="labelSaltAndPepperRate">
-          <property name="text">
-           <string>Rate:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="spinBoxSaltAndPepperRate">
-          <property name="minimum">
-           <number>100</number>
-          </property>
-          <property name="maximum">
-           <number>5000</number>
-          </property>
-          <property name="singleStep">
-           <number>10</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="buttonAddSaltAndPepper">
-        <property name="text">
-         <string>Add</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxShowLogo">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>120</y>
-      <width>421</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Show Logo</string>
-    </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>407</width>
-       <height>78</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_6">
-        <item>
-         <widget class="QPushButton" name="buttonLoadLogo">
-          <property name="text">
-           <string>Load Logo</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <widget class="QLabel" name="labelShowLogoX">
-            <property name="text">
-             <string>X: </string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="spinBoxShowLogoX">
-            <property name="maximum">
-             <number>100</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QLabel" name="labelShowLogoY">
-            <property name="text">
-             <string>Y: </string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="spinBoxShowLogoY">
-            <property name="maximum">
-             <number>100</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="buttonAddLogo">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Add Logo</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_10">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
-          <item>
-           <widget class="QLabel" name="labelShowLogoAlpha">
-            <property name="text">
-             <string>Alpha: </string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBoxShowLogoAlpha">
-            <property name="maximum">
-             <double>1.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>0.010000000000000</double>
-            </property>
-            <property name="value">
-             <double>1.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
-          <item>
-           <widget class="QLabel" name="labelShowLogoBeta">
-            <property name="text">
-             <string>Beta: </string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBoxShowLogoBeta">
-            <property name="maximum">
-             <double>1.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>0.010000000000000</double>
-            </property>
-            <property name="value">
-             <double>0.300000000000000</double>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_9">
-          <item>
-           <widget class="QLabel" name="labelShowLogoGamma">
-            <property name="text">
-             <string>Gamma: </string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBoxShowLogoGamma">
-            <property name="maximum">
-             <double>1.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>0.010000000000000</double>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxConvertColorSpace">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>10</y>
-      <width>361</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Convert Color Space</string>
-    </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>338</width>
-       <height>70</height>
-      </rect>
-     </property>
-     <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="0">
-       <layout class="QGridLayout" name="gridLayout_2">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetDefaultConstraint</enum>
-        </property>
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelCurrentColorSpace">
-          <property name="text">
-           <string>Current Color Space: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="comboBoxCurrentColorSpace">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <item>
-           <property name="text">
-            <string>BGR</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>RGB</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>GRAY</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>HSV</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>HLS</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelNewColorSpace">
-          <property name="text">
-           <string>New Color Space: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="comboBoxConvertTo"/>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="buttonConvertColorSpaceConvertTo">
-          <property name="text">
-           <string>Convert</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
@@ -398,369 +56,604 @@
      </item>
     </layout>
    </widget>
-   <widget class="QGroupBox" name="groupBoxHistogramOperations">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>140</y>
-      <width>211</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Histogram Operations</string>
-    </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>195</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelHistogramOperationsChannel">
-          <property name="text">
-           <string>Channel: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="comboBoxHistogramOperationsChannel">
-          <item>
-           <property name="text">
-            <string>Channel 1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Channel 2</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Channel 3</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButtonCalculateHistogram">
-        <property name="text">
-         <string>Calculate Histogram</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButtonEqualizeHistogram">
-        <property name="text">
-         <string>Equalize Histogram</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxMorphologicalOperations">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>410</y>
-      <width>631</width>
-      <height>191</height>
+      <y>50</y>
+      <width>721</width>
+      <height>361</height>
      </rect>
     </property>
-    <property name="title">
-     <string>Morphological Operations</string>
+    <property name="currentIndex">
+     <number>10</number>
     </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>607</width>
-       <height>150</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_8">
-      <item row="0" column="0">
-       <layout class="QGridLayout" name="gridLayout_4">
+    <widget class="QWidget" name="tabHistory">
+     <attribute name="title">
+      <string>History</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxHistory">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>281</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>History</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>258</width>
+         <height>161</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_15">
         <item row="0" column="0">
-         <widget class="QLabel" name="labelMorphologicalOperation">
-          <property name="text">
-           <string>Operation: </string>
-          </property>
-         </widget>
+         <widget class="QListWidget" name="listWidgetHistory"/>
         </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="comboBoxMorphologicalOperation">
-          <item>
-           <property name="text">
-            <string>Dilation</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Erosion</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Opening</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Closing</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Morphological Gradient</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Top Hat</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Black Hat</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="labelMorphologicalIterationCount">
-          <property name="text">
-           <string>Iteration Count: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QSpinBox" name="spinBoxMorphologicalIterationCount">
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>100</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelMorphologicalKernelSize">
-          <property name="text">
-           <string>Kernel Size: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="spinBoxMorphologicalKernelSize">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="minimum">
-           <number>3</number>
-          </property>
-          <property name="maximum">
-           <number>21</number>
-          </property>
-          <property name="singleStep">
-           <number>2</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="labelMorphologicalKernelType">
-          <property name="text">
-           <string>Kernel Type: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QComboBox" name="comboBoxMorphologicalKernelType">
-          <item>
-           <property name="text">
-            <string>Rectangle</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Cross</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Ellipse</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="2" column="0">
-       <layout class="QGridLayout" name="gridLayout_6">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelMorphologicalKernelAnchorX">
-          <property name="text">
-           <string>Kernel Anchor X: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="spinBoxMorphologicalKernelAnchorX">
-          <property name="minimum">
-           <number>-1</number>
-          </property>
-          <property name="maximum">
-           <number>21</number>
-          </property>
-          <property name="value">
-           <number>-1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="labelMorphologicalKernelAnchorY">
-          <property name="text">
-           <string>Kernel Anchor Y: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QSpinBox" name="spinBoxMorphologicalKernelAnchorY">
-          <property name="minimum">
-           <number>-1</number>
-          </property>
-          <property name="maximum">
-           <number>21</number>
-          </property>
-          <property name="value">
-           <number>-1</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="3" column="0">
-       <layout class="QGridLayout" name="gridLayout_7">
-        <item row="0" column="2">
-         <widget class="QPushButton" name="buttonMorphologicalOperationsPerform">
-          <property name="text">
-           <string>Perform</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelMorphologicalPaddingMethod">
-          <property name="text">
-           <string>Image Padding Method: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="comboBoxMorphologicalPaddingMethod">
-          <item>
-           <property name="text">
-            <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxBlurring">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>250</y>
-      <width>631</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Blurring</string>
-    </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>607</width>
-       <height>108</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <layout class="QGridLayout" name="gridLayout_13">
-        <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_12">
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_14">
           <item row="0" column="0">
-           <widget class="QLabel" name="labelBlurringMethod">
+           <widget class="QPushButton" name="buttonView">
             <property name="text">
-             <string>Blurring Method: </string>
+             <string>View</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxBlurringMethod">
+           <widget class="QPushButton" name="buttonRevert">
+            <property name="text">
+             <string>Revert</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabNoise">
+     <attribute name="title">
+      <string>Noise</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxSaltAndPepper">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>421</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Salt And Pepper</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>401</width>
+         <height>38</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QCheckBox" name="checkBoxSalt">
+            <property name="text">
+             <string>Salt</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxPepper">
+            <property name="text">
+             <string>Pepper</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="labelSaltAndPepperRate">
+            <property name="text">
+             <string>Rate:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spinBoxSaltAndPepperRate">
+            <property name="minimum">
+             <number>100</number>
+            </property>
+            <property name="maximum">
+             <number>5000</number>
+            </property>
+            <property name="singleStep">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="buttonAddSaltAndPepper">
+          <property name="text">
+           <string>Add</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabLogo">
+     <attribute name="title">
+      <string>Logo</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxShowLogo">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>421</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Show Logo</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>407</width>
+         <height>78</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QPushButton" name="buttonLoadLogo">
+            <property name="text">
+             <string>Load Logo</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QLabel" name="labelShowLogoX">
+              <property name="text">
+               <string>X: </string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBoxShowLogoX">
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QLabel" name="labelShowLogoY">
+              <property name="text">
+               <string>Y: </string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBoxShowLogoY">
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QPushButton" name="buttonAddLogo">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Add Logo</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QLabel" name="labelShowLogoAlpha">
+              <property name="text">
+               <string>Alpha: </string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="doubleSpinBoxShowLogoAlpha">
+              <property name="maximum">
+               <double>1.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.010000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QLabel" name="labelShowLogoBeta">
+              <property name="text">
+               <string>Beta: </string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="doubleSpinBoxShowLogoBeta">
+              <property name="maximum">
+               <double>1.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.010000000000000</double>
+              </property>
+              <property name="value">
+               <double>0.300000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QLabel" name="labelShowLogoGamma">
+              <property name="text">
+               <string>Gamma: </string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="doubleSpinBoxShowLogoGamma">
+              <property name="maximum">
+               <double>1.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.010000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabColor">
+     <attribute name="title">
+      <string>Color</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxConvertColorSpace">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>361</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Convert Color Space</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>338</width>
+         <height>70</height>
+        </rect>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_2">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelCurrentColorSpace">
+            <property name="text">
+             <string>Current Color Space: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxCurrentColorSpace">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
             <item>
              <property name="text">
-              <string>Homogeneous Smoothing</string>
+              <string>BGR</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Gaussian Smoothing</string>
+              <string>RGB</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Median Smoothing</string>
+              <string>GRAY</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Bilateral Smoothing</string>
+              <string>HSV</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>HLS</string>
              </property>
             </item>
            </widget>
           </item>
          </layout>
         </item>
-        <item row="0" column="1">
-         <layout class="QGridLayout" name="gridLayout_9">
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelNewColorSpace">
+            <property name="text">
+             <string>New Color Space: </string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
-           <widget class="QSpinBox" name="spinBoxBlurringKernelSize">
+           <widget class="QComboBox" name="comboBoxConvertTo"/>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="buttonConvertColorSpaceConvertTo">
+            <property name="text">
+             <string>Convert</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabHistogram">
+     <attribute name="title">
+      <string>Histogram</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxHistogramOperations">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>211</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Histogram Operations</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>195</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelHistogramOperationsChannel">
+            <property name="text">
+             <string>Channel: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxHistogramOperationsChannel">
+            <item>
+             <property name="text">
+              <string>Channel 1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Channel 2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Channel 3</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonCalculateHistogram">
+          <property name="text">
+           <string>Calculate Histogram</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonEqualizeHistogram">
+          <property name="text">
+           <string>Equalize Histogram</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabMorph">
+     <attribute name="title">
+      <string>Morph</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxMorphologicalOperations">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>631</width>
+        <height>191</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Morphological Operations</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>607</width>
+         <height>150</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelMorphologicalOperation">
+            <property name="text">
+             <string>Operation: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxMorphologicalOperation">
+            <item>
+             <property name="text">
+              <string>Dilation</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Erosion</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Opening</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Closing</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Morphological Gradient</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Top Hat</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Black Hat</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelMorphologicalIterationCount">
+            <property name="text">
+             <string>Iteration Count: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="spinBoxMorphologicalIterationCount">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelMorphologicalKernelSize">
+            <property name="text">
+             <string>Kernel Size: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxMorphologicalKernelSize">
             <property name="suffix">
              <string/>
             </property>
@@ -775,947 +668,1122 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelBlurringKernelSize">
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelMorphologicalKernelType">
             <property name="text">
-             <string>Kernel Size: </string>
+             <string>Kernel Type: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QComboBox" name="comboBoxMorphologicalKernelType">
+            <item>
+             <property name="text">
+              <string>Rectangle</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Cross</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ellipse</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelMorphologicalKernelAnchorX">
+            <property name="text">
+             <string>Kernel Anchor X: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxMorphologicalKernelAnchorX">
+            <property name="minimum">
+             <number>-1</number>
+            </property>
+            <property name="maximum">
+             <number>21</number>
+            </property>
+            <property name="value">
+             <number>-1</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelMorphologicalKernelAnchorY">
+            <property name="text">
+             <string>Kernel Anchor Y: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="spinBoxMorphologicalKernelAnchorY">
+            <property name="minimum">
+             <number>-1</number>
+            </property>
+            <property name="maximum">
+             <number>21</number>
+            </property>
+            <property name="value">
+             <number>-1</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="3" column="0">
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="2">
+           <widget class="QPushButton" name="buttonMorphologicalOperationsPerform">
+            <property name="text">
+             <string>Perform</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelMorphologicalPaddingMethod">
+            <property name="text">
+             <string>Image Padding Method: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxMorphologicalPaddingMethod">
+            <item>
+             <property name="text">
+              <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabBlur">
+     <attribute name="title">
+      <string>Blur</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxBlurring">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>631</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Blurring</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>607</width>
+         <height>108</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_13">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_12">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelBlurringMethod">
+              <property name="text">
+               <string>Blurring Method: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="comboBoxBlurringMethod">
+              <item>
+               <property name="text">
+                <string>Homogeneous Smoothing</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Gaussian Smoothing</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Median Smoothing</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Bilateral Smoothing</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="1">
+           <layout class="QGridLayout" name="gridLayout_9">
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="spinBoxBlurringKernelSize">
+              <property name="suffix">
+               <string/>
+              </property>
+              <property name="minimum">
+               <number>3</number>
+              </property>
+              <property name="maximum">
+               <number>21</number>
+              </property>
+              <property name="singleStep">
+               <number>2</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelBlurringKernelSize">
+              <property name="text">
+               <string>Kernel Size: </string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_10">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelBlurringKernelAnchorX">
+            <property name="text">
+             <string>Kernel Anchor X: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxBlurringKernelAnchorX">
+            <property name="minimum">
+             <number>-1</number>
+            </property>
+            <property name="maximum">
+             <number>21</number>
+            </property>
+            <property name="value">
+             <number>-1</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelBlurringKernelAnchorY">
+            <property name="text">
+             <string>Kernel Anchor Y: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="spinBoxBlurringKernelAnchorY">
+            <property name="minimum">
+             <number>-1</number>
+            </property>
+            <property name="maximum">
+             <number>21</number>
+            </property>
+            <property name="value">
+             <number>-1</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_11">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelBlurringPaddingMethod">
+            <property name="text">
+             <string>Image Padding Method: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxBlurringPaddingMethod">
+            <item>
+             <property name="text">
+              <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="buttonBlurringPerform">
+            <property name="text">
+             <string>Perform</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
        </layout>
-      </item>
-      <item>
-       <layout class="QGridLayout" name="gridLayout_10">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelBlurringKernelAnchorX">
-          <property name="text">
-           <string>Kernel Anchor X: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="spinBoxBlurringKernelAnchorX">
-          <property name="minimum">
-           <number>-1</number>
-          </property>
-          <property name="maximum">
-           <number>21</number>
-          </property>
-          <property name="value">
-           <number>-1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="labelBlurringKernelAnchorY">
-          <property name="text">
-           <string>Kernel Anchor Y: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QSpinBox" name="spinBoxBlurringKernelAnchorY">
-          <property name="minimum">
-           <number>-1</number>
-          </property>
-          <property name="maximum">
-           <number>21</number>
-          </property>
-          <property name="value">
-           <number>-1</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QGridLayout" name="gridLayout_11">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelBlurringPaddingMethod">
-          <property name="text">
-           <string>Image Padding Method: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="comboBoxBlurringPaddingMethod">
-          <item>
-           <property name="text">
-            <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="buttonBlurringPerform">
-          <property name="text">
-           <string>Perform</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
+      </widget>
+     </widget>
     </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxHistory">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>40</y>
-      <width>281</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>History</string>
-    </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>258</width>
-       <height>161</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_15">
-      <item row="0" column="0">
-       <widget class="QListWidget" name="listWidgetHistory"/>
-      </item>
-      <item row="1" column="0">
-       <layout class="QGridLayout" name="gridLayout_14">
+    <widget class="QWidget" name="tabSobel">
+     <attribute name="title">
+      <string>Sobel</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxSobelAndLaplacianOperations">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>531</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Sobel and Laplacian Operations</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>510</width>
+         <height>187</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_17">
         <item row="0" column="0">
-         <widget class="QPushButton" name="buttonView">
-          <property name="text">
-           <string>View</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <widget class="QLabel" name="labelSobelLaplacianOperation">
+            <property name="text">
+             <string>Operation: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxSobelLaplacianOperation">
+            <item>
+             <property name="text">
+              <string>Sobel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Laplacian</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelSobelLaplacianOutputDepth">
+            <property name="text">
+             <string>Output Depth: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxSobelLaplacianOutputDepth">
+            <item>
+             <property name="text">
+              <string>CV_8U</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>CV_16U/CV_16S</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>CV_32F</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>CV_64F</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
         </item>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="buttonRevert">
-          <property name="text">
-           <string>Revert</string>
-          </property>
-         </widget>
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_12">
+          <item>
+           <widget class="QLabel" name="labelSobelLaplacianPaddingMethod">
+            <property name="text">
+             <string>Image Padding Method: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxSobelLaplacianPaddingMethod">
+            <item>
+             <property name="text">
+              <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_13">
+          <item>
+           <widget class="QLabel" name="labelSobelLaplacianSobelKernelSize">
+            <property name="text">
+             <string>Sobel Kernel Size: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spinBoxSobelLaplacianSobelKernelSize">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>7</number>
+            </property>
+            <property name="singleStep">
+             <number>2</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxSobelLaplacianSobelXOrder">
+            <property name="text">
+             <string>Sobel X Order</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxSobelLaplacianSobelYOrder">
+            <property name="text">
+             <string>Sobel Y Order</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="3" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
+          <item>
+           <widget class="QLabel" name="labelSobelLaplacianScaleFactor">
+            <property name="text">
+             <string>Scale Factor: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxSobelLaplacianScaleFactor">
+            <property name="minimum">
+             <double>0.100000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>1.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelSobelLaplacianDeltaOffset">
+            <property name="text">
+             <string>Delta Offset: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxSobelLaplacianDeltaOffset">
+            <property name="maximum">
+             <double>256.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="4" column="0">
+         <layout class="QGridLayout" name="gridLayout_16">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSobelLaplacianLaplacianApertureSize">
+            <property name="text">
+             <string>Laplacian Aperture Size:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxSobelLaplacianLaplacianApertureSize">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>11</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="buttonSobelLaplacianPerform">
+            <property name="text">
+             <string>Perform</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
-      </item>
-     </layout>
+      </widget>
+     </widget>
     </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxSobelAndLaplacianOperations">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>600</y>
-      <width>531</width>
-      <height>221</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Sobel and Laplacian Operations</string>
-    </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>510</width>
-       <height>187</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_17">
-      <item row="0" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_11">
-        <item>
-         <widget class="QLabel" name="labelSobelLaplacianOperation">
-          <property name="text">
-           <string>Operation: </string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBoxSobelLaplacianOperation">
-          <item>
-           <property name="text">
-            <string>Sobel</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Laplacian</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="labelSobelLaplacianOutputDepth">
-          <property name="text">
-           <string>Output Depth: </string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBoxSobelLaplacianOutputDepth">
-          <item>
-           <property name="text">
-            <string>CV_8U</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>CV_16U/CV_16S</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>CV_32F</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>CV_64F</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_12">
-        <item>
-         <widget class="QLabel" name="labelSobelLaplacianPaddingMethod">
-          <property name="text">
-           <string>Image Padding Method: </string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBoxSobelLaplacianPaddingMethod">
-          <item>
-           <property name="text">
-            <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="2" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_13">
-        <item>
-         <widget class="QLabel" name="labelSobelLaplacianSobelKernelSize">
-          <property name="text">
-           <string>Sobel Kernel Size: </string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="spinBoxSobelLaplacianSobelKernelSize">
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>7</number>
-          </property>
-          <property name="singleStep">
-           <number>2</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBoxSobelLaplacianSobelXOrder">
-          <property name="text">
-           <string>Sobel X Order</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBoxSobelLaplacianSobelYOrder">
-          <property name="text">
-           <string>Sobel Y Order</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="3" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_14">
-        <item>
-         <widget class="QLabel" name="labelSobelLaplacianScaleFactor">
-          <property name="text">
-           <string>Scale Factor: </string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDoubleSpinBox" name="doubleSpinBoxSobelLaplacianScaleFactor">
-          <property name="minimum">
-           <double>0.100000000000000</double>
-          </property>
-          <property name="maximum">
-           <double>100.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.010000000000000</double>
-          </property>
-          <property name="value">
-           <double>1.000000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="labelSobelLaplacianDeltaOffset">
-          <property name="text">
-           <string>Delta Offset: </string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDoubleSpinBox" name="doubleSpinBoxSobelLaplacianDeltaOffset">
-          <property name="maximum">
-           <double>256.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.010000000000000</double>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="4" column="0">
-       <layout class="QGridLayout" name="gridLayout_16">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelSobelLaplacianLaplacianApertureSize">
-          <property name="text">
-           <string>Laplacian Aperture Size:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="spinBoxSobelLaplacianLaplacianApertureSize">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>11</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="buttonSobelLaplacianPerform">
-          <property name="text">
-           <string>Perform</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxSharpening">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>300</y>
-      <width>531</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Sharpening</string>
-    </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>510</width>
-       <height>110</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
-      <item>
-       <layout class="QGridLayout" name="gridLayout_18">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelSharpeningKernelSize">
-          <property name="text">
-           <string>Kernel Size: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="spinBoxSharpeningKernelSize">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="minimum">
-           <number>3</number>
-          </property>
-          <property name="maximum">
-           <number>21</number>
-          </property>
-          <property name="singleStep">
-           <number>2</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="labelSharpeningGaussianSigma">
-          <property name="text">
-           <string>Gaussian Sigma:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QDoubleSpinBox" name="doubleSpinBoxSharpeningGaussianSigma">
-          <property name="maximum">
-           <double>100.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.010000000000000</double>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QGridLayout" name="gridLayout_19">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelSharpeningPaddingMethod">
-          <property name="text">
-           <string>Image Padding Method: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="comboBoxSharpeningPaddingMethod">
-          <item>
-           <property name="text">
-            <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QGridLayout" name="gridLayout_20">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelSharpeningFilterWeight">
-          <property name="text">
-           <string>Filter Weight:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QDoubleSpinBox" name="doubleSpinBoxSharpeningFilterWeight">
-          <property name="decimals">
-           <number>3</number>
-          </property>
-          <property name="minimum">
-           <double>-100.000000000000000</double>
-          </property>
-          <property name="maximum">
-           <double>100.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.001000000000000</double>
-          </property>
-          <property name="value">
-           <double>-0.500000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="buttonSharpeningPerform">
-          <property name="text">
-           <string>Perform</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxCannyEdgeDetect">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>450</y>
-      <width>381</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Canny Edge Detect</string>
-    </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>364</width>
-       <height>110</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_5">
-      <item>
-       <layout class="QGridLayout" name="gridLayout_21">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelCannyEdgeDetectThreshold1">
-          <property name="text">
-           <string>Threshold1:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QDoubleSpinBox" name="doubleSpinBoxCannyEdgeDetectThreshold1">
-          <property name="maximum">
-           <double>1000.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.010000000000000</double>
-          </property>
-          <property name="value">
-           <double>40.000000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="labelCannyEdgeDetectThreshold2">
-          <property name="text">
-           <string>Threshold2:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QDoubleSpinBox" name="doubleSpinBoxCannyEdgeDetectThreshold2">
-          <property name="maximum">
-           <double>1000.000000000000000</double>
-          </property>
-          <property name="value">
-           <double>120.000000000000000</double>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QGridLayout" name="gridLayout_22">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelCannyEdgeDetectApertureSize">
-          <property name="text">
-           <string>Aperture Size: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="spinBoxCannyEdgeDetectApertureSize">
-          <property name="minimum">
-           <number>3</number>
-          </property>
-          <property name="maximum">
-           <number>7</number>
-          </property>
-          <property name="singleStep">
-           <number>2</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QCheckBox" name="checkBoxCannyEdgeDetectL2gradient">
-          <property name="text">
-           <string>L2gradient</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="buttonCannyEdgeDetectPerform">
-        <property name="text">
-         <string>Perform</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxHoughTransform">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>600</y>
-      <width>381</width>
-      <height>311</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Hough Transform</string>
-    </property>
-    <widget class="QGroupBox" name="groupBoxFindLinesParameters">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>361</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Find Lines Parameters</string>
-     </property>
-     <widget class="QWidget" name="layoutWidget">
+    <widget class="QWidget" name="tabSharpen">
+     <attribute name="title">
+      <string>Sharpen</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxSharpening">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>30</y>
-        <width>341</width>
-        <height>64</height>
+        <y>10</y>
+        <width>531</width>
+        <height>151</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_25">
-       <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_24">
-         <item row="0" column="0">
-          <widget class="QLabel" name="labelHoughTransformThreshold">
-           <property name="text">
-            <string>Threshold:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QSpinBox" name="spinBoxHoughTransformThreshold">
-           <property name="maximum">
-            <number>1000</number>
-           </property>
-           <property name="value">
-            <number>60</number>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="labelHoughTransformTheta">
-           <property name="text">
-            <string>Theta: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformTheta">
-           <property name="decimals">
-            <number>5</number>
-           </property>
-           <property name="maximum">
-            <double>1000.000000000000000</double>
-           </property>
-           <property name="singleStep">
-            <double>0.000100000000000</double>
-           </property>
-           <property name="value">
-            <double>0.017450000000000</double>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="0">
-        <layout class="QGridLayout" name="gridLayout_23">
-         <item row="0" column="0">
-          <widget class="QLabel" name="labelHoughTransformRho">
-           <property name="text">
-            <string>Rho:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformRho">
-           <property name="minimum">
-            <double>1.000000000000000</double>
-           </property>
-           <property name="value">
-            <double>1.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="labelHoughTransformSRN">
-           <property name="text">
-            <string>SRN:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformSRN">
-           <property name="maximum">
-            <double>1000.000000000000000</double>
-           </property>
-           <property name="value">
-            <double>100.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
-          <widget class="QLabel" name="labelHoughTransformSTN">
-           <property name="text">
-            <string>STN:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="5">
-          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformSTN">
-           <property name="maximum">
-            <double>1000.000000000000000</double>
-           </property>
-           <property name="value">
-            <double>20.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
+      <property name="title">
+       <string>Sharpening</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>510</width>
+         <height>110</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_18">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSharpeningKernelSize">
+            <property name="text">
+             <string>Kernel Size: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxSharpeningKernelSize">
+            <property name="suffix">
+             <string/>
+            </property>
+            <property name="minimum">
+             <number>3</number>
+            </property>
+            <property name="maximum">
+             <number>21</number>
+            </property>
+            <property name="singleStep">
+             <number>2</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelSharpeningGaussianSigma">
+            <property name="text">
+             <string>Gaussian Sigma:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxSharpeningGaussianSigma">
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_19">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSharpeningPaddingMethod">
+            <property name="text">
+             <string>Image Padding Method: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxSharpeningPaddingMethod">
+            <item>
+             <property name="text">
+              <string>Border Replicate - aaaaaa|abcdefgh|hhhhhhh</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Reflect - fedcba|abcdefgh|hgfedcb</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Reflect 101 - gfedcb|abcdefgh|gfedcba</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Border Wrap - cdefgh|abcdefgh|abcdefg</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_20">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSharpeningFilterWeight">
+            <property name="text">
+             <string>Filter Weight:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxSharpeningFilterWeight">
+            <property name="decimals">
+             <number>3</number>
+            </property>
+            <property name="minimum">
+             <double>-100.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.001000000000000</double>
+            </property>
+            <property name="value">
+             <double>-0.500000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="buttonSharpeningPerform">
+            <property name="text">
+             <string>Perform</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBoxFindCirclesParameters">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>160</y>
-       <width>361</width>
-       <height>141</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Find Circles Parameters</string>
-     </property>
-     <widget class="QWidget" name="layoutWidget">
+    <widget class="QWidget" name="tabEdge">
+     <attribute name="title">
+      <string>Edge</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxCannyEdgeDetect">
       <property name="geometry">
        <rect>
-        <x>3</x>
-        <y>30</y>
-        <width>351</width>
-        <height>100</height>
+        <x>10</x>
+        <y>0</y>
+        <width>381</width>
+        <height>151</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_29">
-       <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_26">
-         <item row="0" column="0">
-          <widget class="QLabel" name="labelHoughTransformDP">
-           <property name="text">
-            <string>DP:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformDP">
-           <property name="maximum">
-            <double>100.000000000000000</double>
-           </property>
-           <property name="singleStep">
-            <double>0.010000000000000</double>
-           </property>
-           <property name="value">
-            <double>2.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="labelHoughTransformMinDist">
-           <property name="text">
-            <string>Min Dist:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformMinDist">
-           <property name="minimum">
-            <double>1.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>1000.000000000000000</double>
-           </property>
-           <property name="singleStep">
-            <double>0.010000000000000</double>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="0">
-        <layout class="QGridLayout" name="gridLayout_27">
-         <item row="0" column="0">
-          <widget class="QLabel" name="labelHoughTransformParam1">
-           <property name="text">
-            <string>Param1:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformParam1">
-           <property name="maximum">
-            <double>1000.000000000000000</double>
-           </property>
-           <property name="singleStep">
-            <double>0.010000000000000</double>
-           </property>
-           <property name="value">
-            <double>200.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="labelHoughTransformParam2">
-           <property name="text">
-            <string>Param2:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformParam2">
-           <property name="maximum">
-            <double>1000.000000000000000</double>
-           </property>
-           <property name="singleStep">
-            <double>0.010000000000000</double>
-           </property>
-           <property name="value">
-            <double>100.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="2" column="0">
-        <layout class="QGridLayout" name="gridLayout_28">
-         <item row="0" column="0">
-          <widget class="QLabel" name="labelHoughTransformMinRadius">
-           <property name="text">
-            <string>Min Radius:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QSpinBox" name="spinBoxHoughTransformMinRadius"/>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="labelHoughTransformMaxRadius">
-           <property name="text">
-            <string>Max Radius:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QSpinBox" name="spinBoxHoughTransformMaxRadius"/>
-         </item>
-        </layout>
-       </item>
-      </layout>
+      <property name="title">
+       <string>Canny Edge Detect</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>364</width>
+         <height>110</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_21">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelCannyEdgeDetectThreshold1">
+            <property name="text">
+             <string>Threshold1:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxCannyEdgeDetectThreshold1">
+            <property name="maximum">
+             <double>1000.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>40.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelCannyEdgeDetectThreshold2">
+            <property name="text">
+             <string>Threshold2:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxCannyEdgeDetectThreshold2">
+            <property name="maximum">
+             <double>1000.000000000000000</double>
+            </property>
+            <property name="value">
+             <double>120.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_22">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelCannyEdgeDetectApertureSize">
+            <property name="text">
+             <string>Aperture Size: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxCannyEdgeDetectApertureSize">
+            <property name="minimum">
+             <number>3</number>
+            </property>
+            <property name="maximum">
+             <number>7</number>
+            </property>
+            <property name="singleStep">
+             <number>2</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QCheckBox" name="checkBoxCannyEdgeDetectL2gradient">
+            <property name="text">
+             <string>L2gradient</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="buttonCannyEdgeDetectPerform">
+          <property name="text">
+           <string>Perform</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>361</width>
-       <height>32</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_30">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelHoughTransformFind">
-        <property name="text">
-         <string>Find:</string>
+    <widget class="QWidget" name="tabHough">
+     <attribute name="title">
+      <string>Hough</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxHoughTransform">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>421</width>
+        <height>311</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Hough Transform</string>
+      </property>
+      <widget class="QGroupBox" name="groupBoxFindLinesParameters">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>401</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Find Lines Parameters</string>
+       </property>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>376</width>
+          <height>64</height>
+         </rect>
         </property>
+        <layout class="QGridLayout" name="gridLayout_25">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_24">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelHoughTransformThreshold">
+             <property name="text">
+              <string>Threshold:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="spinBoxHoughTransformThreshold">
+             <property name="maximum">
+              <number>1000</number>
+             </property>
+             <property name="value">
+              <number>60</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelHoughTransformTheta">
+             <property name="text">
+              <string>Theta: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformTheta">
+             <property name="decimals">
+              <number>5</number>
+             </property>
+             <property name="maximum">
+              <double>1000.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.000100000000000</double>
+             </property>
+             <property name="value">
+              <double>0.017450000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0">
+          <layout class="QGridLayout" name="gridLayout_23">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelHoughTransformRho">
+             <property name="text">
+              <string>Rho:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformRho">
+             <property name="minimum">
+              <double>1.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>1.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelHoughTransformSRN">
+             <property name="text">
+              <string>SRN:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformSRN">
+             <property name="maximum">
+              <double>1000.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>100.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="labelHoughTransformSTN">
+             <property name="text">
+              <string>STN:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="5">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformSTN">
+             <property name="maximum">
+              <double>1000.000000000000000</double>
+             </property>
+             <property name="value">
+              <double>20.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="comboBoxHoughTransformFind">
-        <item>
-         <property name="text">
-          <string>Lines</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Circles</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QPushButton" name="buttonHoughTransformFind">
-        <property name="text">
-         <string>Find</string>
+      </widget>
+      <widget class="QGroupBox" name="groupBoxFindCirclesParameters">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>160</y>
+         <width>361</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Find Circles Parameters</string>
+       </property>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>3</x>
+          <y>30</y>
+          <width>351</width>
+          <height>100</height>
+         </rect>
         </property>
+        <layout class="QGridLayout" name="gridLayout_29">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_26">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelHoughTransformDP">
+             <property name="text">
+              <string>DP:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformDP">
+             <property name="maximum">
+              <double>100.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.010000000000000</double>
+             </property>
+             <property name="value">
+              <double>2.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelHoughTransformMinDist">
+             <property name="text">
+              <string>Min Dist:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformMinDist">
+             <property name="minimum">
+              <double>1.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>1000.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.010000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0">
+          <layout class="QGridLayout" name="gridLayout_27">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelHoughTransformParam1">
+             <property name="text">
+              <string>Param1:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformParam1">
+             <property name="maximum">
+              <double>1000.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.010000000000000</double>
+             </property>
+             <property name="value">
+              <double>200.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelHoughTransformParam2">
+             <property name="text">
+              <string>Param2:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxHoughTransformParam2">
+             <property name="maximum">
+              <double>1000.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.010000000000000</double>
+             </property>
+             <property name="value">
+              <double>100.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="0">
+          <layout class="QGridLayout" name="gridLayout_28">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelHoughTransformMinRadius">
+             <property name="text">
+              <string>Min Radius:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="spinBoxHoughTransformMinRadius"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelHoughTransformMaxRadius">
+             <property name="text">
+              <string>Max Radius:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QSpinBox" name="spinBoxHoughTransformMaxRadius"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
-      </item>
-     </layout>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>361</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_30">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelHoughTransformFind">
+          <property name="text">
+           <string>Find:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboBoxHoughTransformFind">
+          <item>
+           <property name="text">
+            <string>Lines</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Circles</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="buttonHoughTransformFind">
+          <property name="text">
+           <string>Find</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -1724,7 +1792,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1372</width>
+     <width>755</width>
      <height>22</height>
     </rect>
    </property>
