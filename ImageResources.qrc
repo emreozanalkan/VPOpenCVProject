@@ -1,0 +1,47 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Images/chessboards/chessboard01.jpg</file>
+        <file>Images/chessboards/chessboard02.jpg</file>
+        <file>Images/chessboards/chessboard03.jpg</file>
+        <file>Images/chessboards/chessboard04.jpg</file>
+        <file>Images/chessboards/chessboard05.jpg</file>
+        <file>Images/chessboards/chessboard06.jpg</file>
+        <file>Images/chessboards/chessboard07.jpg</file>
+        <file>Images/chessboards/chessboard08.jpg</file>
+        <file>Images/chessboards/chessboard09.jpg</file>
+        <file>Images/chessboards/chessboard10.jpg</file>
+        <file>Images/chessboards/chessboard11.jpg</file>
+        <file>Images/chessboards/chessboard12.jpg</file>
+        <file>Images/chessboards/chessboard13.jpg</file>
+        <file>Images/chessboards/chessboard14.jpg</file>
+        <file>Images/chessboards/chessboard15.jpg</file>
+        <file>Images/chessboards/chessboard16.jpg</file>
+        <file>Images/chessboards/chessboard17.jpg</file>
+        <file>Images/chessboards/chessboard18.jpg</file>
+        <file>Images/chessboards/chessboard19.jpg</file>
+        <file>Images/chessboards/chessboard20.jpg</file>
+        <file>Images/chessboards/chessboard21.jpg</file>
+        <file>Images/chessboards/chessboard22.jpg</file>
+        <file>Images/chessboards/chessboard23.jpg</file>
+        <file>Images/chessboards/chessboard24.jpg</file>
+        <file>Images/chessboards/chessboard25.jpg</file>
+        <file>Images/chessboards/chessboard26.jpg</file>
+        <file>Images/chessboards/chessboard27.jpg</file>
+        <file>Images/chessboards/chessboard28.jpg</file>
+        <file>Images/chessboards/chessboard29.jpg</file>
+        <file>Images/chessboards/chessboard30.jpg</file>
+        <file>Images/chessboards/chessboard31.jpg</file>
+        <file>Images/chessboards/chessboard32.jpg</file>
+        <file>Images/chessboards/chessboard33.jpg</file>
+        <file>Images/chessboards/chessboard34.jpg</file>
+        <file>Images/chessboards/chessboard35.jpg</file>
+        <file>Images/chessboards/chessboard36.jpg</file>
+        <file>Images/chessboards/chessboard37.jpg</file>
+        <file>Images/chessboards/chessboard38.jpg</file>
+        <file>Images/chessboards/chessboard39.jpg</file>
+        <file>Images/chessboards/chessboard40.jpg</file>
+        <file>Images/chessboards/chessboard41.jpg</file>
+        <file>Images/chessboards/chessboard42.jpg</file>
+        <file>Images/chessboards/chessboard43.jpg</file>
+    </qresource>
+</RCC>

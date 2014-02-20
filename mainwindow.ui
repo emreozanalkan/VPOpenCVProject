@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>950</width>
+    <width>1034</width>
     <height>468</height>
    </rect>
   </property>
@@ -22,7 +22,7 @@
      <rect>
       <x>10</x>
       <y>50</y>
-      <width>921</width>
+      <width>1011</width>
       <height>381</height>
      </rect>
     </property>
@@ -33,7 +33,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>14</number>
     </property>
     <widget class="QWidget" name="tabHistory">
      <attribute name="title">
@@ -2469,8 +2469,461 @@
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="tabEstimation">
+     <attribute name="title">
+      <string>Estimation</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxChessboardCalibration">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>221</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Chessboard Pattern Camera Calibration</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>30</y>
+         <width>158</width>
+         <height>105</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_56">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_54">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelNumberCornersX">
+            <property name="text">
+             <string># Corners X:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxNumberCornersX">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>6</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_55">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelNumberCornerY">
+            <property name="text">
+             <string># Corners Y:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxNumberCornerY">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>4</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="buttonEstimationCalibrate">
+          <property name="text">
+           <string>Calibrate</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxEstimationFindMatches">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>0</y>
+        <width>401</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Find Matches</string>
+      </property>
+      <widget class="QWidget" name="">
+       <layout class="QGridLayout" name="gridLayout_58">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelEstimationeypointDrawingFlag">
+          <property name="text">
+           <string>Keypoint Drawing Flag:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboBoxEstimationKeypointDrawingFlag">
+          <item>
+           <property name="text">
+            <string>DRAW_RICH_KEYPOINTS</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DEFAULT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DRAW_OVER_OUTIMG</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>NOT_DRAW_SINGLE_POINTS</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="buttonEstimationLoadMatchingImage">
+       <property name="geometry">
+        <rect>
+         <x>3</x>
+         <y>113</y>
+         <width>201</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Load Matching Image</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBoxEstimationSURFMinHessian">
+       <property name="geometry">
+        <rect>
+         <x>134</x>
+         <y>35</y>
+         <width>73</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+       <property name="value">
+        <number>3000</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="buttonEstimationFindMatches">
+       <property name="geometry">
+        <rect>
+         <x>224</x>
+         <y>110</y>
+         <width>161</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Find Matches</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelEstimationFindMatchesSURFMinHessian">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>35</y>
+         <width>116</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SURF Min Hessian:</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxEpipolar">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>461</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Epipolar</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>437</width>
+         <height>106</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_63">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_60">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelEpipolarRatio">
+            <property name="text">
+             <string>Ratio:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxEpipolarRatio">
+            <property name="maximum">
+             <double>1.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.650000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelEpipolarSURFMinHessian">
+            <property name="text">
+             <string>SURF Min Hessian:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="spinBoxEpipolarSURFMinHessian">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+            <property name="value">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_61">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelEpipolarConfidenceLevel">
+            <property name="text">
+             <string>Confidence Level:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxEpipolarConfidenceLevel">
+            <property name="maximum">
+             <double>1.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.980000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelEpipolarMinDistanceToEpipolar">
+            <property name="text">
+             <string>Min Distance to Epipolar:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxEpipolarMinDistanceToEpipolar">
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>1.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <layout class="QGridLayout" name="gridLayout_62">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="buttonEpipolarLoadMatchingImage">
+            <property name="text">
+             <string>Load Matching Image</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="buttonEpipolarFindEpipolarLines">
+            <property name="text">
+             <string>Find Epipolar Lines</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxHomography">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>160</y>
+        <width>461</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Homography</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>437</width>
+         <height>106</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_67">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_64">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelHomographyRatio">
+            <property name="text">
+             <string>Ratio:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxHomographyRatio">
+            <property name="maximum">
+             <double>1.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.650000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelHomographySURFMinHesian">
+            <property name="text">
+             <string>SURF Min Hessian:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="spinBoxHomographySURFMinHessian">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+            <property name="value">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_65">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelHomographyConfidenceLevel">
+            <property name="text">
+             <string>Confidence Level:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxHomographyConfidenceLevel">
+            <property name="maximum">
+             <double>1.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.980000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelHomographyMinDistanceToEpipolar">
+            <property name="text">
+             <string>Min Distance to Epipolar:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxHomographyMinDistanceToEpipolar">
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>1.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <layout class="QGridLayout" name="gridLayout_66">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="buttonHomographyLoadMatchingImage">
+            <property name="text">
+             <string>Load Matching Image</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="buttonHomographyCalculateHomography">
+            <property name="text">
+             <string>Compute Homography</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -2525,7 +2978,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>950</width>
+     <width>1034</width>
      <height>22</height>
     </rect>
    </property>

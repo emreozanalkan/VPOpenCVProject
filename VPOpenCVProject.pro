@@ -15,14 +15,17 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    CameraCalibrator.cpp
 
 HEADERS  += mainwindow.h \
     pch.h \
     colorhistogram.h \
     histogram.h \
     linefinder.h \
-    harrisDetector.h
+    harrisDetector.h \
+    CameraCalibrator.h \
+    matcher.h
 
 FORMS    += mainwindow.ui
 
@@ -48,3 +51,6 @@ LIBS += -lopencv_nonfree
 CONFIG += precompile_header
 
 PRECOMPILED_HEADER = pch.h
+
+RESOURCES += \
+    ImageResources.qrc

@@ -8,6 +8,8 @@
 #include "histogram.h"
 #include "linefinder.h"
 #include "harrisDetector.h"
+#include "CameraCalibrator.h"
+#include "matcher.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -194,6 +196,10 @@ void MainWindow::setEnabledToolboxes(bool enabled)
     ui->groupBoxFAST->setEnabled(enabled);
     ui->groupBoxSURF->setEnabled(enabled);
     ui->groupBoxSIFT->setEnabled(enabled);
+    //ui->groupBoxChessboardCalibration->setEnabled(enabled);
+    ui->groupBoxEstimationFindMatches->setEnabled(enabled);
+    ui->groupBoxEpipolar->setEnabled(enabled);
+    ui->groupBoxHomography->setEnabled(enabled);
 }
 
 void MainWindow::on_buttonResetOutput_clicked()
@@ -1244,4 +1250,385 @@ void MainWindow::on_buttonSaveCurrentImage_clicked()
         msgBox.exec();
         return;
     }
+}
+
+void MainWindow::on_buttonEstimationCalibrate_clicked()
+{
+    int numberOfCornersX = ui->spinBoxNumberCornersX->value();
+    int numberOfCornersY = ui->spinBoxNumberCornerY->value();
+
+    cv::Mat image;
+    std::vector<std::string> filelist;
+
+    // generate list of chessboard image filename
+    for (int i = 1; i <= 20; i++) {
+
+        std::stringstream str;
+        str << "/Users/emreozanalkan/Desktop/3241_Code/3241OS_images/images/chessboards/chessboard" << std::setw(2) << std::setfill('0') << i << ".jpg";
+        std::cout << str.str() << std::endl;
+
+        filelist.push_back(str.str());
+        image= cv::imread(str.str(),0);
+        cv::imshow("Image",image);
+        cv::waitKey(300);
+    }
+
+    cv::destroyWindow("Image");
+
+
+    // Create calibrator object
+    CameraCalibrator cameraCalibrator;
+    // add the corners from the chessboard
+    cv::Size boardSize(numberOfCornersX, numberOfCornersY);
+    cameraCalibrator.addChessboardPoints(
+        filelist,	// filenames of chessboard image
+        boardSize);	// size of chessboard
+        // calibrate the camera
+    //	cameraCalibrator.setCalibrationFlag(true,true);
+
+    cv::Size imageSize;
+    imageSize = image.size();
+    cameraCalibrator.calibrate(imageSize);
+
+    // Image Undistortion
+//    image = cv::imread(filelist[6]);
+//    cv::Mat uImage= cameraCalibrator.remap(image);
+
+    // generate list of chessboard image filename
+    for (int i = 0; i < 20; i++) {
+        image = cv::imread(filelist[i]);
+        cv::Mat uImage = cameraCalibrator.remap(image);
+
+        cv::imshow("Undistorted Image",uImage);
+        cv::waitKey(300);
+    }
+
+    // display camera matrix
+    cv::Mat cameraMatrix= cameraCalibrator.getCameraMatrix();
+    std::cout << " Camera intrinsic: " << cameraMatrix.rows << "x" << cameraMatrix.cols << std::endl;
+    std::cout << cameraMatrix.at<double>(0,0) << " " << cameraMatrix.at<double>(0,1) << " " << cameraMatrix.at<double>(0,2) << std::endl;
+    std::cout << cameraMatrix.at<double>(1,0) << " " << cameraMatrix.at<double>(1,1) << " " << cameraMatrix.at<double>(1,2) << std::endl;
+    std::cout << cameraMatrix.at<double>(2,0) << " " << cameraMatrix.at<double>(2,1) << " " << cameraMatrix.at<double>(2,2) << std::endl;
+}
+
+void MainWindow::on_buttonEstimationFindMatches_clicked()
+{
+    if(!this->imageMatching.data)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matching image is empty. Please select matching image.");
+        msgBox.exec();
+        return;
+    }
+
+    int minHessian = ui->spinBoxEstimationSURFMinHessian->value();
+
+    QString keyPointDrawingFlagString = ui->comboBoxFASTKeypointDrawingFlag->currentText();
+
+    int keyPointDrawingFlag = cv::DrawMatchesFlags::DEFAULT;
+    if(keyPointDrawingFlagString == "DEFAULT;")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DEFAULT;
+    else if(keyPointDrawingFlagString == "DRAW_OVER_OUTIMG")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DRAW_OVER_OUTIMG;
+    else if(keyPointDrawingFlagString == "NOT_DRAW_SINGLE_POINTS")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS;
+    else if(keyPointDrawingFlagString == "DRAW_RICH_KEYPOINTS")
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS;
+    else
+        keyPointDrawingFlag = cv::DrawMatchesFlags::DEFAULT;
+
+    // vector of keypoints
+    std::vector<cv::KeyPoint> keypoints1;
+    std::vector<cv::KeyPoint> keypoints2;
+
+    // Construction of the SURF feature detector
+    cv::SurfFeatureDetector surf(minHessian);
+
+    // Detection of the SURF features
+    surf.detect(this->imageOutput,keypoints1);
+    surf.detect(this->imageMatching,keypoints2);
+
+    std::cout << "Number of SURF points (1): " << keypoints1.size() << std::endl;
+    std::cout << "Number of SURF points (2): " << keypoints2.size() << std::endl;
+
+    // Draw the kepoints
+    cv::Mat imageKP;
+    cv::drawKeypoints(this->imageOutput,keypoints1,imageKP,cv::Scalar(255,255,255), keyPointDrawingFlag);
+    cv::namedWindow("Right SURF Features", cv::WINDOW_NORMAL);
+    cv::imshow("Right SURF Features",imageKP);
+    cv::drawKeypoints(this->imageMatching,keypoints2,imageKP,cv::Scalar(255,255,255), keyPointDrawingFlag);
+    cv::namedWindow("Left SURF Features", cv::WINDOW_NORMAL);
+    cv::imshow("Left SURF Features",imageKP);
+
+
+    // Construction of the SURF descriptor extractor
+    cv::SurfDescriptorExtractor surfDesc;
+
+    // Extraction of the SURF descriptors
+    cv::Mat descriptors1, descriptors2;
+    surfDesc.compute(this->imageOutput, keypoints1, descriptors1);
+    surfDesc.compute(this->imageMatching, keypoints2, descriptors2);
+
+
+    // Construction of the matcher
+    cv::BruteForceMatcher<cv::L2<float> > matcher;
+
+    // Match the two image descriptors
+    std::vector<cv::DMatch> matches;
+    matcher.match(descriptors1,descriptors2, matches);
+
+
+    // Draw the selected matches
+    cv::Mat imageMatches;
+    cv::drawMatches(this->imageOutput,keypoints1,  // 1st image and its keypoints
+                    this->imageMatching,keypoints2,  // 2nd image and its keypoints
+//					selMatches,			// the matches
+                    matches,			// the matches
+                    imageMatches,		// the image produced
+                    cv::Scalar(255,255,255)); // color of the lines
+    cv::namedWindow("Matches", cv::WINDOW_NORMAL);
+    cv::imshow("Matches",imageMatches);
+}
+
+void MainWindow::on_buttonEstimationLoadMatchingImage_clicked()
+{
+    QString filePath = this->pickImageDialog();
+
+        if(filePath != 0)
+        {
+            this->imageMatching = cv::imread(filePath.toStdString());
+
+            if(!this->imageMatching.data)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Image you selected didn't loaded.");
+                msgBox.exec();
+                return;
+            }
+
+            this->displayOutputImage();
+            namedWindow("Matching Image", cv::WINDOW_NORMAL);
+            imshow("Matching Image", this->imageMatching);
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setText("You didn't select image.");
+            msgBox.exec();
+        }
+}
+
+void MainWindow::on_buttonEpipolarLoadMatchingImage_clicked()
+{
+    this->on_buttonEstimationLoadMatchingImage_clicked();
+}
+
+void MainWindow::on_buttonEpipolarFindEpipolarLines_clicked()
+{
+    if(!this->imageMatching.data)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matching image is empty. Please select matching image.");
+        msgBox.exec();
+        return;
+    }
+
+    double epipolarRatio = ui->doubleSpinBoxEpipolarRatio->value();
+    int minHessian = ui->spinBoxEpipolarSURFMinHessian->value();
+
+    double confidenceLevel = ui->doubleSpinBoxEpipolarConfidenceLevel->value();
+    double minDistance = ui->doubleSpinBoxEpipolarMinDistanceToEpipolar->value();
+
+
+    // Prepare the matcher
+    RobustMatcher rmatcher;
+    rmatcher.setConfidenceLevel(confidenceLevel);
+    rmatcher.setMinDistanceToEpipolar(minDistance);
+    rmatcher.setRatio(epipolarRatio);
+    cv::Ptr<cv::FeatureDetector> pfd= new cv::SurfFeatureDetector(minHessian);
+    rmatcher.setFeatureDetector(pfd);
+
+    // Match the two images
+    std::vector<cv::DMatch> matches;
+    std::vector<cv::KeyPoint> keypoints1, keypoints2;
+    cv::Mat fundemental = rmatcher.match(this->imageOutput, this->imageMatching, matches, keypoints1, keypoints2);
+
+    // draw the matches
+    cv::Mat imageMatches;
+    cv::drawMatches(this->imageOutput,keypoints1,  // 1st image and its keypoints
+                    this->imageMatching,keypoints2,  // 2nd image and its keypoints
+                    matches,			// the matches
+                    imageMatches,		// the image produced
+                    cv::Scalar(255,255,255)); // color of the lines
+    cv::namedWindow("Matches", cv::WINDOW_NORMAL);
+    cv::imshow("Matches",imageMatches);
+
+
+    // Convert keypoints into Point2f
+    std::vector<cv::Point2f> points1, points2;
+
+    for (std::vector<cv::DMatch>::const_iterator it= matches.begin();
+             it!= matches.end(); ++it) {
+
+             // Get the position of left keypoints
+             float x= keypoints1[it->queryIdx].pt.x;
+             float y= keypoints1[it->queryIdx].pt.y;
+             points1.push_back(cv::Point2f(x,y));
+             cv::circle(this->imageOutput,cv::Point(x,y),3,cv::Scalar(255,255,255),3);
+             // Get the position of right keypoints
+             x= keypoints2[it->trainIdx].pt.x;
+             y= keypoints2[it->trainIdx].pt.y;
+             cv::circle(this->imageMatching,cv::Point(x,y),3,cv::Scalar(255,255,255),3);
+             points2.push_back(cv::Point2f(x,y));
+    }
+
+    // Draw the epipolar lines
+    std::vector<cv::Vec3f> lines1;
+    cv::computeCorrespondEpilines(cv::Mat(points1),1,fundemental,lines1);
+
+    for (std::vector<cv::Vec3f>::const_iterator it= lines1.begin();
+             it!=lines1.end(); ++it) {
+
+             cv::line(this->imageMatching,cv::Point(0,-(*it)[2]/(*it)[1]),
+                             cv::Point(this->imageMatching.cols,-((*it)[2]+(*it)[0]*this->imageMatching.cols)/(*it)[1]),
+                             cv::Scalar(255,255,255));
+    }
+
+    std::vector<cv::Vec3f> lines2;
+    cv::computeCorrespondEpilines(cv::Mat(points2),2,fundemental,lines2);
+
+    for (std::vector<cv::Vec3f>::const_iterator it= lines2.begin();
+             it!=lines2.end(); ++it) {
+
+             cv::line(this->imageOutput,cv::Point(0,-(*it)[2]/(*it)[1]),
+                             cv::Point(this->imageOutput.cols,-((*it)[2]+(*it)[0]*this->imageOutput.cols)/(*it)[1]),
+                             cv::Scalar(255,255,255));
+    }
+
+    // Display the images with epipolar lines
+    cv::namedWindow("Right Image Epilines (RANSAC)", cv::WINDOW_NORMAL);
+    cv::imshow("Right Image Epilines (RANSAC)",this->imageOutput);
+    cv::namedWindow("Left Image Epilines (RANSAC)", cv::WINDOW_NORMAL);
+    cv::imshow("Left Image Epilines (RANSAC)",this->imageMatching);
+
+    this->addHistory(QString("Epipolar Lines"));
+}
+
+void MainWindow::on_buttonHomographyLoadMatchingImage_clicked()
+{
+    this->on_buttonEstimationLoadMatchingImage_clicked();
+}
+
+void MainWindow::on_buttonHomographyCalculateHomography_clicked()
+{
+    if(!this->imageMatching.data)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matching image is empty. Please select matching image.");
+        msgBox.exec();
+        return;
+    }
+
+
+    double epipolarRatio = ui->doubleSpinBoxHomographyRatio->value();
+    int minHessian = ui->spinBoxHomographySURFMinHessian->value();
+
+    double confidenceLevel = ui->doubleSpinBoxHomographyConfidenceLevel->value();
+    double minDistance = ui->doubleSpinBoxHomographyMinDistanceToEpipolar->value();
+
+
+    // Prepare the matcher
+    RobustMatcher rmatcher;
+    rmatcher.setConfidenceLevel(0.98);
+    rmatcher.setMinDistanceToEpipolar(1.0);
+    rmatcher.setRatio(0.65f);
+    cv::Ptr<cv::FeatureDetector> pfd= new cv::SurfFeatureDetector(10);
+    rmatcher.setFeatureDetector(pfd);
+
+    // Match the two images
+    std::vector<cv::DMatch> matches;
+    std::vector<cv::KeyPoint> keypoints1, keypoints2;
+    cv::Mat fundemental = rmatcher.match(this->imageOutput, this->imageMatching,matches, keypoints1, keypoints2);
+
+    // draw the matches
+    cv::Mat imageMatches;
+    cv::drawMatches(this->imageOutput,keypoints1,  // 1st image and its keypoints
+                    this->imageMatching,keypoints2,  // 2nd image and its keypoints
+                    matches,			// the matches
+                    imageMatches,		// the image produced
+                    cv::Scalar(255,255,255)); // color of the lines
+    cv::namedWindow("Matches", CV_WINDOW_NORMAL);
+    cv::imshow("Matches",imageMatches);
+
+    // Convert keypoints into Point2f
+    std::vector<cv::Point2f> points1, points2;
+    for (std::vector<cv::DMatch>::const_iterator it= matches.begin();
+         it!= matches.end(); ++it) {
+
+             // Get the position of left keypoints
+             float x= keypoints1[it->queryIdx].pt.x;
+             float y= keypoints1[it->queryIdx].pt.y;
+             points1.push_back(cv::Point2f(x,y));
+             // Get the position of right keypoints
+             x= keypoints2[it->trainIdx].pt.x;
+             y= keypoints2[it->trainIdx].pt.y;
+             points2.push_back(cv::Point2f(x,y));
+    }
+
+    std::cout << points1.size() << " " << points2.size() << std::endl;
+
+    // Find the homography between image 1 and image 2
+    std::vector<uchar> inliers(points1.size(),0);
+    cv::Mat homography= cv::findHomography(
+        cv::Mat(points1),cv::Mat(points2), // corresponding points
+        inliers,	// outputed inliers matches
+        CV_RANSAC,	// RANSAC method
+        1.);	    // max distance to reprojection point
+
+    // Draw the inlier points
+    std::vector<cv::Point2f>::const_iterator itPts= points1.begin();
+    std::vector<uchar>::const_iterator itIn= inliers.begin();
+    while (itPts!=points1.end()) {
+
+        // draw a circle at each inlier location
+        if (*itIn)
+            cv::circle(this->imageOutput,*itPts,3,cv::Scalar(255,255,255),2);
+
+        ++itPts;
+        ++itIn;
+    }
+
+    itPts= points2.begin();
+    itIn= inliers.begin();
+    while (itPts!=points2.end()) {
+
+        // draw a circle at each inlier location
+        if (*itIn)
+            cv::circle(this->imageMatching,*itPts,3,cv::Scalar(255,255,255),2);
+
+        ++itPts;
+        ++itIn;
+    }
+
+    // Display the images with points
+    cv::namedWindow("Image 1 Homography Points", CV_WINDOW_NORMAL);
+    cv::imshow("Image 1 Homography Points",this->imageOutput);
+    cv::namedWindow("Image 2 Homography Points", CV_WINDOW_NORMAL);
+    cv::imshow("Image 2 Homography Points",this->imageMatching);
+
+    // Warp image 1 to image 2
+    cv::Mat result;
+    cv::warpPerspective(this->imageOutput, // input image
+        result,			// output image
+        homography,		// homography
+        cv::Size(2*this->imageOutput.cols,this->imageOutput.rows)); // size of output image
+
+    // Copy image 1 on the first half of full image
+    cv::Mat half(result,cv::Rect(0,0,this->imageMatching.cols,this->imageMatching.rows));
+    this->imageMatching.copyTo(half);
+
+    // Display the warp image
+    cv::namedWindow("After warping", CV_WINDOW_NORMAL);
+    cv::imshow("After warping",result);
+
 }

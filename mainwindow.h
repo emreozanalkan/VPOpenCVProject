@@ -5,6 +5,7 @@
 #include <QTimer>
 
 #include <vector>
+#include <iomanip>
 
 #include "pch.h"
 
@@ -72,11 +73,27 @@ private slots:
 
     void on_buttonSaveCurrentImage_clicked();
 
+    void on_buttonEstimationCalibrate_clicked();
+
+    void on_buttonEstimationFindMatches_clicked();
+
+    void on_buttonEstimationLoadMatchingImage_clicked();
+
+    void on_buttonEpipolarLoadMatchingImage_clicked();
+
+    void on_buttonEpipolarFindEpipolarLines_clicked();
+
+    void on_buttonHomographyLoadMatchingImage_clicked();
+
+    void on_buttonHomographyCalculateHomography_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     cv::Mat imageInput;
     cv::Mat imageOutput;
+
+    cv::Mat imageMatching;
 
     cv::Mat imageLogo;
 
