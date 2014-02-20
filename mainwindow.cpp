@@ -566,6 +566,8 @@ void MainWindow::on_pushButtonEqualizeHistogram_clicked()
 
         this->imageOutput = image_eq;
 
+        this->addHistory(QString("Histogram Equalized"));
+
         this->displayOutputImage();
     }
 
@@ -911,7 +913,7 @@ void MainWindow::on_buttonHoughTransformFind_clicked()
         cv::Canny(this->imageOutput, contours, 125, 350);
 
         // Detect lines
-        std::vector<cv::Vec4i> li= ld.findLines(contours);
+        ld.findLines(contours);
         ld.drawDetectedLines(this->imageOutput);
 
     }
@@ -950,9 +952,9 @@ void MainWindow::on_buttonHoughTransformFind_clicked()
         }
 
         this->imageOutput = circleImage;
-
-        this->addHistory(QString("Hough Transform: %1 method").arg(houghFindOperation));
     }
+
+    this->addHistory(QString("Hough Transform: %1 method").arg(houghFindOperation));
 
     this->displayOutputImage();
 }
@@ -1010,7 +1012,8 @@ void MainWindow::on_buttonContourFind_clicked()
                      cv::Size(offsetX, offsetY)); // retrieve all pixels of each contours
 
     // draw black contours on white image
-    cv::Mat result(this->imageOutput.size(), CV_8UC3, cv::Scalar(255));
+    //cv::Mat result(this->imageOutput.size(), cv::Scalar(255));
+    cv::Mat result(this->imageOutput.rows, this->imageOutput.cols, CV_8UC3);
     //    cv::drawContours(result,contours,
     //        -1, // draw all contours
     //        cv::Scalar(0), // in black
