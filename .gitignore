@@ -24,3 +24,8 @@ Makefile
 # QtCreator
 
 *.autosave
+
+# Latex Report
+*.aux
+*.log
+*.synctex.gz
