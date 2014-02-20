@@ -148,6 +148,7 @@ void MainWindow::on_buttonLoadImage_clicked()
 
             this->ui->buttonClearAndCloseAll->setEnabled(true);
             this->ui->buttonResetOutput->setEnabled(true);
+            this->ui->buttonSaveCurrentImage->setEnabled(true);
 
             QFileInfo fileInfo(filePath);
             this->addHistory(QString("New Image Loaded: %1").arg(fileInfo.fileName()));
@@ -209,6 +210,7 @@ void MainWindow::on_buttonClearAndCloseAll_clicked()
 
     this->ui->buttonClearAndCloseAll->setEnabled(false);
     this->ui->buttonResetOutput->setEnabled(false);
+    this->ui->buttonSaveCurrentImage->setEnabled(false);
 
     this->imageHistory.clear();
     ui->listWidgetHistory->clear();
@@ -1220,4 +1222,23 @@ void MainWindow::on_buttonSIFTPerform_clicked()
     this->addHistory(QString("SIFT - featureThreshold: %1, edgeThreshold: %2").arg(featureThreshold).arg(edgeThreshold));
 
     this->displayOutputImage();
+}
+
+void MainWindow::on_buttonSaveCurrentImage_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+                                                    "Save File",
+                                                     QDir::homePath().append("/untitled.png"),
+                                                    "Image Files (*.png *.jpg *.jpeg *.bmp)");
+
+
+    if(!fileName.isEmpty())
+        cv::imwrite(fileName.toStdString(), this->imageOutput);
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Can't save image.");
+        msgBox.exec();
+        return;
+    }
 }

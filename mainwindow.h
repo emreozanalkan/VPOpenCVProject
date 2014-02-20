@@ -70,6 +70,8 @@ private slots:
 
     void on_buttonSIFTPerform_clicked();
 
+    void on_buttonSaveCurrentImage_clicked();
+
 private:
     Ui::MainWindow *ui;
 
