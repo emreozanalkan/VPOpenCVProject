@@ -1324,6 +1324,7 @@ void MainWindow::on_buttonEstimationFindMatches_clicked()
     int minHessian = ui->spinBoxEstimationSURFMinHessian->value();
 
     QString keyPointDrawingFlagString = ui->comboBoxFASTKeypointDrawingFlag->currentText();
+    QString fundementalMatrixMethodString = ui->comboBoxEstimationFindMatchesFundemental->currentText();
 
     int keyPointDrawingFlag = cv::DrawMatchesFlags::DEFAULT;
     if(keyPointDrawingFlagString == "DEFAULT;")
@@ -1336,6 +1337,19 @@ void MainWindow::on_buttonEstimationFindMatches_clicked()
         keyPointDrawingFlag = cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS;
     else
         keyPointDrawingFlag = cv::DrawMatchesFlags::DEFAULT;
+
+
+    int fundementalMatrixMethod = CV_FM_7POINT;
+    if(fundementalMatrixMethodString == "7-point;")
+        fundementalMatrixMethod = CV_FM_7POINT;
+    else if(fundementalMatrixMethodString == "8-point")
+        fundementalMatrixMethod = CV_FM_8POINT;
+    else if(fundementalMatrixMethodString == "RANSAC")
+        fundementalMatrixMethod = CV_FM_RANSAC;
+    else
+        fundementalMatrixMethod = CV_FM_7POINT;
+
+
 
     // vector of keypoints
     std::vector<cv::KeyPoint> keypoints1;
@@ -1388,6 +1402,49 @@ void MainWindow::on_buttonEstimationFindMatches_clicked()
                     cv::Scalar(255,255,255)); // color of the lines
     cv::namedWindow("Matches", cv::WINDOW_NORMAL);
     cv::imshow("Matches",imageMatches);
+
+    // Convert 1 vector of keypoints into
+    // 2 vectors of Point2f
+    std::vector<int> pointIndexes1;
+    std::vector<int> pointIndexes2;
+    for (std::vector<cv::DMatch>::const_iterator it= matches.begin();
+         it!= matches.end(); ++it) {
+
+             // Get the indexes of the selected matched keypoints
+             pointIndexes1.push_back(it->queryIdx);
+             pointIndexes2.push_back(it->trainIdx);
+    }
+
+
+    // Convert keypoints into Point2f
+    std::vector<cv::Point2f> selPoints1, selPoints2;
+    cv::KeyPoint::convert(keypoints1,selPoints1,pointIndexes1);
+    cv::KeyPoint::convert(keypoints2,selPoints2,pointIndexes2);
+
+    // check by drawing the points
+    std::vector<cv::Point2f>::const_iterator it= selPoints1.begin();
+    while (it!=selPoints1.end()) {
+
+        // draw a circle at each corner location
+        cv::circle(this->imageOutput,*it,3,cv::Scalar(255,255,255),2);
+        ++it;
+    }
+
+    it= selPoints2.begin();
+    while (it!=selPoints2.end()) {
+
+        // draw a circle at each corner location
+        cv::circle(this->imageMatching,*it,3,cv::Scalar(255,255,255),2);
+        ++it;
+    }
+
+    // Compute F matrix
+    cv::Mat fundemental= cv::findFundamentalMat(
+        cv::Mat(selPoints1), // points in first image
+        cv::Mat(selPoints2), // points in second image
+        fundementalMatrixMethod);       // 7-point method
+
+        std::cout << "F-Matrix size: " << fundemental.rows << "," << fundemental.cols << std::endl;
 }
 
 void MainWindow::on_buttonEstimationLoadMatchingImage_clicked()
