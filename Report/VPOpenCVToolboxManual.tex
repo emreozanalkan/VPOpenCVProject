@@ -455,8 +455,102 @@ Keypoint Colors       & \multicolumn{4}{|c|}{Draws keypoints with different colo
 \end{tabular}
 \end{center}
 \end{table}
-	
-	
-	
+
+\section{Estimation}
+In "Estimation" tab, you can find many functions, including camera calibration with chessboard patter, finding matches between images. drawing epipolar lines, connecting two images with tomography and more.
+
+\subsection{Camera Calibration}
+Camera calibration is calculating the distortion for your camera and, find undistortion for better image acquire. Parameters are:
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|l|l|l|}
+\hline
+\textbf{Parameters} & \multicolumn{4}{|c|}{\textbf{Details}}                                            \\ \hline
+\# Corners X        & \multicolumn{4}{|c|}{Number of corners in horizontal your chessboard pattern has} \\ \hline
+\# Corners Y        & \multicolumn{4}{|c|}{Number of corners in vertical your chessboard pattern has}   \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.3]{toolboxCameraCalibration.png}
+\caption{Undistorted Image After Calibration}
+\end{center}
+\end{figure}	   
+
+\subsection{Find Matches}
+Find matches between two images; current output image and matching image you will provide with "Load Matching Image". Parameters are:
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|l|l|l|}
+\hline
+\textbf{Parameters}          & \multicolumn{4}{|c|}{\textbf{Details}}                                             \\ \hline
+SURF Min Hessian             & \multicolumn{4}{|c|}{Threshold on diff between intensity of the central pixel}  \\ \hline
+Calculate Fundemental Matrix & \multicolumn{4}{|c|}{Calculates F matrix with given method}    \\ \hline
+Keypoint Drawing Flag        & \multicolumn{4}{|c|}{Flags setting drawing features}                               \\ \hline
+Matching Image               & \multicolumn{4}{|c|}{Maching image your provide with "Load Matching Image" button} \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{toolboxFindMatches.png}
+\caption{Find Matches}
+\end{center}
+\end{figure}	   
+
+\subsection{Epipolar}
+Finds and draws epipolar lines between two images; current output image and matching image you will provide with "Load Matching Image". Parameters are:
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|l|l|l|}
+\hline
+\textbf{Parameters}      & \multicolumn{4}{|c|}{\textbf{Details}}                                                                    \\ \hline
+Ratio                    & \multicolumn{4}{|c|}{Max ratio between 1st and 2nd Nearest Neighbor}                                      \\ \hline
+SURF Min Hessian         & \multicolumn{4}{|c|}{Threshold on diff between intensity of central px and px of a circle around this px} \\ \hline
+Confidence Level         & \multicolumn{4}{|c|}{Confidence level (probability)}                                                      \\ \hline
+Min Distance to Epioplar & \multicolumn{4}{|c|}{Min distance to epipolar}                                                            \\ \hline
+Matching Image           & \multicolumn{4}{|c|}{Maching image your provide with "Load Matching Image" button}                        \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{toolboxEpipolarLines.png}
+\caption{Epipolar Lines}
+\end{center}
+\end{figure}	   
+
+
+\subsection{Homography}
+Computes the homography between two images and connect them by the found homography. Parameters are:
+
+	\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|l|l|l|}
+\hline
+\textbf{Parameters}      & \multicolumn{4}{|c|}{\textbf{Details}}                                                                    \\ \hline
+Ratio                    & \multicolumn{4}{|c|}{Max ratio between 1st and 2nd Nearest Neighbor}                                      \\ \hline
+SURF Min Hessian         & \multicolumn{4}{|c|}{Threshold on diff between intensity of central px and px of a circle around this px} \\ \hline
+Confidence Level         & \multicolumn{4}{|c|}{Confidence level (probability)}                                                      \\ \hline
+Min Distance to Epioplar & \multicolumn{4}{|c|}{Min distance to epipolar}                                                            \\ \hline
+Matching Image           & \multicolumn{4}{|c|}{Maching image your provide with "Load Matching Image" button}                        \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{toolboxHomography.png}
+\caption{Homography Applied Image}
+\end{center}
+\end{figure}	   
 
 \end{document}
