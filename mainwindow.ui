@@ -33,7 +33,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>14</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tabHistory">
      <attribute name="title">
@@ -1583,7 +1583,7 @@
          <rect>
           <x>3</x>
           <y>30</y>
-          <width>351</width>
+          <width>381</width>
           <height>100</height>
          </rect>
         </property>
@@ -1650,7 +1650,7 @@
               <double>0.010000000000000</double>
              </property>
              <property name="value">
-              <double>200.000000000000000</double>
+              <double>250.000000000000000</double>
              </property>
             </widget>
            </item>
@@ -1670,7 +1670,7 @@
               <double>0.010000000000000</double>
              </property>
              <property name="value">
-              <double>100.000000000000000</double>
+              <double>120.000000000000000</double>
              </property>
             </widget>
            </item>
@@ -2565,7 +2565,7 @@
       <property name="title">
        <string>Find Matches</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
