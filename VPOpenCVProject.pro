@@ -16,7 +16,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    CameraCalibrator.cpp
+    CameraCalibrator.cpp \
+    Camera/ipcommand.cpp \
+    camerawindow.cpp \
+    Camera/ipcommandlist.cpp \
+    Camera/saltandpeppercommand.cpp
 
 HEADERS  += mainwindow.h \
     pch.h \
@@ -25,9 +29,14 @@ HEADERS  += mainwindow.h \
     linefinder.h \
     harrisDetector.h \
     CameraCalibrator.h \
-    matcher.h
+    matcher.h \
+    Camera/ipcommand.h \
+    camerawindow.h \
+    Camera/ipcommandlist.h \
+    Camera/saltandpeppercommand.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    camerawindow.ui
 
 INCLUDEPATH += "/usr/local/include"
 INCLUDEPATH += "/usr/local/include/opencv"
