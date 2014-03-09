@@ -578,7 +578,6 @@ void MainWindow::on_pushButtonEqualizeHistogram_clicked()
 
         this->displayOutputImage();
     }
-
 }
 
 void MainWindow::on_buttonMorphologicalOperationsPerform_clicked()

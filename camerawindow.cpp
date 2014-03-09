@@ -9,6 +9,9 @@
 #include "logodialog.h"
 #include "Camera/addlogocommand.h"
 
+#include "histogramdialog.h"
+#include "Camera/histogramcommand.h"
+
 CameraWindow::CameraWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::CameraWindow)
@@ -162,6 +165,16 @@ void CameraWindow::on_buttonAddIPOperation_clicked()
                                                              logoDialog.logoBeta, logoDialog.logoGamma);
             commandList->AddCommand(logoCommand);
             ui->listIPOperations->addItem("Show Logo");
+        }
+    }
+    else if(IPOperation == "Add Histogram Operation")
+    {
+        HistogramDialog hisDialog;
+        if(hisDialog.exec())
+        {
+            HistogramCommand *histogramCommand = new HistogramCommand(hisDialog.calculateHistogram, hisDialog.histogramChannel, hisDialog.equalizeHistogram);
+            commandList->AddCommand(histogramCommand);
+            ui->listIPOperations->addItem("Histogram Operation");
         }
     }
 }

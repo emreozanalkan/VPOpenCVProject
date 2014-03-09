@@ -88,12 +88,7 @@
           </item>
           <item>
            <property name="text">
-            <string>Show Histogram</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Equalize Histogram</string>
+            <string>Add Histogram Operation</string>
            </property>
           </item>
           <item>

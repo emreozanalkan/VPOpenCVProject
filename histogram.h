@@ -116,10 +116,10 @@ class Histogram1D {
 	}
 
 	// Equalizes the source image.
-	cv::Mat equalize(const cv::Mat &image) {
+    cv::Mat equalize(const cv::Mat &image) {
 
 		cv::Mat result;
-		cv::equalizeHist(image,result);
+        cv::equalizeHist(image, result);
 
 		return result;
 	}
