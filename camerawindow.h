@@ -5,6 +5,7 @@
 #include <QTimer>
 
 #include "pch.h"
+#include "Camera/ipcommandlist.h"
 
 namespace Ui {
 class CameraWindow;
@@ -27,7 +28,8 @@ private slots:
 
     void on_buttonRemoveSelectedOperation_clicked();
 
-    void cameraImageUpdate();
+    void imageUpdate();
+    void processUpdate();
 
 private:
 
@@ -37,9 +39,12 @@ private:
 
     cv::VideoCapture *videoCapture;
 
-    cv::Mat image;
+    cv::Mat inputImage;
+    cv::Mat outputImage;
 
-    QTimer *timer;
+    QTimer *imageTimer;
+
+    IPCommandList *commandList;
 };
 
 #endif // CAMERAWINDOW_H

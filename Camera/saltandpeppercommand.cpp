@@ -16,10 +16,18 @@ SaltAndPepperCommand::SaltAndPepperCommand(bool addSalt, bool addPepper, int rat
 
 void SaltAndPepperCommand::Execute()
 {
-    if(_addSalt)
-        this->addSaltNoise(_image, _rate);
-    if(_addPepper)
-        this->addPepperNoise(_image, _rate);
+//    if(_addSalt)
+//        this->addSaltNoise(_image, _rate);
+//    if(_addPepper)
+//        this->addPepperNoise(_image, _rate);
+}
+
+void SaltAndPepperCommand::Execute(cv::Mat& image)
+{
+        if(_addSalt)
+            this->addSaltNoise(image, _rate);
+        if(_addPepper)
+            this->addPepperNoise(image, _rate);
 }
 
 void SaltAndPepperCommand::addSaltNoise(cv::Mat &image, int n)

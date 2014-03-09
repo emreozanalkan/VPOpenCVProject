@@ -60,6 +60,8 @@ LIBS += -lopencv_legacy
 LIBS += -lopencv_flann
 LIBS += -lopencv_nonfree
 
+#LIBS += -lQt5Concurrent
+
 CONFIG += precompile_header
 
 PRECOMPILED_HEADER = pch.h

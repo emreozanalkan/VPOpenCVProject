@@ -10,7 +10,10 @@ private:
     std::vector<IPCommand*> _commandList;
 public:
     IPCommandList();
-    void Execute();
+    ~IPCommandList();
+
+    void AddCommand(IPCommand*);
+    void Execute(cv::Mat);
 };
 
 #endif // IPCOMMANDLIST_H

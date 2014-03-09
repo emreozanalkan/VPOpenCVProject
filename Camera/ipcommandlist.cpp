@@ -4,10 +4,20 @@ IPCommandList::IPCommandList()
 {
 }
 
-void IPCommandList::Execute()
+IPCommandList::~IPCommandList()
+{
+    _commandList.clear();
+}
+
+void IPCommandList::AddCommand(IPCommand* command)
+{
+    _commandList.push_back(command);
+}
+
+void IPCommandList::Execute(cv::Mat image)
 {
     for(std::vector<IPCommand*>::iterator it = _commandList.begin(); it != _commandList.end(); ++it)
     {
-        (*it)->Execute();
+        (*it)->Execute(image);
     }
 }

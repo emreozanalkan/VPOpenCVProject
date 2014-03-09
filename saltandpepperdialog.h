@@ -15,6 +15,13 @@ public:
     explicit SaltAndPepperDialog(QWidget *parent = 0);
     ~SaltAndPepperDialog();
 
+    bool addSalt;
+    bool addPepper;
+    int rate;
+
+private slots:
+    void on_buttonBox_accepted();
+
 private:
     Ui::SaltAndPepperDialog *ui;
 };

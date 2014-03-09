@@ -5,10 +5,9 @@
 
 class IPCommand
 {
-protected:
-    cv::Mat _image;
 public:
     virtual void Execute() = 0;
+    virtual void Execute(cv::Mat&) = 0;
 };
 
 #endif // IPCOMMAND_H

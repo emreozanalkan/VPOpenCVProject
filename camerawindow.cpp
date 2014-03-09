@@ -2,8 +2,20 @@
 #include "ui_camerawindow.h"
 
 #include <QMessageBox>
+//#include <QFuture>
+//#include <functional>
+
+//#include <QDebug>
+
+#include <QtConcurrent/QtConcurrentMap>
+#include <QtConcurrent/QtConcurrentRun>
+//#include <QDir>
+//#include <QImage>
+//#include <QMutexLocker>
+//#include <QStringList>
 
 #include "saltandpepperdialog.h"
+#include "Camera/saltandpeppercommand.h"
 
 CameraWindow::CameraWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,9 +23,13 @@ CameraWindow::CameraWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    timer = new QTimer();
+    videoCapture = 0;
 
-    connect(timer, SIGNAL(timeout()), this, SLOT(cameraImageUpdate()));
+    commandList = new IPCommandList();
+
+    imageTimer = new QTimer();
+
+    connect(imageTimer, SIGNAL(timeout()), this, SLOT(imageUpdate()));
 }
 
 CameraWindow::~CameraWindow()
@@ -22,9 +38,11 @@ CameraWindow::~CameraWindow()
         videoCapture->release();
     delete videoCapture;
 
-    if(timer->isActive())
-        timer->stop();
-    delete timer;
+    if(imageTimer->isActive())
+        imageTimer->stop();
+    delete imageTimer;
+
+    delete commandList;
 
     delete ui;
 }
@@ -41,11 +59,12 @@ void CameraWindow::uiPlayMode(bool play)
     ui->buttonRemoveSelectedOperation->setEnabled(!play);
 }
 
-void CameraWindow::cameraImageUpdate()
+void CameraWindow::imageUpdate()
 {
     try
     {
-        videoCapture->operator >>(image);
+        videoCapture->operator >>(inputImage);
+        inputImage.copyTo(outputImage);
     }
     catch(cv::Exception& e)
     {
@@ -65,7 +84,16 @@ void CameraWindow::cameraImageUpdate()
         std::cout << "exception caught: " << err_msg << std::endl;
     }
 
-    cv::imshow("Camera Input", image);
+    cv::imshow("Camera Input", inputImage);
+
+    QTimer::singleShot(0, this, SLOT(processUpdate()));
+}
+
+void CameraWindow::processUpdate()
+{
+    commandList->Execute(outputImage);
+
+    cv::imshow("Camera Output", outputImage);
 }
 
 void CameraWindow::on_buttonPlay_clicked()
@@ -85,9 +113,9 @@ void CameraWindow::on_buttonPlay_clicked()
             this->uiPlayMode(false);
 
             cv::namedWindow("Camera Input", CV_WINDOW_NORMAL);
-            cv::namedWindow("Camera Output", CV_WINDOW_NORMAL);
+            cv::namedWindow("Camera Output", CV_WINDOW_FREERATIO);
 
-            timer->start(100);
+            imageTimer->start(100);
         }
         else
         {
@@ -108,8 +136,8 @@ void CameraWindow::on_buttonPlay_clicked()
 
 void CameraWindow::on_buttonPause_clicked()
 {
-    if(timer->isActive())
-        timer->stop();
+    if(imageTimer->isActive())
+        imageTimer->stop();
 
     if(videoCapture != 0)
         if(videoCapture->isOpened())
@@ -127,10 +155,8 @@ void CameraWindow::on_buttonAddIPOperation_clicked()
         SaltAndPepperDialog sapDiag;
         if(sapDiag.exec())
         {
-            QMessageBox msgBox;
-            msgBox.setText("Salt and Pepper added :)");
-            msgBox.exec();
-            return;
+            SaltAndPepperCommand *sapCommand = new SaltAndPepperCommand(sapDiag.addSalt, sapDiag.addPepper, sapDiag.rate);
+            commandList->AddCommand(sapCommand);
         }
     }
 }

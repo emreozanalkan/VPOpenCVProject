@@ -17,6 +17,7 @@ public:
     void addPepperNoise(cv::Mat&, int);
 
     void Execute();
+    void Execute(cv::Mat&);
 };
 
 #endif // SALTANDPEPPERCOMMAND_H

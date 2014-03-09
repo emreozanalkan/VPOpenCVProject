@@ -58,10 +58,10 @@
           <item>
            <widget class="QSpinBox" name="spinBoxSaltAndPepperRate">
             <property name="minimum">
-             <number>100</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>5000</number>
+             <number>10000</number>
             </property>
             <property name="singleStep">
              <number>10</number>
