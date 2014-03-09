@@ -2,20 +2,12 @@
 #include "ui_camerawindow.h"
 
 #include <QMessageBox>
-//#include <QFuture>
-//#include <functional>
-
-//#include <QDebug>
-
-#include <QtConcurrent/QtConcurrentMap>
-#include <QtConcurrent/QtConcurrentRun>
-//#include <QDir>
-//#include <QImage>
-//#include <QMutexLocker>
-//#include <QStringList>
 
 #include "saltandpepperdialog.h"
 #include "Camera/saltandpeppercommand.h"
+
+#include "logodialog.h"
+#include "Camera/addlogocommand.h"
 
 CameraWindow::CameraWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -113,7 +105,7 @@ void CameraWindow::on_buttonPlay_clicked()
             this->uiPlayMode(false);
 
             cv::namedWindow("Camera Input", CV_WINDOW_NORMAL);
-            cv::namedWindow("Camera Output", CV_WINDOW_FREERATIO);
+            cv::namedWindow("Camera Output", CV_WINDOW_KEEPRATIO);
 
             imageTimer->start(100);
         }
@@ -157,6 +149,19 @@ void CameraWindow::on_buttonAddIPOperation_clicked()
         {
             SaltAndPepperCommand *sapCommand = new SaltAndPepperCommand(sapDiag.addSalt, sapDiag.addPepper, sapDiag.rate);
             commandList->AddCommand(sapCommand);
+            ui->listIPOperations->addItem("Salt and Pepper Noise");
+        }
+    }
+    else if(IPOperation == "Add Logo")
+    {
+        LogoDialog logoDialog;
+        if(logoDialog.exec())
+        {
+            AddLogoCommand *logoCommand = new AddLogoCommand(logoDialog.imageLogo, logoDialog.logoX,
+                                                             logoDialog.logoY, logoDialog.logoAlpha,
+                                                             logoDialog.logoBeta, logoDialog.logoGamma);
+            commandList->AddCommand(logoCommand);
+            ui->listIPOperations->addItem("Show Logo");
         }
     }
 }
