@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     Camera/ipcommand.cpp \
     camerawindow.cpp \
     Camera/ipcommandlist.cpp \
-    Camera/saltandpeppercommand.cpp
+    Camera/saltandpeppercommand.cpp \
+    saltandpepperdialog.cpp
 
 HEADERS  += mainwindow.h \
     pch.h \
@@ -33,10 +34,12 @@ HEADERS  += mainwindow.h \
     Camera/ipcommand.h \
     camerawindow.h \
     Camera/ipcommandlist.h \
-    Camera/saltandpeppercommand.h
+    Camera/saltandpeppercommand.h \
+    saltandpepperdialog.h
 
 FORMS    += mainwindow.ui \
-    camerawindow.ui
+    camerawindow.ui \
+    saltandpepperdialog.ui
 
 INCLUDEPATH += "/usr/local/include"
 INCLUDEPATH += "/usr/local/include/opencv"

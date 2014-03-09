@@ -23,6 +23,13 @@ Notes
 ============
 - Tested with OpenCV 2.4.8, Qt 5.2.0, Mac OS X 10.9.1 (Mavericks)
 
+References
+============
+Icons:
+IcoMoon Icon Packs - icomoon.io
+http://www.flaticon.com/packs/icomoon-free-1
+http://www.flaticon.com/packs/icomoon-free-2
+
 License
 ============
 OpenCV Computer Vision Toolbox using [the MIT license](LICENSE).

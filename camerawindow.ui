@@ -2,30 +2,221 @@
 <ui version="4.0">
  <class>CameraWindow</class>
  <widget class="QMainWindow" name="CameraWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>309</width>
+    <height>393</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Camera</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="labelCameraIndex">
+          <property name="text">
+           <string>Camera Index:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spinCameraIndex">
+          <property name="specialValueText">
+           <string/>
+          </property>
+          <property name="maximum">
+           <number>99</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="buttonPlay">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="ImageResources.qrc">
+            <normaloff>:/icons/Icons/play36.png</normaloff>:/icons/Icons/play36.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="buttonPause">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="ImageResources.qrc">
+            <normaloff>:/icons/Icons/pause13.png</normaloff>:/icons/Icons/pause13.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QComboBox" name="comboBoxIPOperation">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>Add Salt and Pepper Noise</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Add Logo</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Show Histogram</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Equalize Histogram</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Add Morphological Operation</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Add Blurring</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Add Sobel or Laplacian</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Add Sharpening</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Canny Edge Detect</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Hough Transform</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Show Contours</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Harris Corner Extraction</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>FAST</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SIFT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SURF</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="buttonAddIPOperation">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="ImageResources.qrc">
+            <normaloff>:/icons/Icons/plus24.png</normaloff>:/icons/Icons/plus24.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QListView" name="listIPOperations">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="buttonRemoveSelectedOperation">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Remove Selected Operation(s)</string>
+        </property>
+        <property name="icon">
+         <iconset resource="ImageResources.qrc">
+          <normaloff>:/icons/Icons/minus17.png</normaloff>:/icons/Icons/minus17.png</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>309</width>
      <height>22</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <tabstops>
+  <tabstop>spinCameraIndex</tabstop>
+  <tabstop>buttonPlay</tabstop>
+  <tabstop>buttonPause</tabstop>
+  <tabstop>comboBoxIPOperation</tabstop>
+  <tabstop>buttonAddIPOperation</tabstop>
+  <tabstop>listIPOperations</tabstop>
+  <tabstop>buttonRemoveSelectedOperation</tabstop>
+ </tabstops>
+ <resources>
+  <include location="ImageResources.qrc"/>
+ </resources>
  <connections/>
 </ui>

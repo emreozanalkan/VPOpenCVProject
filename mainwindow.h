@@ -87,6 +87,8 @@ private slots:
 
     void on_buttonHomographyCalculateHomography_clicked();
 
+    void on_buttonCameraToolbox_clicked();
+
 private:
     Ui::MainWindow *ui;
 

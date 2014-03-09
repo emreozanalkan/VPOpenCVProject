@@ -11,6 +11,8 @@
 #include "CameraCalibrator.h"
 #include "matcher.h"
 
+#include "camerawindow.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -1688,4 +1690,13 @@ void MainWindow::on_buttonHomographyCalculateHomography_clicked()
     cv::namedWindow("After warping", CV_WINDOW_NORMAL);
     cv::imshow("After warping",result);
 
+}
+
+void MainWindow::on_buttonCameraToolbox_clicked()
+{
+    CameraWindow *cameraWindow = new CameraWindow();
+
+    cameraWindow->move(0, 0);
+
+    cameraWindow->show();
 }

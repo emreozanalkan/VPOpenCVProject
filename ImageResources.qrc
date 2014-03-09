@@ -44,4 +44,10 @@
         <file>Images/chessboards/chessboard42.jpg</file>
         <file>Images/chessboards/chessboard43.jpg</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file>Icons/minus17.png</file>
+        <file>Icons/pause13.png</file>
+        <file>Icons/play36.png</file>
+        <file>Icons/plus24.png</file>
+    </qresource>
 </RCC>

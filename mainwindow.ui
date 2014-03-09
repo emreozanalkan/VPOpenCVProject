@@ -2950,19 +2950,19 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>720</width>
+      <width>869</width>
       <height>32</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout_53">
-     <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_16">
+     <item>
       <widget class="QPushButton" name="buttonLoadImage">
        <property name="text">
         <string>Load Image</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item>
       <widget class="QPushButton" name="buttonSaveCurrentImage">
        <property name="enabled">
         <bool>false</bool>
@@ -2972,7 +2972,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
+     <item>
       <widget class="QPushButton" name="buttonResetOutput">
        <property name="enabled">
         <bool>false</bool>
@@ -2982,13 +2982,20 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="3">
+     <item>
       <widget class="QPushButton" name="buttonClearAndCloseAll">
        <property name="enabled">
         <bool>false</bool>
        </property>
        <property name="text">
         <string>Clear Images and Close All Windows</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonCameraToolbox">
+       <property name="text">
+        <string>Camera Toolbox</string>
        </property>
       </widget>
      </item>
