@@ -2,6 +2,7 @@
 #include "ui_camerawindow.h"
 
 #include <QMessageBox>
+#include <QDebug>
 
 #include "saltandpepperdialog.h"
 #include "Camera/saltandpeppercommand.h"
@@ -202,5 +203,10 @@ void CameraWindow::on_buttonAddIPOperation_clicked()
 
 void CameraWindow::on_buttonRemoveSelectedOperation_clicked()
 {
-
+    int index = ui->listIPOperations->currentRow();
+    if(index < 0)
+        return;
+    QListWidgetItem* item = ui->listIPOperations->takeItem(index);
+    ui->listIPOperations->removeItemWidget(item);
+    commandList->RemoveCommand(index);
 }

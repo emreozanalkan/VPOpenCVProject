@@ -13,6 +13,8 @@ public:
     ~IPCommandList();
 
     void AddCommand(IPCommand*);
+    void RemoveCommand(int);
+
     void Execute(cv::Mat);
 };
 

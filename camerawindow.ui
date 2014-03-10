@@ -177,7 +177,7 @@
          <bool>false</bool>
         </property>
         <property name="text">
-         <string>Remove Selected Operation(s)</string>
+         <string>Remove Selected Operation</string>
         </property>
         <property name="icon">
          <iconset resource="ImageResources.qrc">
