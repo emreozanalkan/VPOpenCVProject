@@ -25,7 +25,9 @@ SOURCES += main.cpp\
     Camera/addlogocommand.cpp \
     logodialog.cpp \
     histogramdialog.cpp \
-    Camera/histogramcommand.cpp
+    Camera/histogramcommand.cpp \
+    morphdialog.cpp \
+    Camera/morphcommand.cpp
 
 HEADERS  += mainwindow.h \
     pch.h \
@@ -43,13 +45,16 @@ HEADERS  += mainwindow.h \
     Camera/addlogocommand.h \
     logodialog.h \
     histogramdialog.h \
-    Camera/histogramcommand.h
+    Camera/histogramcommand.h \
+    morphdialog.h \
+    Camera/morphcommand.h
 
 FORMS    += mainwindow.ui \
     camerawindow.ui \
     saltandpepperdialog.ui \
     logodialog.ui \
-    histogramdialog.ui
+    histogramdialog.ui \
+    morphdialog.ui
 
 INCLUDEPATH += "/usr/local/include"
 INCLUDEPATH += "/usr/local/include/opencv"

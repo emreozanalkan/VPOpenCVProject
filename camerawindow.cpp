@@ -12,6 +12,9 @@
 #include "histogramdialog.h"
 #include "Camera/histogramcommand.h"
 
+#include "morphdialog.h"
+#include "Camera/morphcommand.h"
+
 CameraWindow::CameraWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::CameraWindow)
@@ -175,6 +178,24 @@ void CameraWindow::on_buttonAddIPOperation_clicked()
             HistogramCommand *histogramCommand = new HistogramCommand(hisDialog.calculateHistogram, hisDialog.histogramChannel, hisDialog.equalizeHistogram);
             commandList->AddCommand(histogramCommand);
             ui->listIPOperations->addItem("Histogram Operation");
+        }
+    }
+    else if(IPOperation == "Add Morphological Operation")
+    {
+        MorphDialog morphDialog;
+        if(morphDialog.exec())
+        {
+//            int _morphOperation;
+//            int _kernelType;
+//            int _imagePaddingMethod;
+//            int _iterationCount;
+//            cv::Size *_kernelSize;
+//            cv::Point *_anchorPoint;
+            MorphCommand *morphCommand = new MorphCommand(morphDialog.morphOperation, morphDialog.kernelType,
+                                                          morphDialog.imagePaddingMethod, morphDialog.iterationCount,
+                                                          morphDialog.kernelSize, morphDialog.anchorPoint);
+            commandList->AddCommand(morphCommand);
+            ui->listIPOperations->addItem("Morphological Operation");
         }
     }
 }
