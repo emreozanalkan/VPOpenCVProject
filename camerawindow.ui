@@ -96,56 +96,6 @@
             <string>Add Morphological Operation</string>
            </property>
           </item>
-          <item>
-           <property name="text">
-            <string>Add Blurring</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Add Sobel or Laplacian</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Add Sharpening</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Canny Edge Detect</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Hough Transform</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Show Contours</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Harris Corner Extraction</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>FAST</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>SIFT</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>SURF</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item>

@@ -64,11 +64,11 @@
 	
 	
 \section{Getting Started}
-
-	\subsection{Basics}
+	\subsection{Image Toolbox}
+	\subsubsection{Basics}
 	This application is embedding functions of OpenCV(tested on 2.4.8) for users. This application consist of one main window and sub-windows prompt upon on displaying input and output images by OpenCV. It accepts one image at a time and storing it as original image. Each modification is applied on output image consecutively. There is also history option keep track of change of the output image where you can revert to any old state you want. By default, all operations are disabled until you select an image.
 	
-	\subsection{User Interface}
+	\subsubsection{User Interface}
 	User interface consist of 4 buttons and a tab view which embeds all image processing functions. \par
 
 \begin{figure}[H]
@@ -104,12 +104,12 @@
 		\item Features: Extracting FAST, SURF, SIFT key points.
 	\end{itemize}
 
-\section{Image Input and Output}
+\subsubsection{Image Input and Output}
 
 	Image input and output is very easy in this toolbox. "Load Image" button in upper left corner opens file dialog and enable to select any image in your computer. Supported formats are *.png, *.jpg, *.jpeg, amd *.bmp; by default, OpenCV loads images in BGR color space. As soon as you select and load image, image is opened in windows titled "Input", which you can see there is already toolboxes on it which enable you to zoom in/out, showing pixel values and even saving. \par
 	Even Qt built OpenCV windows has saving option, there is also saving current image option on left top of application. It opens save dialog and let you save your image any place you want.
 
-\section{Image History}
+\subsubsection{Image History}
 	Image history is one of the strong functionality of this toolbox. After your each operation, output image is saved and kept for history. \par
 	In any moment, you can go history tab and click "Revert" button to go back to that state of the image. Another beautiful feature is  you can see that history items by clicking "View" and they will be pop-up in seperate windows, you can open as much as you want.
 	
@@ -120,7 +120,7 @@
 \end{center}
 \end{figure}	
 
-\section{Noise}
+\subsubsection{Noise}
 In "Noise" tab, there is only Salt and Pepper noise option. It's adding white and black pixels to your image with given amount as "Rate" parameter, by default set to 100. Salt and Pepper options are with check-boxes, you have option to add them separately.
 
 \begin{figure}[H]
@@ -130,7 +130,7 @@ In "Noise" tab, there is only Salt and Pepper noise option. It's adding white an
 \end{center}
 \end{figure}	
 
-\section{Logo}
+\subsubsection{Logo}
 
 In "Logo" tab, first you need to load logo by clicking "Load Logo". You should select logo smaller or equal to output image size, otherwise warning message will appear. Click "Add Logo" to add your logo. There are 5 parameters you can manipulate before adding logo to your image. Here are the parameters:
 
@@ -157,7 +157,7 @@ Gamma              & \multicolumn{4}{|c|}{Scalar added to each pixel} \\ \hline
 \end{figure}	
 
 
-\section{Color}
+\subsubsection{Color}
 
 In "Color" tab, you can change the color space of the your current image. Supported color spaces are: BGR, RGB, GRAY, HSV, HLS. Current color space combo-box is disabled by default that showing current color space of the image. Each time you change the color space both 'Current Color Space' and 'New Color Space' combo-boxes are updated accordingly.
 
@@ -168,7 +168,7 @@ In "Color" tab, you can change the color space of the your current image. Suppor
 \end{center}
 \end{figure}	
 
-\section{Histogram}
+\subsubsection{Histogram}
 
 In "Histogram" tab, you can calculate histogram of the image or equalize histogram of the current image. There is also option to choose channel for viewing histograms for multi channel images. 
 
@@ -179,7 +179,7 @@ In "Histogram" tab, you can calculate histogram of the image or equalize histogr
 \end{center}
 \end{figure}	
 
-\section{Morph}
+\subsubsection{Morph}
 
 In "Morph" tab, you can perform morphological operations to your current image. Available operations are; Dilation, Erosion, Opening, Closing, Morphological Gradient, Top Hat and Black Hat. Parameters are:
 
@@ -206,7 +206,7 @@ Image Padding Method & \multicolumn{4}{|c|}{Pixel extrapolation method}         
 \end{center}
 \end{figure}	
 
-\section{Blur}
+\subsubsection{Blur}
 
 In "Blur" tab, you can perform blurring your image with Homogeneous, Gaussian, Median or Bilateral smoothing.You also have options to specify kernel size, its anchor and border replication method. Parameters are:
 
@@ -232,7 +232,7 @@ Image Padding Method & \multicolumn{4}{|c|}{Pixel extrapolation method}         
 \end{figure}	
 
 
-\section{Sobel}
+\subsubsection{Sobel}
 
 In "Sobel" tab, you can use Sobel and Laplacian operators with many parameters.	Parameters are;
 
@@ -263,7 +263,7 @@ Laplacian Aperture Size & \multicolumn{4}{|c|}{Aperture size used to compute the
 \end{figure}	
 
 
-\section{Sharpen}
+\subsubsection{Sharpen}
 In "Sharpen" tab, you can perform sharpening on images. Behind the code, gaussian blurred image is weighted with the current image. Parameters are:
 
 \begin{table}[H]
@@ -287,7 +287,7 @@ Filter Weight        & \multicolumn{4}{|c|}{Weight of the first array elements} 
 \end{center}
 \end{figure}	
 
-\section{Edge}
+\subsubsection{Edge}
 In "Edge" tab, you can use Canny Edge detector algorithm to find edges in your image. There are 4 parameters for Canny. Parameters are:
 
 \begin{table}[H]
@@ -312,7 +312,7 @@ L2gradient          & \multicolumn{4}{|c|}{Use l2 normalization should be used t
 \end{center}
 \end{figure}	
 
-\section{Hough}
+\subsubsection{Hough}
 In "Hough" tab, you can find lines and circles with Hough Transform method. By choosing find method Lines or Circles, related parameters are enabled or disabled. Parameters are:
 
 \begin{table}[H]
@@ -345,7 +345,7 @@ Max Radius             & \multicolumn{4}{|c|}{Maximum circle radius}            
 \end{center}
 \end{figure}	
 
-\section{Contour}
+\subsubsection{Contour}
 In "Contour" tab, you can find contours of connected object and draw them onto image. There are many parameters available. Parameters are:
 
 \begin{table}[H]
@@ -374,7 +374,7 @@ Bounding Min Cirle  & \multicolumn{4}{|c|}{Drawing bounding circle}             
 \end{center}
 \end{figure}	
 
-\section{Harris}
+\subsubsection{Harris}
 Tn "Harris" tab, you can extract corners with Harris Corner Extraction. Parameters are:
 
 \begin{table}[H]
@@ -398,7 +398,7 @@ Threshold Max Strength          & \multicolumn{4}{|c|}{Binary threshold value be
 \end{center}
 \end{figure}	           
 
-\section{Features}
+\subsubsection{Features}
 In "Features" tab you can find 3 method implemented for keypoint extraction from current image.
 
 \begin{figure}[H]
@@ -408,7 +408,7 @@ In "Features" tab you can find 3 method implemented for keypoint extraction from
 \end{center}
 \end{figure}	   
 
-	\subsection{FAST}
+	\subsubsection{FAST}
 	Using "FastFeatureDetector" and given parameters, it finds key points. Parameters are:
 
 \begin{table}[H]
@@ -424,7 +424,7 @@ Keypoint Colors       & \multicolumn{4}{|c|}{Draws keypoints with different colo
 \end{center}
 \end{table}
 	
-	\subsection{SURF}
+	\subsubsection{SURF}
 	Using "SurfFeatureDetector" and given parameters, it finds key points. Parameters are:
 	
 \begin{table}[H]
@@ -440,7 +440,7 @@ Keypoint Colors       & \multicolumn{4}{|c|}{Draws keypoints with different colo
 \end{table}
 	
 	
-	\subsection{SIFT}
+	\subsubsection{SIFT}
 	Using "SiftFeatureDetector" and given parameters, it finds key points. Parameters are:
 	
 \begin{table}[H]
@@ -456,10 +456,10 @@ Keypoint Colors       & \multicolumn{4}{|c|}{Draws keypoints with different colo
 \end{center}
 \end{table}
 
-\section{Estimation}
+\subsubsection{Estimation}
 In "Estimation" tab, you can find many functions, including camera calibration with chessboard patter, finding matches between images. drawing epipolar lines, connecting two images with tomography and more.
 
-\subsection{Camera Calibration}
+\subsubsection{Camera Calibration}
 Camera calibration is calculating the distortion for your camera and, find undistortion for better image acquire. Parameters are:
 
 \begin{table}[H]
@@ -481,7 +481,7 @@ Camera calibration is calculating the distortion for your camera and, find undis
 \end{center}
 \end{figure}	   
 
-\subsection{Find Matches}
+\subsubsection{Find Matches}
 Find matches between two images; current output image and matching image you will provide with "Load Matching Image". Parameters are:
 
 \begin{table}[H]
@@ -504,7 +504,7 @@ Matching Image               & \multicolumn{4}{|c|}{Maching image your provide w
 \end{center}
 \end{figure}	   
 
-\subsection{Epipolar}
+\subsubsection{Epipolar}
 Finds and draws epipolar lines between two images; current output image and matching image you will provide with "Load Matching Image". Parameters are:
 
 \begin{table}[H]
@@ -529,7 +529,7 @@ Matching Image           & \multicolumn{4}{|c|}{Maching image your provide with 
 \end{figure}	   
 
 
-\subsection{Homography}
+\subsubsection{Homography}
 Computes the homography between two images and connect them by the found homography. Parameters are:
 
 	\begin{table}[H]
@@ -548,9 +548,53 @@ Matching Image           & \multicolumn{4}{|c|}{Maching image your provide with 
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[scale=0.5]{toolboxHomography.png}
+\includegraphics[scale=0.4]{toolboxHomography.png}
 \caption{Homography Applied Image}
 \end{center}
 \end{figure}	   
+
+	\subsection{Camera Toolbox}
+	\subsubsection{Basics}
+	Camera Toolbox is embedding functions of OpenCV(tested on 2.4.8) for users. This toolbox consist of one main window and sub-windows prompt upon on displaying input and output camera stream by OpenCV. It opens one camera at a time. Each image process operation you add is applied on output stram consecutively. There is also list of operations you can track of change of the output stream where you can remove any operation you want. By default, GUI elements are disabled until you open a stream.
+	
+	\subsubsection{User Interface}
+	User interface consist of camera index picker, play and pause buttons, image process operation selection combo-box, operation add button, image process operation list and remove operation button \par
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.4]{cameraToolbox.png}
+\caption{VP OpenCV Toolbox}
+\end{center}
+\end{figure}	
+	
+	Main buttons:
+	\begin{itemize}
+		\item Play: Opens the camera stream with given index
+		\item Pause: Pauses and closes the stream.
+		\item Add Operation: Add image process operation to list to be applied on stream.
+		\item Remove Operation: Removes image process operation from list to be applied.
+	\end{itemize}
+	
+	Operations:
+	\begin{itemize}
+		\item Noise: Adding salt and pepper noise
+		\item Logo: Adding logo and ROI
+		\item Histogram: Calculating and Equalizing Histogram.
+		\item Morph: Morphological Operations.
+	\end{itemize}
+	
+\subsubsection{Camera Input}
+
+	Camera input is very easy in this toolbox. Leave camera index "0" as default or select index and click play button. It starts to play camera stream. Camera stream plays on Qt built OpenCV windows, which has option to save images, zoom in/out and more options.
+
+\subsubsection{Image Processing Operation List}
+	Image processing operation list is showing the operations you added to your list for real time image processing. Each operation is applied on the stream consecutively. 
+	
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.42]{cameraToolboxOperationList.png}
+\caption{History with Details}
+\end{center}
+\end{figure}	
 
 \end{document}
